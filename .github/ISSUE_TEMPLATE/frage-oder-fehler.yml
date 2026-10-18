@@ -1,0 +1,32 @@
+name: Frage oder Fehler
+description: Frage zu Vermora stellen oder einen Fehler melden (öffentlich sichtbar)
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Dieser Eintrag ist öffentlich sichtbar.** Bitte keine eigenen Zahlen, Namen, Kontodaten
+        oder Daten Dritter eintragen – auch nicht in Bildschirmfotos oder angehängten Dateien.
+
+        Vermora ist ein privates Projekt. Ich antworte, wenn ich kann, aber ohne Zusage.
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Was ist die Frage oder was ist passiert?
+      description: Bei einem Fehler bitte die Schritte, die dazu geführt haben, und was stattdessen erwartet war.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Falls bekannt, z. B. 5.12.0.
+    validations:
+      required: false
+  - type: checkboxes
+    id: datenschutz
+    attributes:
+      label: Bestätigung
+      options:
+        - label: Ich habe keine eigenen Zahlen, Namen oder Kontodaten eingetragen.
+          required: true
