@@ -86,7 +86,7 @@ Das beschreibt die Bauweise. Eine Zusicherung ist es nicht.
 
 ## Herunterladen
 
-Die aktuelle Fassung liegt unter [Releases](../../releases), für Windows und Linux auf einem
+Die aktuelle Fassung liegt im Bereich „Releases“ dieses Repositorys, für Windows und Linux auf einem
 Prozessor mit x86-64-Architektur. Kein Konto, keine Anmeldung, keine Freischaltung. Eine
 Anleitung Schritt für Schritt liegt dem Starterpaket bei.
 
