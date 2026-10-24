@@ -9,6 +9,10 @@ body:
         oder Daten Dritter eintragen – auch nicht in Bildschirmfotos oder angehängten Dateien.
 
         Vermora ist ein privates Projekt. Ich antworte, wenn ich kann, aber ohne Zusage.
+        Sicherheitslücken bitte nicht hier, sondern wie in SECURITY.md beschrieben.
+
+        **Löschung auf Wunsch:** Soll Ihr Eintrag später gelöscht werden, schreiben Sie das als
+        Kommentar dazu oder per E-Mail an die Adresse im Impressum von vermora.de.
   - type: textarea
     id: beschreibung
     attributes:
@@ -20,7 +24,7 @@ body:
     id: version
     attributes:
       label: Version
-      description: Falls bekannt, z. B. 5.12.0.
+      description: Falls bekannt, z. B. 5.15.0.
     validations:
       required: false
   - type: checkboxes
