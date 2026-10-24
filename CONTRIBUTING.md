@@ -8,7 +8,7 @@ die Projektbeschreibung.
 
 - **Fragen und Fehlermeldungen:** über *Issues → Frage oder Fehler*. Ich antworte, wenn ich
   kann, ohne Zusage über Umfang oder Zeitpunkt.
-- **Sicherheitslücken:** bitte nicht öffentlich, sondern wie in [SECURITY.md](SECURITY.md)
+- **Sicherheitslücken:** bitte nicht öffentlich, sondern wie in [Sicherheitsrichtlinie](https://github.com/chgerhard/vermora-releases/security/policy)
   beschrieben.
 - **Ideen:** gern ebenfalls als Issue. Ob und wann etwas umgesetzt wird, entscheide ich;
   ein Anspruch darauf besteht nicht.
@@ -29,4 +29,4 @@ zeigen. Beiträge mit persönlichen Daten bearbeite oder lösche ich.
 Möchten Sie, dass ein eigener Beitrag gelöscht wird, schreiben Sie das als Kommentar dazu
 oder per E-Mail an die Adresse im Impressum von vermora.de.
 
-Es gelten die [Verhaltensregeln](CODE_OF_CONDUCT.md).
+Es gelten die [Verhaltensregeln](https://github.com/chgerhard/vermora-releases/community/code-of-conduct/).
