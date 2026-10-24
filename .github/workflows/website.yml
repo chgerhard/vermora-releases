@@ -73,13 +73,15 @@ jobs:
           exit $fehler
       - name: Pruefskripte aus dem Artefakt nehmen
         run: |
-          mkdir -p ../seite
+          mkdir -p "$RUNNER_TEMP/seite"
           rsync -a --exclude='.git' --exclude='pruefen*.py' --exclude='angaben.beispiel.ini' \
-            --exclude='RECHT-STATUS.md' --exclude='known_hits.json' --exclude='__pycache__' ./ ../seite/
+            --exclude='RECHT-STATUS.md' --exclude='known_hits.json' --exclude='__pycache__' ./ "$RUNNER_TEMP/seite/"
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         if: ${{ github.event_name != 'workflow_dispatch' || !inputs.trocken }}
         with:
-          path: ../seite
+          path: ${{ runner.temp }}/seite
+          # Punkt-Dateien (.well-known/security.txt, .nojekyll) gehoeren zur Seite.
+          include-hidden-files: true
       - name: Deploy
         id: deploy
         if: ${{ github.event_name != 'workflow_dispatch' || !inputs.trocken }}
