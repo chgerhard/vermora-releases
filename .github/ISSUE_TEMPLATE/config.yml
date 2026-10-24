@@ -1,1 +1,5 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Sicherheitslücke melden (vertraulich)
+    url: https://github.com/chgerhard/vermora-releases/security/advisories/new
+    about: Bitte Sicherheitslücken nicht öffentlich melden, sondern hier – nur Sie und ich sehen die Meldung.
