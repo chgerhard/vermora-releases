@@ -65,6 +65,12 @@ Gesetzesbezug und lässt sich in der Anwendung selbst pflegen.
 - Es übermittelt nichts an die Finanzverwaltung und erteilt keine Wertpapieraufträge.
 - Es sagt nicht, was Sie kaufen oder verkaufen sollen, bewertet keine Wertpapiere und setzt
   keine Zielquoten oder Schwellen. Die Vorgaben kommen von Ihnen, sonst bleibt das Feld leer.
+- Die steuerliche Aufbereitung ist auf deutsches Steuerrecht ausgerichtet (insbesondere
+  Einkommensteuergesetz, Investmentsteuergesetz, Erbschaft- und Schenkungsteuergesetz) und
+  auf Privatpersonen, die in Deutschland unbeschränkt steuerpflichtig sind. Steuerrecht anderer
+  Staaten bildet sie nur ab, soweit es für die deutsche Erklärung gebraucht wird, etwa bei der
+  Quellensteuer. Die steuerlichen Werte und Regeln sind im Programm mit ihrer Rechtsgrundlage
+  hinterlegt; ob sie für Ihren Fall und das jeweilige Jahr zutreffen, prüfen Sie.
 - Keine Anlageberatung, keine Anlagevermittlung, keine Finanzportfolioverwaltung, keine
   Hilfeleistung in Steuersachen, keine Rechtsdienstleistung. Die Steuer setzt allein das
   Finanzamt fest.
