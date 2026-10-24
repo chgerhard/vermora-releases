@@ -47,6 +47,12 @@ jobs:
       ANGABE_SECURITY_ABLAUF: ${{ secrets.ANGABE_SECURITY_ABLAUF }}
       ANGABE_STAND_DATENSCHUTZ: ${{ secrets.ANGABE_STAND_DATENSCHUTZ }}
     steps:
+      - name: Zweig website vorhanden
+        run: |
+          if ! git ls-remote --exit-code --heads "https://github.com/${GITHUB_REPOSITORY}.git" website > /dev/null; then
+            echo "::error::Zweig website fehlt. Zuerst veroeffentliche-website.ps1 -Wirklich ausfuehren, das erzeugt den Zweig."
+            exit 1
+          fi
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: website
