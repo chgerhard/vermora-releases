@@ -1,0 +1,86 @@
+# Website vermora.de auf GitHub Pages (Issue chgerhard/portfolio#1234, C4).
+#
+# Der Zweig `website` ist maschinell: ihn erzeugt veroeffentliche-website.ps1 (Orphan-Commit)
+# im privaten Website-Repo, niemand bearbeitet ihn von Hand. Er enthaelt die gebaute Seite
+# plus pruefen*.py, angaben.beispiel.ini, RECHT-STATUS.md und known_hits.json.
+#
+# Ablauf: Zweig auschecken -> Angaben aus den Secrets ANGABE_* einsetzen -> Tor
+# `pruefen.py --veroeffentlichung --dist .` (rot = nichts geht live) -> Pages-Artefakt ->
+# Deploy. Mit `trocken: true` (workflow_dispatch) laufen Einsetzen und Tor, der Deploy nicht.
+# Echte Angaben stehen nur in Secrets, nie in einem Commit.
+name: website
+
+on:
+  push:
+    branches: [website]
+  workflow_dispatch:
+    inputs:
+      trocken:
+        description: "Nur einsetzen und pruefen, nicht veroeffentlichen"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  veroeffentlichen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      ANGABE_NAME: ${{ secrets.ANGABE_NAME }}
+      ANGABE_STRASSE: ${{ secrets.ANGABE_STRASSE }}
+      ANGABE_ORT: ${{ secrets.ANGABE_ORT }}
+      ANGABE_EMAIL: ${{ secrets.ANGABE_EMAIL }}
+      ANGABE_AUFSICHT: ${{ secrets.ANGABE_AUFSICHT }}
+      ANGABE_SECURITY_ABLAUF: ${{ secrets.ANGABE_SECURITY_ABLAUF }}
+      ANGABE_STAND_DATENSCHUTZ: ${{ secrets.ANGABE_STAND_DATENSCHUTZ }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: website
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Angaben einsetzen
+        run: python pruefen_angaben.py --einsetzen .
+      - name: Tor Veroeffentlichung
+        run: python pruefen.py --veroeffentlichung --dist .
+      - name: Kein Secret-Wert im Git-Bestand
+        run: |
+          # Die Werte stehen nur in der Arbeitskopie; der eingecheckte Bestand muss frei sein.
+          fehler=0
+          for name in $(env | grep '^ANGABE_' | cut -d= -f1); do
+            wert="${!name}"
+            [ -z "$wert" ] && continue
+            if git grep -qF -e "$wert" HEAD -- . ; then
+              echo "::error::Wert von $name steht im Git-Bestand"
+              fehler=1
+            fi
+          done
+          exit $fehler
+      - name: Pruefskripte aus dem Artefakt nehmen
+        run: |
+          mkdir -p ../seite
+          rsync -a --exclude='.git' --exclude='pruefen*.py' --exclude='angaben.beispiel.ini' \
+            --exclude='RECHT-STATUS.md' --exclude='known_hits.json' --exclude='__pycache__' ./ ../seite/
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        if: ${{ github.event_name != 'workflow_dispatch' || !inputs.trocken }}
+        with:
+          path: ../seite
+      - name: Deploy
+        id: deploy
+        if: ${{ github.event_name != 'workflow_dispatch' || !inputs.trocken }}
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
