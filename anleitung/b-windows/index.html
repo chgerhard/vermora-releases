@@ -1,0 +1,1541 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Oeffentliche Installationsanleitung fuer Vermora (Issue #589). Eigene Quelle, eigener Bau, getrennt von der internen Pruef-Dokumentation (docs/pruefdoku/) -- diese Site ist bewusst frei von Betreiber-/Repo-Interna und darf veroeffentlicht werden (siehe redaktionsregeln.md und den Guard backend/tests/test_issue589_anleitung_oeffentlich.py).
+">
+      
+      
+      
+        <link rel="canonical" href="https://vermora.de/anleitung/b-windows/">
+      
+      
+        <link rel="prev" href="../a-vorbereitung/">
+      
+      
+        <link rel="next" href="../c-linux/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Teil B — Der Weg unter Windows - Vermora einrichten</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/tokens.css">
+    
+      <link rel="stylesheet" href="../../assets/fonts.css">
+    
+      <link rel="stylesheet" href="../../assets/marke.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#teil-b-der-weg-unter-windows" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="Vermora einrichten" class="md-header__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vermora einrichten
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Teil B — Der Weg unter Windows
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-ueberblick/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ueberblick
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../a-vorbereitung/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bevor Sie beginnen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Windows
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../c-linux/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../d-betrieb/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der laufende Betrieb
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../e-wenn-etwas-nicht-klappt/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Wenn etwas nicht klappt
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../f-andere-wege/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Andere Betriebswege
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../g-netzwerkspeicher/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Betrieb auf einem Netzwerkspeicher
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Vermora einrichten" class="md-nav__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vermora einrichten
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-ueberblick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ueberblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../a-vorbereitung/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bevor Sie beginnen
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bevor Sie beginnen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Windows
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../c-linux/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../d-betrieb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der laufende Betrieb
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der laufende Betrieb
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../e-wenn-etwas-nicht-klappt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wenn etwas nicht klappt
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Wenn etwas nicht klappt
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../f-andere-wege/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Andere Betriebswege
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Andere Betriebswege
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../g-netzwerkspeicher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#b1-eine-container-umgebung-installieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B1 Eine Container-Umgebung installieren
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B1 Eine Container-Umgebung installieren">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#falls-das-nicht-geht" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Falls das nicht geht
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b2-prufen-ob-die-umgebung-wirklich-lauft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B2 Prüfen, ob die Umgebung wirklich läuft
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b3-das-starterpaket-herunterladen-und-auspacken" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B3 Das Starterpaket herunterladen und auspacken
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b4-der-erste-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B4 Der erste Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b5-einrichtungs-wort-und-erstes-passwort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B5 Einrichtungs-Wort und erstes Passwort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b6-die-warnung-ihre-verbindung-ist-nicht-privat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B6 Die Warnung „Ihre Verbindung ist nicht privat"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b7-beenden-wieder-starten-automatisch-starten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B7 Beenden, wieder starten, automatisch starten
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="teil-b-der-weg-unter-windows">Teil B — Der Weg unter Windows<a class="headerlink" href="#teil-b-der-weg-unter-windows" title="Permanent link">&para;</a></h1>
+<p>Lesen Sie dieses Kapitel, wenn Sie an einem Windows-Rechner arbeiten. Das Linux-Kapitel
+brauchen Sie dann nicht.</p>
+<h2 id="b1-eine-container-umgebung-installieren">B1 Eine Container-Umgebung installieren<a class="headerlink" href="#b1-eine-container-umgebung-installieren" title="Permanent link">&para;</a></h2>
+<p>Hier installieren Sie das Hilfsprogramm, das Container-Päckchen laufen lässt (siehe
+„Was Vermora ist"). Dieser Schritt geschieht <strong>einmal</strong>. Danach nie wieder.</p>
+<p>Dieses Kapitel führt Sie durch <strong>Docker Desktop</strong>. Die drei gleichrangigen Alternativen
+stehen am Kapitelende unter „Falls das nicht geht".</p>
+<p><strong>Schritt 1</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Ihren Browser mit einer leeren Adresszeile.</li>
+<li><strong>Was das bedeutet:</strong> Sie sind bereit, die Umgebung herunterzuladen.</li>
+<li><strong>Was Sie tun:</strong> Öffnen Sie <code>https://www.docker.com/products/docker-desktop/</code> und
+  klicken Sie auf die Schaltfläche für Windows.</li>
+</ul>
+<p><strong>Schritt 2</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Unten in Ihrem Browser erscheint ein Balken, der langsam voller
+  wird. Die Datei heißt <code>Docker Desktop Installer.exe</code> und ist etwa 600 MB groß.</li>
+<li><strong>Was das bedeutet:</strong> Der Rechner lädt die Umgebung herunter. <strong>Das dauert je nach
+  Anschluss 5 bis 20 Minuten. Das ist normal.</strong> Lassen Sie das Fenster offen.</li>
+<li><strong>Was Sie tun:</strong> Warten Sie, bis der Balken voll ist.</li>
+</ul>
+<p><strong>Schritt 3</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die fertige Datei im Ordner <code>Downloads</code>.</li>
+<li><strong>Was das bedeutet:</strong> Die Umgebung ist heruntergeladen, aber noch nicht eingerichtet.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie die Datei doppelt an.</li>
+</ul>
+<p><strong>Schritt 4</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Ein blaues Fenster mit dem Satz „Der Computer wurde durch Windows
+  geschützt".</li>
+<li><strong>Was das bedeutet:</strong> Windows kennt diese Datei noch nicht persönlich und fragt nach.
+  Der Hersteller ist hier bekannt und die Datei stammt von seiner eigenen Seite.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie auf „Weitere Informationen", dann auf „Trotzdem
+  ausführen". Erscheint dieses Fenster <strong>nicht</strong>, überspringen Sie diesen Schritt.</li>
+</ul>
+<blockquote>
+<p>Bildhinweis: das Windows-Schutzfenster mit dem Text „Der Computer wurde durch Windows
+geschützt" — der kleine Link „Weitere Informationen" ist darin deutlich markiert.</p>
+</blockquote>
+<p><strong>Schritt 5</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Ein Fenster mit zwei Kästchen zum Ankreuzen.</li>
+<li><strong>Was das bedeutet:</strong> Die Einrichtung fragt nach Voreinstellungen.</li>
+<li><strong>Was Sie tun:</strong> Lassen Sie beide Kästchen so, wie sie sind. Klicken Sie auf „Ok".</li>
+</ul>
+<p><strong>Schritt 6</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Einen Fortschrittsbalken und wechselnde Texte.</li>
+<li><strong>Was das bedeutet:</strong> Die Umgebung wird eingerichtet. <strong>Das dauert 5 bis 15 Minuten.
+  Das ist normal.</strong></li>
+<li><strong>Was Sie tun:</strong> Warten Sie. Arbeiten Sie in dieser Zeit nicht am Rechner.</li>
+</ul>
+<p><strong>Schritt 7</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Den Satz „Installation succeeded" und eine Schaltfläche „Close and
+  restart".</li>
+<li><strong>Was das bedeutet:</strong> Die Einrichtung ist fertig. Windows muss neu starten.</li>
+<li><strong>Was Sie tun:</strong> Speichern Sie offene Arbeiten. Klicken Sie auf „Close and restart".</li>
+</ul>
+<p><strong>Schritt 8</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Nach dem Neustart ein Fenster mit Lizenzbedingungen.</li>
+<li><strong>Was das bedeutet:</strong> Sie werden gefragt, ob Sie die Bedingungen annehmen. Für private
+  Nutzung ist die Umgebung kostenfrei (siehe „Was kostet was").</li>
+<li><strong>Was Sie tun:</strong> Lesen Sie den Text. Sind Sie einverstanden, klicken Sie auf „Accept".
+  Sind Sie es nicht, brechen Sie hier ab und wählen Sie eine der Alternativen am
+  Kapitelende.</li>
+</ul>
+<p><strong>Schritt 9</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Eine Aufforderung, ein Konto anzulegen oder sich anzumelden.</li>
+<li><strong>Was das bedeutet:</strong> Der Hersteller wirbt für sein Konto. Vermora braucht es nicht.</li>
+<li><strong>Was Sie tun:</strong> Suchen Sie den kleinen Text „Continue without signing in" und klicken
+  Sie darauf. Danach lässt sich eine Umfrage mit „Skip" überspringen.</li>
+</ul>
+<h3 id="falls-das-nicht-geht">Falls das nicht geht<a class="headerlink" href="#falls-das-nicht-geht" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Rancher Desktop:</strong> <code>https://rancherdesktop.io</code> — Ablauf wie oben, ohne die Schritte
+  8 und 9.</li>
+<li><strong>Podman Desktop:</strong> <code>https://podman-desktop.io</code> — nach der Einrichtung zusätzlich in
+  Podman Desktop auf „Initialize and start" klicken und warten, bis der Zustand
+  „Running" gemeldet wird.</li>
+<li><strong>Docker CE:</strong> dieser Weg wird über Textbefehle bedient. Er ist im Kapitel „Andere
+  Betriebswege" beschrieben.</li>
+</ul>
+<h2 id="b2-prufen-ob-die-umgebung-wirklich-lauft">B2 Prüfen, ob die Umgebung wirklich läuft<a class="headerlink" href="#b2-prufen-ob-die-umgebung-wirklich-lauft" title="Permanent link">&para;</a></h2>
+<p>Dieser Schritt sieht überflüssig aus. Er ist es nicht.</p>
+<p>„Installiert" und „läuft gerade" sind zwei verschiedene Dinge. Sie zu verwechseln ist der
+mit Abstand häufigste Grund, warum der nächste Schritt fehlschlägt.</p>
+<p><strong>Schritt 1</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Unten rechts in der Windows-Leiste, neben der Uhrzeit, ein kleines
+  Symbol in Form eines Wals. Möglicherweise müssen Sie erst auf den kleinen Pfeil <code>^</code>
+  klicken, um verborgene Symbole zu zeigen.</li>
+<li><strong>Was das bedeutet:</strong> Bewegt sich das Symbol oder ist es gelb, startet die Umgebung
+  noch. Steht es ruhig und weiß, ist sie bereit.</li>
+<li><strong>Was Sie tun:</strong> Warten Sie, bis das Symbol ruhig steht. <strong>Nach einem Neustart des
+  Rechners dauert das ein bis zwei Minuten. Das ist normal.</strong></li>
+</ul>
+<blockquote>
+<p>Bildhinweis: der Windows-Infobereich unten rechts mit dem weißen Wal-Symbol im
+Ruhezustand, daneben zum Vergleich der gelbe Zustand während des Starts.</p>
+</blockquote>
+<p><strong>Schritt 2</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Nach einem Doppelklick auf das Wal-Symbol ein Fenster.</li>
+<li><strong>Was das bedeutet:</strong> Unten links in diesem Fenster steht ein Wort und ein farbiger
+  Punkt.</li>
+<li><strong>Was Sie tun:</strong> Prüfen Sie, dass dort <strong>„Engine running"</strong> in Grün steht. Steht dort
+  etwas anderes, lesen Sie im Kapitel „Wenn etwas nicht klappt" das Symptom zur
+  Container-Umgebung.</li>
+</ul>
+<h2 id="b3-das-starterpaket-herunterladen-und-auspacken">B3 Das Starterpaket herunterladen und auspacken<a class="headerlink" href="#b3-das-starterpaket-herunterladen-und-auspacken" title="Permanent link">&para;</a></h2>
+<p>Das <strong>Starterpaket</strong> ist eine kleine Datei mit den Startdateien für Vermora. Vermora
+selbst steckt nicht darin — es wird beim ersten Start geholt.</p>
+<div class="admonition info">
+<p class="admonition-title">Dieser Schritt ist ab jetzt einmalig</p>
+<p>Frühere Fassungen verlangten nach jeder Aktualisierung ein erneutes Herunterladen
+dieses Pakets von Hand. Das entfällt jetzt: das Startprogramm prüft bei jedem
+Start von selbst, ob eine neuere Fassung vorliegt, und holt sie im Hintergrund
+nach — wirksam beim jeweils nächsten Start, ohne dass Sie diesen Ordner je wieder
+anfassen müssen.</p>
+</div>
+<p><strong>Schritt 1</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Bereitstellungsseite mit einer Schaltfläche zum Herunterladen.</li>
+<li><strong>Was das bedeutet:</strong> Von hier bekommen Sie das Starterpaket.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie auf die Schaltfläche. Die Datei beginnt mit
+  <code>vermora-starter-</code>, gefolgt von der Fassungsnummer.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Wird auf der Bereitstellungsseite ergänzt</p>
+<p>Neben der Schaltfläche steht die Prüfsumme des Pakets in voller Länge, mit einem
+fertigen Befehl zum Vergleichen darunter. Dieser Vergleich ist freiwillig.</p>
+</div>
+<p><strong>Schritt 2</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die heruntergeladene Datei im Ordner <code>Downloads</code>, mit einem
+  Reißverschluss-Symbol.</li>
+<li><strong>Was das bedeutet:</strong> Es ist ein zusammengepacktes Bündel mehrerer Dateien. Windows hat
+  die Datei als „aus dem Internet" gekennzeichnet.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie die Datei mit der <strong>rechten</strong> Maustaste an, wählen Sie
+  „Eigenschaften". Steht unten ein Kästchen „Zulassen", kreuzen Sie es an und klicken Sie
+  „OK". Fehlt das Kästchen, ist nichts zu tun.</li>
+</ul>
+<p>Dieser Schritt vor dem Auspacken erspart Ihnen später eine Windows-Warnung bei jeder
+einzelnen Datei.</p>
+<p><strong>Schritt 3</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Wieder die Datei im Ordner <code>Downloads</code>.</li>
+<li><strong>Was das bedeutet:</strong> Sie ist jetzt freigegeben und kann ausgepackt werden.</li>
+<li><strong>Was Sie tun:</strong> Rechte Maustaste, „Alle extrahieren", dann „Extrahieren". Es entsteht
+  ein Ordner mit demselben Namen ohne <code>.zip</code>.</li>
+</ul>
+<p><strong>Wichtig zum Ort dieses Ordners:</strong> Lassen Sie ihn dort, wo er ist, oder verschieben Sie
+ihn in einen Ordner Ihrer Wahl auf <strong>Ihrer eigenen Festplatte</strong>.</p>
+<p><strong>Legen Sie ihn nicht in OneDrive, Dropbox oder iCloud.</strong> Solche Ordner werden ständig ins
+Internet gespiegelt. Vermora schreibt viele kleine Änderungen, und die Spiegelung kommt
+dabei durcheinander. Das Ergebnis sind beschädigte Dateien.</p>
+<p><strong>Schritt 4</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Im ausgepackten Ordner die Startdateien <code>START.cmd</code> (für Windows)
+  sowie <code>START.sh</code> (für Linux), eine <code>LIESMICH.txt</code>, ein Ordner <code>notfall</code> und ein Ordner
+  mit weiteren Dateien.</li>
+<li><strong>Was das bedeutet:</strong> <code>START.cmd</code> ist Ihr Startknopf. <code>START.sh</code> ist für Linux-Rechner
+  und wird hier nicht benutzt. Der Ordner <code>notfall</code> enthält Einzelwerkzeuge (Beenden,
+  Protokoll, Sicherungen, Deinstallieren) für den Fall, dass einmal kein Browser zur
+  Verfügung steht — im normalen Betrieb erledigen Sie all das bequemer direkt in der
+  Steuerzentrale (siehe nächstes Kapitel).</li>
+<li><strong>Was Sie tun:</strong> Nichts. Merken Sie sich, wo dieser Ordner liegt.</li>
+</ul>
+<h2 id="b4-der-erste-start">B4 Der erste Start<a class="headerlink" href="#b4-der-erste-start" title="Permanent link">&para;</a></h2>
+<p><strong>Schritt 1</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Den Ordner aus dem vorigen Kapitel.</li>
+<li><strong>Was das bedeutet:</strong> Alles ist vorbereitet.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie <strong><code>START.cmd</code></strong> doppelt an.</li>
+</ul>
+<p><strong>Schritt 2</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Kurz blitzt ein schwarzes Fenster auf und verschwindet wieder — das
+  ist normal. Danach öffnet sich ein eigenes Browser-Fenster ohne Adressleiste: die
+  <strong>Steuerzentrale</strong>. Sie begleitet Sie ab jetzt durch die Einrichtung und bleibt danach
+  Ihr zentraler Anlaufpunkt für Beenden, Protokoll, Sicherungen und mehr — in dieser
+  Anleitung ist damit ab hier das <strong>Startfenster</strong> gemeint.</li>
+<li><strong>Was das bedeutet:</strong> Das Startprogramm läuft im Hintergrund weiter, auch wenn kein
+  schwarzes Fenster mehr zu sehen ist. Die Steuerzentrale aktualisiert sich von selbst.</li>
+<li><strong>Was Sie tun:</strong> Dieses Fenster darf jederzeit geschlossen werden, Vermora läuft
+  unabhängig davon weiter — es lohnt sich trotzdem, es offen zu lassen, bis die
+  Anleitung es sagt, damit Sie gleich Ihr Einrichtungs-Wort sehen.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Wird in der Steuerzentrale eingeblendet</p>
+<p>Oben rechts steht „Schritt 1 von 9" mit einem Fortschrittsbalken darunter, darunter
+der Name des gerade laufenden Prüfschritts. Automatische Schritte zeigen dabei nur
+einen Fortschrittsring, keine Eingabefelder — die brauchen Sie erst in Schritt 4/5
+unten.</p>
+</div>
+<p><strong>Schritt 3 — Die Prüfung der Umgebung</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Zeilen wie „Container-Umgebung gefunden: Docker Desktop" und
+  „Prozessor-Bauart geprüft: x86_64".</li>
+<li><strong>Was das bedeutet:</strong> Das Startprogramm hat geprüft, ob Ihr Rechner passt.</li>
+<li><strong>Was Sie tun:</strong> Nichts. Steht hier eine Meldung statt eines Hakens, lesen Sie das
+  Kapitel „Wenn etwas nicht klappt".</li>
+</ul>
+<p><strong>Schritt 4 — Der Ordner für Ihre Sicherungen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> In der Steuerzentrale ein Textfeld mit einem fertigen Vorschlag
+  (<code>C:\Users\&lt;Ihr Anmeldename&gt;\Vermora\sicherungen</code>) und darunter der Hinweis, den Ordner
+  nicht in OneDrive, Dropbox oder einen anderen Cloud-Ordner zu legen.</li>
+<li><strong>Was das bedeutet:</strong> Hier legt Vermora künftig Kopien Ihrer Daten ab. Sie sollen
+  diesen Ordner sehen und öffnen können — deshalb wählen <strong>Sie</strong> ihn.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie auf „Weiter", um den Vorschlag zu übernehmen, oder
+  markieren Sie das Feld und tippen Sie einen anderen Pfad ein, bevor Sie auf „Weiter"
+  klicken.</li>
+</ul>
+<p><strong>Schritt 5 — Der Ordner für Ihren Schlüssel</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Dasselbe Textfeld noch einmal, mit einem anderen Vorschlag
+  (<code>C:\Users\&lt;Ihr Anmeldename&gt;\AppData\Local\Vermora-schluessel</code>).</li>
+<li><strong>Was das bedeutet:</strong> Ihre Sicherungen werden verschlossen. Der Schlüssel dazu liegt in
+  <strong>diesem</strong> Ordner, getrennt von den Sicherungen, aus einem Grund, den man sich merken
+  kann: <strong>Schlüssel und Schloss gehören nicht in dieselbe Schublade.</strong> Wer die Schublade
+  bekommt, hat sonst beides. Deshalb liegt der Vorschlag auch <strong>neben</strong> dem Ordner Ihrer
+  Vermora-Installation selbst (nicht darin) — eine Deinstallation mit „Schlüssel
+  behalten" darf den Schlüssel nie mitlöschen.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie auf „Weiter", um den Vorschlag zu übernehmen. Das Programm
+  prüft und weist zurück, wenn zwei der drei Ordner (Sicherung, Schlüssel,
+  Vermora-Installation selbst) gleich sind oder ineinander liegen, und warnt, wenn
+  Sicherung oder Schlüssel in einem cloud-synchronisierten Ordner liegen — beim Schlüssel
+  wird das sogar hart abgelehnt, er darf diesen Rechner nie verlassen.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Ordner auswählen</p>
+<p>Neben dem Textfeld steht ein Knopf „Durchsuchen…". Er öffnet das Ordnerfenster Ihres
+Systems (es kann kurz dauern und erscheint als eigenes Fenster). Sie können den Pfad
+alternativ von Hand in das Feld tippen.</p>
+</div>
+<p><strong>Schritt 6 — Vermora wird geholt</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Viele Zeilen mit Balken, die schnell wechseln, und die Zeile
+  „Vermora wird heruntergeladen".</li>
+<li><strong>Was das bedeutet:</strong> Jetzt kommt das eigentliche Programm auf Ihren Rechner. <strong>Das
+  dauert 3 bis 15 Minuten und geschieht ausschließlich bei diesem ersten Mal. Das ist
+  normal.</strong></li>
+<li><strong>Was Sie tun:</strong> Warten Sie. Erscheint stattdessen eine Meldung über fehlenden Zugang,
+  lesen Sie das Kapitel „Wenn etwas nicht klappt".</li>
+</ul>
+<p><strong>Schritt 7 — Die Datenbank wird eingerichtet</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Zeile „Die Datenbank wird eingerichtet, das dauert beim ersten
+  Mal etwa eine Minute."</li>
+<li><strong>Was das bedeutet:</strong> Vermora legt seine innere Ordnung an.</li>
+<li><strong>Was Sie tun:</strong> Warten Sie. Bleibt die Zeile länger als fünf Minuten stehen oder
+  erscheint eine Meldung mit einer Kennung in eckigen Klammern, lesen Sie das Kapitel
+  „Wenn etwas nicht klappt".</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Wird beim Ausbleiben verständlich gemeldet</p>
+<p>Scheitert dieser Schritt, hält das Programm an, statt in einer Schleife immer
+wieder zu starten. Auf dem Bildschirm steht dann, dass Ihre Daten dabei nicht
+verändert wurden, und die genaue nächste Handlung.</p>
+</div>
+<p><strong>Schritt 8 — Vermora läuft</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> In der Steuerzentrale den letzten Schritt „Vermora ist eingerichtet",
+  darunter Ihr Einrichtungs-Wort in großer Schrift auf einer eigenen Karte, ein Knopf
+  „Kopieren" und ein Knopf „Vermora öffnen".</li>
+<li><strong>Was das bedeutet:</strong> Geschafft. Vermora ist gestartet, und das Einrichtungs-Wort für
+  die erste Anmeldung liegt bereits in Ihrer Zwischenablage.</li>
+<li><strong>Was Sie tun:</strong> Weiter im nächsten Kapitel.</li>
+</ul>
+<h2 id="b5-einrichtungs-wort-und-erstes-passwort">B5 Einrichtungs-Wort und erstes Passwort<a class="headerlink" href="#b5-einrichtungs-wort-und-erstes-passwort" title="Permanent link">&para;</a></h2>
+<p>Beim allerersten Start hat Vermora noch kein Passwort. In diesem Moment könnte jeder, der
+an Ihren Rechner kommt, sich als Sie eintragen.</p>
+<p>Damit das nicht geschieht, gibt es ein <strong>Einrichtungs-Wort</strong>. Es ist ein einmaliges
+Kennwort und wird nach Ihrer ersten Passwortvergabe wertlos.</p>
+<p><strong>Schritt 1</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Karte mit dem Einrichtungs-Wort aus dem vorigen Schritt.</li>
+<li><strong>Was das bedeutet:</strong> Das ist Ihr Einrichtungs-Wort. Es gilt für die nächsten Minuten
+  und wird danach nicht mehr gebraucht. Es liegt bereits in der Zwischenablage.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie auf „Vermora öffnen". Die Steuerzentrale wechselt zur
+  Übersicht — dort öffnet ein zweiter Klick auf den Knopf „Vermora öffnen" die
+  Anmeldeseite in einem eigenen Browser-Fenster. Fügen Sie das Einrichtungs-Wort dort mit
+  Strg + V ein. Hat das Kopieren nicht geklappt, klicken Sie vorher auf der Karte auf
+  „Kopieren".</li>
+</ul>
+<p><strong>Schritt 2</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Ihren Browser mit der Vermora-Seite. Er hat sich selbst geöffnet.</li>
+<li><strong>Was das bedeutet:</strong> Vermora ist erreichbar. Öffnet sich der Browser nicht, ist das
+  kein Fehler — klicken Sie dann in der Steuerzentrale (Seite Übersicht) noch einmal auf
+  „Vermora öffnen".</li>
+<li><strong>Was Sie tun:</strong> Sehen Sie eine Warnseite statt der Anmeldeseite? Dann lesen Sie
+  zuerst das nächste Kapitel und kommen Sie danach hierher zurück.</li>
+</ul>
+<p><strong>Schritt 3</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Ein Feld für das Einrichtungs-Wort und zwei Felder für ein neues
+  Passwort.</li>
+<li><strong>Was das bedeutet:</strong> Vermora will wissen, dass Sie es sind, und dann Ihr Passwort
+  erfahren.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie in das erste Feld und drücken Sie Strg + V. Vergeben Sie
+  dann ein Passwort und wiederholen Sie es im zweiten Feld.</li>
+</ul>
+<p><strong>Zum Passwort:</strong> Nehmen Sie eines, das Sie sonst nirgends benutzen. Vier zufällige
+Wörter hintereinander sind sicherer und leichter zu merken als kurze Kombinationen aus
+Buchstaben und Zeichen. Schreiben Sie es auf ein Blatt Papier und legen Sie es dorthin, wo
+Ihre Ausweise liegen. <strong>Es gibt niemanden, der es zurücksetzen kann.</strong></p>
+<p><strong>Schritt 4</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Anmeldeseite.</li>
+<li><strong>Was das bedeutet:</strong> Ihr Passwort ist gesetzt. Das Einrichtungs-Wort ist ab jetzt
+  wertlos.</li>
+<li><strong>Was Sie tun:</strong> Melden Sie sich an. Weiter geht es im Kapitel „Der erste Rundgang".</li>
+</ul>
+<h2 id="b6-die-warnung-ihre-verbindung-ist-nicht-privat">B6 Die Warnung „Ihre Verbindung ist nicht privat"<a class="headerlink" href="#b6-die-warnung-ihre-verbindung-ist-nicht-privat" title="Permanent link">&para;</a></h2>
+<p><strong>Was Sie sehen:</strong> Eine rote oder graue Seite mit einem Warndreieck. Je nach Browser
+steht dort „Ihre Verbindung ist nicht privat", „Die Verbindung ist nicht sicher" oder ein
+Fehlercode.</p>
+<blockquote>
+<p>Bildhinweis: eine Browser-Warnseite mit Warndreieck und dem Text „Ihre Verbindung ist
+nicht privat" — die Schaltfläche „Erweitert" ist am unteren Rand deutlich markiert.</p>
+</blockquote>
+<p><strong>Was das bedeutet:</strong> Jede verschlüsselte Verbindung braucht einen Ausweis für den
+Gegenüber. Bei einer Seite im Internet stellt eine bekannte Prüfstelle diesen Ausweis
+aus.</p>
+<p>Vermora läuft auf <strong>Ihrem eigenen Rechner</strong>. Es gibt keine fremde Stelle, die einen
+Ausweis für Ihren eigenen Rechner ausstellen könnte. Also stellt Ihr Rechner ihn sich
+selbst aus.</p>
+<p>Ihr Browser kennt diesen selbst ausgestellten Ausweis nicht und warnt.</p>
+<p><strong>Die Warnung ist hier harmlos, und zwar aus einem nachprüfbaren Grund:</strong> Die Verbindung
+geht von Ihrem Rechner zu Ihrem Rechner. Sie verlässt das Gerät nicht. Es gibt auf dieser
+Strecke niemanden, der mithören könnte.</p>
+<p><strong>Was Sie tun — der schnelle Weg (Chrome, Edge):</strong></p>
+<ol>
+<li>Klicken Sie auf „Erweitert".</li>
+<li>Klicken Sie unten auf „Weiter zu localhost (unsicher)".</li>
+</ol>
+<p><strong>Was Sie tun — der schnelle Weg (Firefox):</strong></p>
+<ol>
+<li>Klicken Sie auf „Erweitert".</li>
+<li>Klicken Sie auf „Risiko akzeptieren und fortfahren".</li>
+</ol>
+<p>Diese Warnung erscheint danach seltener, aber sie kann wiederkommen.</p>
+<p><strong>Was Sie tun — der dauerhafte Weg:</strong> Sie können Ihrem Rechner beibringen, den selbst
+ausgestellten Ausweis zu kennen. Danach verschwindet die Warnung.</p>
+<div class="admonition info">
+<p class="admonition-title">Wird als Menüpunkt im Startprogramm angeboten</p>
+<p>Das Startprogramm bietet diesen Weg als eigenen Menüpunkt an. Es holt den Ausweis
+selbst und trägt ihn in den Windows-Speicher ein — Sie tippen dabei keinen Pfad ab.
+Nutzen Sie zusätzlich Firefox, ist danach ein zweiter Schritt nötig, weil Firefox
+einen eigenen Ausweis-Speicher führt; das Fenster sagt das ausdrücklich.</p>
+</div>
+<h2 id="b7-beenden-wieder-starten-automatisch-starten">B7 Beenden, wieder starten, automatisch starten<a class="headerlink" href="#b7-beenden-wieder-starten-automatisch-starten" title="Permanent link">&para;</a></h2>
+<p><strong>Beenden</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Steuerzentrale, Seite Übersicht, mit dem Knopf „Beenden".</li>
+<li><strong>Was das bedeutet:</strong> Vermora läuft im Hintergrund weiter, auch wenn der Browser zu
+  ist.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie in der Steuerzentrale auf „Beenden" und bestätigen Sie den
+  Dialog. Steht kein Browser zur Verfügung, führen Sie stattdessen
+  <code>notfall\BEENDEN.cmd</code> aus — ein Fenster meldet dann, dass Vermora angehalten wurde.
+  <strong>Ihre Daten bleiben in jedem Fall vollständig erhalten.</strong></li>
+</ul>
+<p><strong>Wieder starten</strong></p>
+<ul>
+<li><strong>Was Sie tun:</strong> Klicken Sie <code>START.cmd</code> doppelt an. Der zweite Start ist deutlich
+  schneller als der erste — er dauert etwa eine Minute. Das Einrichtungs-Wort wird nicht
+  mehr abgefragt, die Steuerzentrale zeigt stattdessen gleich die Übersicht.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Verknüpfungen kommen mit einem Update</p>
+<p>Frühere Fassungen fragten hier gleich nach der Einrichtung von sich aus nach einer
+Desktop-Verknüpfung, einem Startmenü-Eintrag und dem automatischen Start. Über die
+Steuerzentrale lässt sich das noch nicht einstellen. Bis dahin legen Sie ein
+Startsymbol bei Bedarf von Hand an: <code>START.cmd</code> mit der rechten Maustaste anklicken →
+„Weitere Optionen anzeigen" → „Senden an" → „Desktop (Verknüpfung erstellen)".</p>
+</div>
+<p><strong>Automatisch mitstarten</strong></p>
+<p>Auch das lässt sich noch nicht über die Steuerzentrale einschalten (siehe Hinweis oben).
+Richten Sie es von Hand ein: Legen Sie eine Verknüpfung auf <strong><code>AUTOSTART.cmd</code></strong> (nicht
+<code>START.cmd</code>) im Autostart-Ordner Ihres Benutzerkontos an (Windows-Taste + <code>R</code>,
+<code>shell:startup</code>, Enter, dann die Verknüpfung dort hineinziehen). Der Unterschied zu
+<code>START.cmd</code>: Beim Anmelden ist noch niemand da, der einen Dialog beantworten könnte.
+<code>AUTOSTART.cmd</code> öffnet deshalb auch keine Steuerzentrale von selbst — Vermora läuft im
+Hintergrund an, und Sie öffnen die Seite bei Bedarf selbst unter
+<code>https://localhost:&lt;Port&gt;</code> (die genaue Adresse steht im Protokoll
+<code>start-protokoll.txt</code>). Nachträglich abschalten können Sie den Autostart, indem Sie diese
+Verknüpfung wieder aus dem Autostart-Ordner löschen — sie verschwindet ebenso bei einer
+vollständigen Deinstallation.</p>
+<p><strong>Wichtig:</strong> Docker Desktop muss dafür ebenfalls
+mitstarten — in dessen eigenen Einstellungen unter „Start Docker Desktop when you sign in"
+aktivieren, sonst wartet Vermora bis zu drei Minuten vergeblich auf die Container-Umgebung
+und bricht dann ab. <strong>Bedenken Sie außerdem:</strong> Beim Autostart blitzt kurz ein schwarzes
+Fenster auf und verschwindet wieder, und es öffnet sich <strong>kein</strong> Browser-Fenster von selbst.
+Falls dabei ein noch belegter Netzwerk-Zugang (Port) automatisch durch einen anderen ersetzt
+wird, zeigt weder ein altes Lesezeichen noch ein gespeichertes Passwort mehr auf die neue
+Adresse — beide stehen dann im Protokoll <code>start-protokoll.txt</code> im Instanzordner.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../a-vorbereitung/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Teil A — Bevor Sie beginnen">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                Teil A — Bevor Sie beginnen
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../c-linux/" class="md-footer__link md-footer__link--next" aria-label="Weiter: Teil C — Der Weg unter Linux-Desktop">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                Teil C — Der Weg unter Linux-Desktop
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes", "navigation.tabs", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  <script src="../assets/tastatur.js"></script>
+
+  </body>
+</html>

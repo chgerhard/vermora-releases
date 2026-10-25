@@ -1,0 +1,893 @@
+/*
+  Seitenstil vermora.de -- Issue #615.
+
+  KEIN HEXWERT IN DIESER DATEI. Jede Farbe kommt als --vm-*-Variable aus tokens.css, und
+  tokens.css wird aus docs/STYLEGUIDE.md Paragraph 2.2 erzeugt (styleguide_sync.ps1,
+  Issue #613). Ein Hexwert hier waere eine zweite Palette neben dem Styleguide -- genau so
+  ist der Bruch entstanden, den K22 aufloesen musste.
+
+  Dunkelmodus kommt ohne Zutun: tokens.css setzt die Rollen unter
+  @media (prefers-color-scheme: dark) neu, diese Datei nennt nur Rollen.
+
+  Paragraph 2.2: --vm-ink-light ist NIE Fliesstext. Paragraph 2.3: Messing (--vm-accent)
+  ist nie Textfarbe unter 16 px und keine Dekoration neben pos/neg.
+*/
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  color-scheme: light dark;     /* native Scrollbars und Haekchen folgen dem Thema (WCAG 1.4.11) */
+  scroll-padding-top: 5rem;     /* Anker landen unter dem klebenden Kopf, nicht dahinter (2.4.11) */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--vm-paper);
+  color: var(--vm-ink);
+  font-family: var(--vm-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-synthesis-weight: none;
+}
+
+/* --- Grundbausteine ----------------------------------------------------- */
+
+.bahn {
+  width: 100%;
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;          /* Seitenrand auf dem Telefon */
+}
+
+section { padding: 3.5rem 0; }
+
+/* --- Kapitel (Issue #1005, Styleguide Paragraph 2.2) ----------------------
+   Vier Kapitel, je ein Grundton: Problem (card), Leistung (kuehl), Vertrauen (warm),
+   Start (Fond). Am Kapitelwechsel traegt der Farbwechsel die Trennung; nur Abschnitte
+   desselben Kapitels bekommen eine Haarlinie. Der Einstieg darueber bleibt auf paper. */
+
+.kap-problem {
+  background: var(--vm-card);
+  border-top: 1px solid var(--vm-line);   /* card gegen paper traegt allein nicht */
+}
+
+.kap-leistung { background: var(--vm-tint-kuehl); }
+.kap-vertrauen { background: var(--vm-tint-warm); }
+
+.kap-leistung + .kap-leistung,
+.kap-vertrauen + .kap-vertrauen { border-top: 1px solid var(--vm-line); }
+
+/* Schlussfond: eigene Textfamilie. Anker, Interaktiv und ink kommen hier nicht vor,
+   Messing ist auf dem Fond nie Textfarbe (Styleguide Paragraph 2.2). */
+.kap-start {
+  background: var(--vm-fond);
+  color: var(--vm-fond-ink);
+}
+
+.kap-start h2,
+.kap-start a,
+.kap-start .schritte strong,
+.kap-start .schritte .nr { color: var(--vm-fond-ink); }
+
+.kap-start .dachzeile { color: var(--vm-fond-soft); }
+
+.kap-start :focus-visible { outline-color: var(--vm-fond-ink); }
+
+.kap-start .knopf {
+  background: var(--vm-fond-ink);
+  color: var(--vm-fond);
+}
+
+.kap-start .schritte li {
+  border-top-color: var(--vm-fond-soft);
+  border-top-color: color-mix(in srgb, var(--vm-fond-soft) 40%, transparent);
+}
+
+/* Eine Karte auf dem Fond ist wieder eine gewoehnliche Flaeche -- innen gelten die
+   gewoehnlichen Rollen. */
+.kap-start .hervorgehoben { color: var(--vm-ink); }
+.kap-start .hervorgehoben a { color: var(--vm-interaktiv); }
+.kap-start .hervorgehoben :focus-visible { outline-color: var(--vm-interaktiv); }
+
+h1, h2, h3, h4 {
+  overflow-wrap: anywhere;      /* lange Woerter ("Datenschutzerklaerung") duerfen bei 320 px umbrechen (1.4.10) */
+  hyphens: auto;
+  font-family: var(--vm-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--vm-anker);
+  margin: 0 0 0.75rem;
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(2rem, 6vw, 3.25rem); }
+h2 { font-size: clamp(1.5rem, 3.6vw, 2.125rem); margin-bottom: 1rem; }
+h3, h4 { font-size: 1.125rem; }
+
+p { margin: 0 0 1rem; }
+
+a {
+  color: var(--vm-interaktiv);
+  text-underline-offset: 0.2em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--vm-interaktiv);
+  outline-offset: 2px;
+  border-radius: var(--vm-radius);
+}
+
+.dachzeile {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;          /* Messing erst ab 16 px -- deshalb ink-soft, Par. 2.3 */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vm-ink-soft);
+}
+
+.fliess { max-width: 44rem; }
+
+.merksatz {
+  margin-top: 1.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--vm-accent);
+  font-family: var(--vm-serif);
+  font-size: 1.25rem;           /* ueber 16 px, siehe Par. 2.3 */
+  color: var(--vm-anker);
+}
+
+.fussnote {
+  max-width: 44rem;
+  font-size: 0.9375rem;
+  color: var(--vm-ink-soft);
+}
+
+/* --- Sprungmarke und Kopf ----------------------------------------------- */
+
+.sprung {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--vm-anker);
+  color: var(--vm-paper);
+  padding: 0.75rem 1rem;
+  border-radius: var(--vm-radius);
+  z-index: 10;
+}
+
+.sprung:focus {
+  left: 1rem;
+  top: 1rem;
+  position: fixed;
+}
+
+.kopf {
+  border-bottom: 1px solid var(--vm-line);
+  background: var(--vm-paper);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+/* Schmale oder niedrige Fenster (auch 400 % Zoom): der Kopf wuerde den Inhalt verdraengen
+   (WCAG 1.4.10) -- dort scrollt er mit, die Anker brauchen dann kaum Abstand. */
+@media (max-width: 63.99rem), (max-height: 37.5rem) {
+  .kopf { position: static; }
+  html { scroll-padding-top: 1rem; }
+}
+
+main:focus { outline: none; }   /* nur Ziel des Sprunglinks (tabindex -1), kein Bedienelement */
+
+.kopf-innen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+
+.marke {
+  font-family: var(--vm-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--vm-anker);
+  letter-spacing: 0.01em;
+}
+
+/* Markenzeichen: Geometrie kommt beim Bau aus der erzeugten assets/zeichen.svg herein
+   (docs/MARKENZEICHEN.md ist die einzige Quelle). Die Groesse steuert ausschliesslich CSS,
+   nie die Datei; die Farbe kommt ueber `color` -- das SVG traegt `currentColor`. */
+.marke-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;                 /* ~9-10 px bei 24 px Zeichen, MARKENZEICHEN.md */
+  text-decoration: none;
+  color: var(--vm-anker);
+  margin: 0;
+}
+
+.marke-block:hover .marke { text-decoration: underline; }
+
+.zeichen {
+  display: inline-flex;
+  color: var(--vm-anker);
+}
+
+.zeichen svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+}
+
+.fuss .zeichen { color: var(--vm-anker); }
+
+.kopf nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9375rem;
+}
+
+.kopf nav a {
+  color: var(--vm-ink-soft);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.kopf nav a:hover,
+.kopf nav a:focus-visible {
+  color: var(--vm-anker);
+  border-bottom-color: var(--vm-accent);
+}
+
+/* --- Einstieg ------------------------------------------------------------ */
+
+.hero { padding: 4rem 0 3.5rem; }
+
+.hero .lead {
+  max-width: 40rem;
+  font-size: 1.1875rem;
+  color: var(--vm-ink);
+}
+
+.hero-wege { margin-top: 1.75rem; }
+
+.knopf {
+  display: inline-block;
+  background: var(--vm-anker);
+  color: var(--vm-paper);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--vm-radius);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.knopf:hover { background: var(--vm-interaktiv); }
+
+/* .knopf als <button> (Kontaktformular, Bildstrecke): Browser-Rahmen und -Schrift weg */
+button.knopf { border: 0; cursor: pointer; font: inherit; font-weight: 500; }
+
+/* --- Bildstrecke (Issue #1234 D1) -----------------------------------------
+   Ohne Skript stehen alle Bilder untereinander. bildstrecke.js setzt `.aktiv` und zeigt
+   eine Folie nach der anderen, wechselt von selbst (eine Runde, Pause-Knopf) und blendet
+   dabei ueber; mit prefers-reduced-motion ohne beides. Nur Rollen aus tokens.css. */
+
+.bildstrecke {
+  margin-top: 2.5rem;
+  padding: 0;
+}
+
+.bs-folien { display: grid; gap: 2rem; }
+
+.bs-folie { margin: 0; }
+
+.bs-folie[hidden] { display: none; }
+
+/* Mit Skript (.aktiv) liegen alle Folien in einer Gitterzelle uebereinander; die hoechste bestimmt
+   die Hoehe, also springt nichts. Wechsel = kurze Ueberblendung (Issue #1234, Wunsch Christian
+   20.10.2026). Bei prefers-reduced-motion wechselt es sofort, ohne Uebergang. */
+.bildstrecke.aktiv .bs-folien { gap: 0; }
+
+.bildstrecke.aktiv .bs-folie {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 280ms ease, visibility 0s linear 280ms;
+}
+
+.bildstrecke.aktiv .bs-folie.ist {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 280ms ease, visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bildstrecke.aktiv .bs-folie,
+  .bildstrecke.aktiv .bs-folie.ist { transition: none; }
+}
+
+/* Scrollmodus (bildstrecke.js setzt .bs-scroll nur bei normaler Bewegung und genug Platz):
+   Die Buehne bleibt unter dem Kopf stehen, solange die Spur (Hoehe setzt das Skript) durchlaufen
+   wird. Das Bild passt sich der Fensterhoehe an, damit Leiste, Bild und Untertitel zusammen
+   sichtbar bleiben. */
+.bs-spur { position: relative; }
+
+.bs-buehne {
+  position: sticky;
+  top: 0.75rem;
+}
+
+@media (min-width: 64rem) and (min-height: 37.5rem) {
+  .bs-buehne { top: 4.75rem; }   /* der Kopf klebt dort oben */
+}
+
+.bs-scroll .bs-folie img {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100svh - 18rem);
+  margin-inline: auto;
+}
+
+.bs-folie img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--vm-line);
+  border-radius: var(--vm-radius);
+  background: var(--vm-card);
+}
+
+.bs-folie figcaption {
+  margin-top: 0.75rem;
+  max-width: 44rem;
+  font-size: 0.9375rem;
+  color: var(--vm-ink-soft);
+}
+
+.bs-hinweis { margin-top: 1rem; margin-bottom: 0; }
+
+/* Kurzvideo (Issue #1234 D2): kein Selbstablauf, eigene Steuerung des Browsers, Text daneben. */
+.bs-video { margin-top: 2rem; }
+
+.bs-video figure { margin: 0; }
+
+.bs-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--vm-line);
+  border-radius: var(--vm-radius);
+  background: var(--vm-card);
+}
+
+.bs-video figcaption {
+  margin-top: 0.75rem;
+  max-width: 44rem;
+  font-size: 0.9375rem;
+  color: var(--vm-ink-soft);
+}
+
+.bs-ablauf { margin-top: 0.75rem; max-width: 44rem; font-size: 0.9375rem; }
+
+.bs-ablauf summary { cursor: pointer; padding-block: 0.625rem; }
+
+.bs-ablauf ol { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+
+.bs-leiste {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.bs-leiste [hidden] { display: none; }
+
+.bs-leiste .knopf {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+.bs-zaehler {
+  margin: 0;
+  color: var(--vm-ink-soft);
+  font-size: 0.9375rem;
+}
+
+/* --- Karten -------------------------------------------------------------- */
+
+.karten {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.karte {
+  background: var(--vm-paper);
+  border: 1px solid var(--vm-line);
+  border-radius: var(--vm-radius);
+  padding: 1.25rem;
+}
+
+/* Auf den getoenten Kapiteln hebt sich paper kaum ab -- dort traegt card die Karte,
+   die Kante in line bleibt. */
+.kap-leistung .karte,
+.kap-vertrauen .karte { background: var(--vm-card); }
+
+.karte h3 { margin-bottom: 0.5rem; }
+
+.karte p:last-child { margin-bottom: 0; }
+
+.karte-dach {
+  font-size: 0.875rem;
+  color: var(--vm-ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.karte.weg ul {
+  margin: 0;
+  padding-left: 1.1em;
+  color: var(--vm-ink-soft);
+  font-size: 0.9375rem;
+}
+
+.karte.weg li { margin-bottom: 0.35rem; }
+
+.weg-nummer {
+  margin: 0 0 0.25rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vm-ink-soft);
+}
+
+@media (min-width: 46rem) {
+  .karten.zwei { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .karten.drei { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  /* Bleibt in der letzten Reihe eine einzelne Karte uebrig, sieht das nach Versehen aus.
+     `voll` macht daraus einen Abschluss ueber die ganze Breite -- Absicht statt Rest. */
+  .karten .karte.voll { grid-column: 1 / -1; }
+}
+
+/* --- Tabelle der Parameter ---------------------------------------------- */
+
+/* Eine Tabelle schrumpft nicht unter ihre schmalste Spaltenbreite -- auf dem Telefon
+   schob sie die ganze Seite nach rechts (gemessen: 392 px Inhalt bei 375 px Fenster).
+   Deshalb bekommt sie einen eigenen Rahmen, der notfalls waagerecht rollt; die Seite
+   selbst bleibt ohne Querlauf. */
+.tabellen-rahmen {
+  overflow-x: auto;
+  margin: 1.75rem 0 1rem;
+}
+
+.parameter {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.parameter caption {
+  text-align: left;
+  color: var(--vm-ink-soft);
+  font-size: 0.875rem;
+  padding-bottom: 0.5rem;
+}
+
+.parameter th,
+.parameter td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--vm-line);
+  vertical-align: top;
+}
+
+.parameter thead th {
+  font-family: var(--vm-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vm-ink-soft);
+  border-bottom: 1px solid var(--vm-ink-light);
+}
+
+.parameter tbody td:first-child { font-weight: 500; }
+
+/* --- Hervorhebung, Grenzen, Schritte ------------------------------------ */
+
+.hervorgehoben {
+  margin-top: 2rem;
+  border: 1px solid var(--vm-line);
+  border-left: 3px solid var(--vm-accent);
+  border-radius: var(--vm-radius);
+  background: var(--vm-card);
+  padding: 1.25rem 1.5rem;
+}
+
+.hervorgehoben h3 { margin-top: 0; }
+
+.hervorgehoben p:last-child { margin-bottom: 0; }
+
+.grenzliste {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 48rem;
+}
+
+.grenzliste li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.85rem;
+}
+
+.grenzliste li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.7rem;
+  height: 2px;
+  background: var(--vm-accent);
+}
+
+.grenzliste strong { color: var(--vm-anker); }
+
+.hinweis {
+  margin-top: 1.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--vm-line);
+  border-radius: var(--vm-radius);
+  background: var(--vm-card);
+  color: var(--vm-ink-soft);
+  font-size: 0.9375rem;
+  max-width: 48rem;
+}
+
+.schritte {
+  list-style: none;
+  counter-reset: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.schritte li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 0.25rem 0.75rem;
+  align-items: baseline;
+  border-top: 1px solid var(--vm-line);
+  padding-top: 0.75rem;
+}
+
+.schritte .nr {
+  font-family: var(--vm-serif);
+  font-size: 1.125rem;
+  color: var(--vm-accent);
+  grid-row: span 2;
+}
+
+.schritte strong {
+  display: block;
+  color: var(--vm-anker);
+}
+
+/* --- Fusszeile ----------------------------------------------------------- */
+
+.fuss {
+  border-top: 1px solid var(--vm-line);
+  background: var(--vm-card);
+  padding: 2.5rem 0 3rem;
+}
+
+.fuss .marke { display: block; margin-bottom: 0.25rem; }
+
+.fuss-leitbild {
+  color: var(--vm-ink-soft);
+  max-width: 40rem;
+}
+
+.fuss .hinweis { margin-top: 1.5rem; }
+
+.fuss-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  list-style: none;
+  margin: 1.25rem 0 0.35rem;
+  padding: 0;
+  font-size: 0.9375rem;
+}
+
+/* --- Abbildungen: schematische Szenen (Issue #947) ------------------------ */
+
+/* Strukturtragende Formen (Karte, Linie, Achse, Balken, Wand) stehen in ink-light: >= 3:1 gegen
+   paper, card und kuehl, hell wie dunkel (WCAG 1.4.11). s-kopf bleibt line -- reine Flaeche,
+   die Karte dahinter hat ihren Rand. */
+
+/* Die Szenen sind von Hand gezeichnete Schemata, keine Ansichten der Anwendung --
+   Screenshots warten auf Issue #881/#518. Farben stehen ausschliesslich hier als Rolle,
+   nie als Hexwert im SVG (Guard `hexwerte`); dadurch tragen sie das dunkle Thema ohne
+   eigene Regel mit. */
+
+.abbildung {
+  margin: 2.25rem 0;
+}
+
+/* Ein Schema skaliert mit der Spaltenbreite (viewBox, Hoehe folgt). Erst unter 20rem
+   Spaltenbreite -- schmaler als jedes uebliche Telefon -- bleibt es stehen und wird seitlich
+   schiebbar (WCAG 1.4.10, Rahmen fokussierbar). Unter 40rem gilt die Regel
+   weiter unten (>= 12 px Beschriftung); die Beschreibung steht zusaetzlich als Text
+   (<desc>, Bildunterschrift). */
+.szene {
+  overflow-x: auto;
+}
+
+.szene svg {
+  display: block;
+  width: 100%;
+  min-width: 20rem;
+  height: auto;
+}
+
+/* Schmal (Issue #1284): Unter 40rem Spaltenbreite bliebe die kleinste Beschriftung (14 px
+   im Schema) unter 7 px. Das Schema behaelt deshalb mindestens 37rem Breite (Massstab
+   ~0,87: 14 px werden >= 12 px) und wird im fokussierbaren Rahmen seitlich schiebbar;
+   die Seite selbst laeuft nicht ueber. */
+@media (max-width: 40rem) {
+  .szene svg { min-width: 37rem; }
+}
+
+/* Aufbau (Issue #1005, Styleguide Paragraph 4): Die Teile eines Schemas erscheinen einmal
+   nacheinander, sobald es ins Sichtfeld kommt (szene.js setzt `laeuft`), und bleiben dann
+   stehen. Versteckt wird nur unter html.js und nur ohne Wunsch nach reduzierter Bewegung --
+   ohne Skript, im Druck und bei reduzierter Bewegung steht sofort das fertige Bild.
+   --i ist die Schrittnummer aus dem Markup; 9 Schritte x 450 ms + 500 ms bleiben unter 5 s. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .js .szene-aufbau .s-schritt { opacity: 0; }
+
+  .js .szene-aufbau.laeuft .s-schritt {
+    animation: s-erscheinen 500ms ease-out both;
+    animation-delay: calc(var(--i) * 450ms);
+  }
+}
+
+@keyframes s-erscheinen {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.abbildung figcaption {
+  margin-top: 0.75rem;
+  max-width: 44rem;
+  font-size: 0.9375rem;
+  color: var(--vm-ink-soft);
+}
+
+.s-karte {
+  fill: var(--vm-paper);
+  stroke: var(--vm-ink-light);
+  stroke-width: 1;
+}
+
+.s-kopf { fill: var(--vm-line); }
+.s-feld { fill: var(--vm-card); }
+.s-punkt { fill: var(--vm-ink-light); }
+.s-balken { fill: var(--vm-ink-light); }
+
+.s-linie {
+  fill: none;
+  stroke: var(--vm-ink-light);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* Gestrichelte Linie und leere Flaeche tragen denselben Strich -- eine Erklaerung,
+   eine Stelle. */
+.s-gestrichelt,
+.s-leer {
+  stroke: var(--vm-ink-light);
+  stroke-dasharray: 5 6;
+}
+
+.s-leer {
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.s-frage {
+  fill: var(--vm-anker);
+  font-family: var(--vm-serif);
+  font-size: 24px;
+}
+
+.s-fluss {
+  fill: none;
+  stroke: var(--vm-anker);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.s-pfeil { fill: var(--vm-anker); }
+
+.s-achse {
+  fill: none;
+  stroke: var(--vm-ink-light);
+  stroke-width: 2;
+}
+
+.s-kurve {
+  fill: none;
+  stroke: var(--vm-anker);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.s-marke { fill: var(--vm-accent); }
+
+/* Symbole (Issue #964): einmal als <symbol> am Seitenanfang, per <use> eingebunden. Der
+   Strich erbt in den Symbolinhalt hinein -- Farbe nur ueber diese Rolle. */
+.s-symbol {
+  fill: none;
+  stroke: var(--vm-anker);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.s-posten-alt {
+  fill: var(--vm-card);
+  stroke: var(--vm-anker);
+  stroke-width: 1.5;
+}
+
+.s-wand { fill: var(--vm-ink-light); }
+
+.s-text,
+.s-text-stark,
+.s-text-klein {
+  fill: var(--vm-ink-soft);
+  font-family: var(--vm-sans);
+  font-size: 15px;
+}
+
+.s-text-stark {
+  fill: var(--vm-ink);
+  font-weight: 600;
+}
+
+.s-text-klein { font-size: 14px; }
+
+/* Kartenkopf mit Symbol (Issue #964) */
+.symbolkopf {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.symbolkopf svg {
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+
+.symbolkopf h3,
+.symbolkopf h4 { margin: 0; }
+
+/* Fotos (Issue #964, Styleguide Paragraph 6) */
+.foto { margin: 0 0 2rem; }
+.foto img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--vm-radius);
+  filter: saturate(0.92) contrast(0.98) brightness(1.02);
+}
+
+/* --- Zwischenueberschrift innerhalb eines Abschnitts --------------------- */
+
+.zwischen {
+  margin-top: 2.25rem;
+  font-family: var(--vm-serif);
+  font-size: 1.25rem;
+  color: var(--vm-anker);
+}
+
+/* --- Pflichtseiten (Issue #616) --------------------------------- */
+
+.recht-seite h2 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.recht-seite .fliess,
+.recht-seite p,
+.recht-seite ul { max-width: 44rem; }
+
+.recht-seite ul { padding-left: 1.2em; }
+
+.recht-seite li { margin-bottom: 0.4rem; }
+
+.fuss .fussnote { margin-top: 1rem; margin-bottom: 0; }
+
+/* --- Kontaktformular, Download, Geschenk (Issue #1234) ------------------- */
+
+.kontakt { text-align: left; }
+.kontakt label { display: block; font-weight: 500; margin-bottom: 0.35rem; }
+.kontakt .kontakt-wahl label { display: inline; font-weight: 400; }
+.kontakt .kontakt-wahl input { width: 1.5rem; height: 1.5rem; vertical-align: middle; margin: 0 0.35rem 0 0; }  /* 2.5.8 */
+.kontakt-hinweis { display: block; margin-top: 0.35rem; font-size: 0.9375rem; color: var(--vm-ink-soft); }
+.kontakt textarea,
+.kontakt input[type="email"],
+.kontakt input[type="text"] {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: var(--vm-ink);
+  background: var(--vm-paper);
+  border: 1px solid var(--vm-ink-soft);
+  border-radius: var(--vm-radius);
+  padding: 0.6rem 0.75rem;
+}
+.kontakt textarea:focus-visible,
+.kontakt input:focus-visible { outline: 2px solid var(--vm-interaktiv); outline-offset: 2px; }
+.kontakt-koeder { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+/* Nur fuer Vorleseprogramme, z. B. "(oeffnet in neuem Fenster)" an Links mit target=_blank
+   oder die Ansage der Bildstrecke. */
+.sr-hinweis {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.kontakt-github { margin-top: 1.5rem; }
+
+details.download { margin: 1.5rem 0 0; max-width: 44rem; }
+details.download summary {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  list-style-position: inside;
+}
+details.download summary:focus-visible { outline: 2px solid var(--vm-fond-ink); outline-offset: 2px; }
+details.download[open] summary { margin-bottom: 0.5rem; }
+
+aside.geschenk {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--vm-line);
+  border-top-color: color-mix(in srgb, var(--vm-fond-soft) 40%, transparent);
+  max-width: 44rem;
+  font-size: 0.9375rem;
+  color: var(--vm-fond-soft);
+}
+aside.geschenk h3 { font-size: 1rem; color: var(--vm-fond-ink); }
+aside.geschenk a { color: var(--vm-fond-ink); }
+aside.geschenk ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+aside.geschenk img { display: block; margin-top: 0.5rem; background: var(--vm-card); }
+.kap-start aside.geschenk .fussnote { color: var(--vm-fond-soft); }
+
+/* Fehlerseite des Formulars: ist ein Grund per Anker gewaehlt, nur diesen zeigen (ohne :has
+   zeigt ein aelterer Browser alle Gruende -- auch richtig). Issue #1234, WCAG 3.3.1/3.3.3. */
+.grund { margin-top: 1.5rem; }
+main:has(.grund:target) .grund:not(:target) { display: none; }

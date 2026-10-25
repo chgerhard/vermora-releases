@@ -1,0 +1,1547 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Oeffentliche Installationsanleitung fuer Vermora (Issue #589). Eigene Quelle, eigener Bau, getrennt von der internen Pruef-Dokumentation (docs/pruefdoku/) -- diese Site ist bewusst frei von Betreiber-/Repo-Interna und darf veroeffentlicht werden (siehe redaktionsregeln.md und den Guard backend/tests/test_issue589_anleitung_oeffentlich.py).
+">
+      
+      
+      
+        <link rel="canonical" href="https://vermora.de/anleitung/d-betrieb/">
+      
+      
+        <link rel="prev" href="../c-linux/">
+      
+      
+        <link rel="next" href="../e-wenn-etwas-nicht-klappt/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Teil D — Der laufende Betrieb - Vermora einrichten</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/tokens.css">
+    
+      <link rel="stylesheet" href="../../assets/fonts.css">
+    
+      <link rel="stylesheet" href="../../assets/marke.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#teil-d-der-laufende-betrieb" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="Vermora einrichten" class="md-header__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vermora einrichten
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Teil D — Der laufende Betrieb
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-ueberblick/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ueberblick
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../a-vorbereitung/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bevor Sie beginnen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../b-windows/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Windows
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../c-linux/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der laufende Betrieb
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../e-wenn-etwas-nicht-klappt/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Wenn etwas nicht klappt
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../f-andere-wege/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Andere Betriebswege
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../g-netzwerkspeicher/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Betrieb auf einem Netzwerkspeicher
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Vermora einrichten" class="md-nav__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vermora einrichten
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-ueberblick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ueberblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../a-vorbereitung/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bevor Sie beginnen
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bevor Sie beginnen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../b-windows/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Windows
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../c-linux/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der laufende Betrieb
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der laufende Betrieb
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../e-wenn-etwas-nicht-klappt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wenn etwas nicht klappt
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Wenn etwas nicht klappt
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../f-andere-wege/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Andere Betriebswege
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Andere Betriebswege
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../g-netzwerkspeicher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#d1-der-erste-rundgang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D1 Der erste Rundgang
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d2-so-sichern-sie-ihre-daten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D2 So sichern Sie Ihre Daten
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="D2 So sichern Sie Ihre Daten">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#was-gesichert-wird-und-was-nicht" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was gesichert wird und was nicht
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#die-tagliche-sicherung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die tägliche Sicherung
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#was-sie-regelmaig-tun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was Sie regelmäßig tun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#der-restore-test-pruft-ob-ihre-sicherung-wirklich-brauchbar-ist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Der Restore-Test — prüft, ob Ihre Sicherung wirklich brauchbar ist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#die-warnung-die-ihnen-ein-depot-retten-kann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die Warnung, die Ihnen ein Depot retten kann
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#was-nachts-geschieht-wenn-der-rechner-aus-ist-ehrlich" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was nachts geschieht, wenn der Rechner aus ist — ehrlich
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d3-so-aktualisieren-sie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3 So aktualisieren Sie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d4-so-ziehen-sie-auf-einen-anderen-rechner-um" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D4 So ziehen Sie auf einen anderen Rechner um
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d5-so-horen-sie-auf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D5 So hören Sie auf
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d6-zugriff-von-anderen-geraten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D6 Zugriff von anderen Geräten
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d7-vermora-mit-der-demo-datenbank-ausprobieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D7 Vermora mit der Demo-Datenbank ausprobieren
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="teil-d-der-laufende-betrieb">Teil D — Der laufende Betrieb<a class="headerlink" href="#teil-d-der-laufende-betrieb" title="Permanent link">&para;</a></h1>
+<p>Dieser Teil gilt für Windows und Linux gleichermaßen.</p>
+<h2 id="d1-der-erste-rundgang">D1 Der erste Rundgang<a class="headerlink" href="#d1-der-erste-rundgang" title="Permanent link">&para;</a></h2>
+<p>Sie sind angemeldet. Vermora ist noch leer.</p>
+<p>Ein leeres Programm ist eine unangenehme Begrüßung, deshalb hier die Reihenfolge, die
+trägt:</p>
+<ol>
+<li><strong>Legen Sie ein Depot an.</strong> Ein Depot ist die Stelle, an der Ihre Wertpapiere liegen —
+   also das, was Ihre Bank für Sie führt.</li>
+<li><strong>Legen Sie ein Verrechnungskonto an.</strong> Das ist das Geldkonto, über das Käufe und
+   Verkäufe abgerechnet werden.</li>
+<li><strong>Bringen Sie Ihre Bestände hinein.</strong> Entweder tragen Sie sie von Hand ein, oder Sie
+   lesen eine Datei Ihrer Bank ein.</li>
+<li><strong>Sehen Sie den ersten Wert.</strong> Sobald ein Wertpapier eingetragen ist, holt Vermora
+   dessen Kurs und zeigt Ihnen einen Wert.</li>
+</ol>
+<p>Sobald Sie hier angekommen sind, endet diese Anleitung inhaltlich. Alles Weitere steht in
+der Hilfe innerhalb von Vermora, im Bereich „Bedienung".</p>
+<div class="admonition info">
+<p class="admonition-title">Wird durch einen Einrichtungs-Assistenten begleitet</p>
+<p>Diese vier Schritte werden von einem Assistenten geführt, der nach der ersten
+Anmeldung von selbst erscheint und ab dem dritten Schritt überspringbar ist.</p>
+</div>
+<h2 id="d2-so-sichern-sie-ihre-daten">D2 So sichern Sie Ihre Daten<a class="headerlink" href="#d2-so-sichern-sie-ihre-daten" title="Permanent link">&para;</a></h2>
+<p><strong>Dieses Kapitel ist keine Empfehlung. Es ist der Teil, der Ihnen Ihr Depot rettet, wenn
+die Festplatte stirbt.</strong></p>
+<h3 id="was-gesichert-wird-und-was-nicht">Was gesichert wird und was nicht<a class="headerlink" href="#was-gesichert-wird-und-was-nicht" title="Permanent link">&para;</a></h3>
+<p>Vermora bewahrt Ihre Daten in einem <strong>verwalteten Bereich</strong> der Container-Umgebung auf.
+Dieser Bereich ist kein normaler Ordner. Sie sehen ihn im Explorer beziehungsweise im
+Dateimanager <strong>nicht</strong>, und Sie können ihn nicht mit der Maus kopieren.</p>
+<p>Das hat einen guten Grund: dort ist Ihre Datenbank vor einer bestimmten Sorte
+Beschädigung geschützt, die auf normalen Ordnern vorkommt.</p>
+<p>Es hat aber eine Folge, die Sie kennen müssen:</p>
+<blockquote>
+<p><strong>Wer den Sicherungsordner kopiert, kopiert die laufende Datenbank nicht mit.</strong>
+Gesichert wird ausschließlich das, was Vermora selbst als Sicherungsdatei ablegt.</p>
+</blockquote>
+<h3 id="die-tagliche-sicherung">Die tägliche Sicherung<a class="headerlink" href="#die-tagliche-sicherung" title="Permanent link">&para;</a></h3>
+<p>Vermora legt <strong>von sich aus jede Nacht</strong> eine Sicherung in Ihrem Sicherungsordner ab.
+Diese Voreinstellung ist bereits gesetzt. Sie müssen dafür nichts einschalten.</p>
+<p><strong>Aber:</strong> Vermora kann nachts nichts tun, solange Ihr Rechner aus ist. Siehe den letzten
+Abschnitt dieses Kapitels.</p>
+<h3 id="was-sie-regelmaig-tun">Was Sie regelmäßig tun<a class="headerlink" href="#was-sie-regelmaig-tun" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Öffnen Sie Ihren Sicherungsordner</strong> — den, den Sie bei der Einrichtung gewählt
+   haben.</li>
+<li><strong>Prüfen Sie das Datum der neuesten Datei.</strong> Ist es älter als eine Woche, war Ihr
+   Rechner nachts durchweg aus. Starten Sie dann eine Sicherung von Hand (in Vermora
+   unter System-Status → Tab „Backup").</li>
+<li><strong>Kopieren Sie den Inhalt auf einen zweiten Datenträger</strong> — eine externe Festplatte
+   oder einen USB-Stick. Eine Sicherung, die auf derselben Festplatte liegt wie das
+   Original, überlebt einen Festplattenschaden nicht.</li>
+<li><strong>Kopieren Sie Ihren Schlüsselordner ebenfalls</strong> — aber auf einen <strong>anderen</strong>
+   Datenträger als die Sicherungen. Schlüssel und Schloss gehören nicht in dieselbe
+   Schublade.</li>
+</ol>
+<h3 id="der-restore-test-pruft-ob-ihre-sicherung-wirklich-brauchbar-ist">Der Restore-Test — prüft, ob Ihre Sicherung wirklich brauchbar ist<a class="headerlink" href="#der-restore-test-pruft-ob-ihre-sicherung-wirklich-brauchbar-ist" title="Permanent link">&para;</a></h3>
+<p>Eine Sicherung, die nie geprüft wurde, ist keine Sicherung. Sie ist eine Datei, von der
+man hofft, dass sie eine Sicherung ist.</p>
+<p>Der Unterschied zeigt sich erst am Tag des Schadens, und dann ist es zu spät. Vermora
+prüft deshalb <strong>automatisch einmal im Monat</strong> (1. des Monats, nachts) die jüngste
+Sicherung durch — Sie können das zusätzlich jederzeit von Hand anstoßen:</p>
+<ol>
+<li>Öffnen Sie Vermora und gehen Sie zu System-Status → Tab „Backup".</li>
+<li>Scrollen Sie zum Abschnitt „Restore-Test" unterhalb der Backup-Liste.</li>
+<li>Klicken Sie auf „Restore-Test jetzt ausführen" (nur als Admin sichtbar). Vermora
+   prüft dabei automatisch die jüngste Sicherung — eine Auswahl gibt es nicht.</li>
+<li>Warten Sie auf das Ergebnis. <strong>Je nach Größe Ihrer Datenbank kann das einige
+   Sekunden bis wenige Minuten dauern. Das ist normal.</strong></li>
+<li>Steht dort „OK", ist Ihre Sicherung brauchbar. „Hinweis" bedeutet meist nur, dass
+   die geprüfte Sicherung einen älteren Programmstand hat — kein Fehler. Steht dort
+   „Fehlgeschlagen", lesen Sie das Kapitel „Wenn Sie Hilfe brauchen" — und zwar am
+   selben Tag.</li>
+</ol>
+<p>Der Test verändert Ihre laufenden Daten nicht. Er entpackt die Sicherung an einer
+Nebenstelle und sieht nach, ob sie vollständig ist — er spielt sie <strong>nicht</strong> in Ihre
+laufende Datenbank zurück. Das tatsächliche Zurückspielen einer Sicherung ist ein eigener
+Schritt und im Kapitel „So ziehen Sie auf einen anderen Rechner um" (Schritt 8)
+beschrieben.</p>
+<h3 id="die-warnung-die-ihnen-ein-depot-retten-kann">Die Warnung, die Ihnen ein Depot retten kann<a class="headerlink" href="#die-warnung-die-ihnen-ein-depot-retten-kann" title="Permanent link">&para;</a></h3>
+<p>In Docker Desktop gibt es unter „Troubleshoot" eine Schaltfläche <strong>„Reset to factory
+defaults"</strong> beziehungsweise <strong>„Clean / Purge data"</strong>.</p>
+<blockquote>
+<p><strong>Diese Schaltfläche löscht den verwalteten Bereich mit Ihrer Vermora-Datenbank. Ohne
+Rückfrage. Ohne Papierkorb. Endgültig.</strong></p>
+</blockquote>
+<p>Sie steht in einem Bereich, in den Menschen geraten, wenn etwas klemmt — also genau
+dann, wenn man geneigt ist, „alles zurückzusetzen" zu klicken.</p>
+<p><strong>Drücken Sie diese Schaltfläche nicht.</strong> Wenn etwas klemmt, lesen Sie das Kapitel „Wenn
+etwas nicht klappt". Sollten Sie sie doch drücken, bleibt Ihnen ausschließlich Ihre
+Sicherung. Das ist der Grund, warum dieses Kapitel Pflicht ist.</p>
+<p>Dasselbe gilt für die Befehle <code>docker volume rm</code> und <code>docker system prune</code> unter Linux.</p>
+<h3 id="was-nachts-geschieht-wenn-der-rechner-aus-ist-ehrlich">Was nachts geschieht, wenn der Rechner aus ist — ehrlich<a class="headerlink" href="#was-nachts-geschieht-wenn-der-rechner-aus-ist-ehrlich" title="Permanent link">&para;</a></h3>
+<p>Vermora hat innen eine Uhr, die nachts einige Arbeiten erledigt. Diese Uhr läuft
+<strong>ausschließlich, solange Ihr Rechner eingeschaltet ist und Vermora läuft</strong>.</p>
+<p>Das ist keine Einstellung, die man umlegen kann. Ein ausgeschaltetes Gerät rechnet nicht.</p>
+<p><strong>Was sich geändert hat:</strong> Vermora merkt sich jetzt, wenn eine nächtliche Arbeit
+ausgefallen ist, und holt sie <strong>automatisch nach</strong> — beim nächsten Start bzw. spätestens
+30 Minuten, nachdem der Rechner wieder aufgewacht ist (auch bei einem zugeklappten
+Notebook). Das gilt sowohl für die nächtliche Sicherung als auch für den Kursabruf und
+einige weitere Arbeiten.</p>
+<table>
+<thead>
+<tr>
+<th>Arbeit</th>
+<th>Rechner war nachts aus oder im Ruhezustand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nächtliche Sicherung</strong></td>
+<td>Wird nachgeholt — beim nächsten Start bzw. spätestens 30 Minuten nach dem Aufwachen.</td>
+</tr>
+<tr>
+<td><strong>Kursabruf</strong></td>
+<td>Wird ebenfalls nachgeholt — er hat dafür ein eigenes Zeitfenster.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Was bleibt:</strong></p>
+<ul>
+<li>Ein <strong>ausgeschaltetes</strong> Gerät rechnet nicht — die Nachholung greift erst, sobald der
+  Rechner (und Vermora darin) wieder läuft.</li>
+<li>Wer möchte, kann das Nachholen unter „Einstellungen → System → Scheduler-Konfig"
+  abschalten oder die Altersschwelle anpassen.</li>
+</ul>
+<p><strong>Vermora meldet sich jetzt selbst, wenn tagelang keine Sicherung mehr durchlief.</strong> Bis
+hierhin blieb die Kontrolle bei Ihnen — das Datum in Ihrem Sicherungsordner selbst zu
+prüfen (Abschnitt „Was Sie regelmäßig tun" oben). Das bleibt eine sinnvolle
+<strong>Rückfallebene</strong>, ist aber nicht mehr die einzige Bremse: Läuft mehrere Tage lang keine
+Sicherung erfolgreich durch, meldet sich die App von sich aus über die Glocke oben rechts
+(„Letzte Sicherung ist veraltet"). Wie viele Tage als „veraltet" gelten, stellen Sie unter
+„Einstellungen → System → Backup" ein (Standard: 3 Tage). Ein von Hand ausgelöstes
+„Jetzt sichern" stellt den Alarm ebenfalls ab.</p>
+<h2 id="d3-so-aktualisieren-sie">D3 So aktualisieren Sie<a class="headerlink" href="#d3-so-aktualisieren-sie" title="Permanent link">&para;</a></h2>
+<p><strong>Aktualisieren heißt bei Vermora: einmal beenden und neu starten.</strong> Mehr ist es nicht.</p>
+<p>Sie klicken keinen Knopf in Vermora. Sie laden nichts herunter. Sie tippen nichts ab.</p>
+<p><strong>Warum in Vermora kein Knopf dafür ist:</strong> Vermora läuft in seinem Päckchen und kann
+sich selbst nicht austauschen — so wenig, wie man den Stuhl anheben kann, auf dem man
+sitzt. Das Startprogramm steht außerhalb und kann es.</p>
+<p><strong>Schritt 1</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Vermora läuft.</li>
+<li><strong>Was das bedeutet:</strong> Zum Aktualisieren muss es kurz angehalten werden.</li>
+<li><strong>Was Sie tun:</strong> Beenden Sie Vermora und starten Sie es erneut.</li>
+</ul>
+<p><strong>Schritt 2</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> In der Steuerzentrale ein Dialogfenster mit einer Frage, ähnlich
+  dieser: „Eine neuere Fassung von Vermora liegt vor. Soll sie jetzt eingespielt werden?
+  Es dauert etwa eine Minute, danach öffnet sich Vermora wie gewohnt."</li>
+<li><strong>Was das bedeutet:</strong> Es gibt eine neue Fassung. Sie werden gefragt, nicht überfahren.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie auf „Ja", wenn Sie aktualisieren möchten, sonst auf
+  „Abbrechen" — dann startet Ihre bisherige Fassung ganz normal.</li>
+</ul>
+<p><strong>Abbrechen ist jederzeit eine gültige Antwort.</strong> Auch das Schließen des Dialogs zählt
+als Nein. Es wird nie ohne Ihre Antwort aktualisiert.</p>
+<p><strong>Schritt 3 — Die Sicherung davor</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Zeile „Eine Sicherung wird angelegt."</li>
+<li><strong>Was das bedeutet:</strong> Vor jeder Aktualisierung wird Ihr Bestand gesichert. <strong>Das
+  geschieht automatisch. Sie müssen nichts tun. Es dauert je nach Umfang wenige
+  Sekunden bis zwei Minuten. Das ist normal.</strong></li>
+<li><strong>Was Sie tun:</strong> Warten Sie.</li>
+</ul>
+<p><strong>Wenn die Sicherung fehlschlägt, wird nicht aktualisiert.</strong> Ihre bisherige Fassung
+startet dann, und im Fenster steht, warum.</p>
+<p><strong>Schritt 4</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Zeile „Vermora läuft." und Ihre gewohnte Adresse.</li>
+<li><strong>Was das bedeutet:</strong> Die neue Fassung ist da.</li>
+<li><strong>Was Sie tun:</strong> Melden Sie sich an. Unter System → Übersicht steht die neue
+  Fassungsnummer.</li>
+</ul>
+<p><strong>Wenn die neue Fassung nicht startet:</strong> Das Startprogramm bemerkt das und holt Ihre
+bisherige Fassung von selbst zurück. Im Fenster steht dann, dass die neue Fassung nicht
+startete, dass die alte wieder läuft und wo Ihre Sicherung liegt. Lesen Sie in diesem
+Fall das Kapitel „Wenn Sie Hilfe brauchen".</p>
+<p><strong>Wenn kein Internet da ist:</strong> Der Start läuft normal weiter. Es erscheint eine ruhige
+Zeile, dass sich gerade nicht feststellen ließ, ob es eine neuere Fassung gibt. <strong>Das
+ist kein Fehler.</strong> Vermora startet auch ohne Internet.</p>
+<div class="admonition info">
+<p class="admonition-title">Update-Erinnerung</p>
+<p>Die Frage kommt bei jedem Start, an dem eine neuere Fassung vorliegt. Nach 30 Tagen
+ohne Aktualisierung wird der Hinweis deutlicher, ohne zu erzwingen.</p>
+</div>
+<h2 id="d4-so-ziehen-sie-auf-einen-anderen-rechner-um">D4 So ziehen Sie auf einen anderen Rechner um<a class="headerlink" href="#d4-so-ziehen-sie-auf-einen-anderen-rechner-um" title="Permanent link">&para;</a></h2>
+<p>Der Umzug besteht aus vier Handgriffen. Machen Sie sie in dieser Reihenfolge.</p>
+<p><strong>Auf dem alten Rechner</strong></p>
+<ol>
+<li>Starten Sie Vermora und gehen Sie zu System-Status → Tab „Backup".</li>
+<li>Klicken Sie auf „Jetzt sichern" und warten Sie auf die Erfolgsmeldung.</li>
+<li>Kopieren Sie <strong>den gesamten Sicherungsordner</strong> auf einen USB-Stick oder eine externe
+   Platte.</li>
+<li>Kopieren Sie <strong>den gesamten Schlüsselordner</strong> ebenfalls dorthin, aber in einen
+   getrennten Ordner. <strong>Ohne den Schlüssel lässt sich Ihre Sicherung nicht öffnen.</strong> Das
+   ist keine Formalie.</li>
+</ol>
+<p><strong>Auf dem neuen Rechner</strong></p>
+<ol>
+<li>Arbeiten Sie die Vorbereitungs- und die passenden Windows- beziehungsweise
+   Linux-Kapitel vollständig durch — bis Vermora läuft. Dabei legen Sie auf dem neuen
+   Rechner ein eigenes Benutzerkonto an, um Vermora überhaupt nutzen zu können.
+   <strong>Dieses Konto wird beim Zurückspielen in Schritt 8 durch Ihr altes ersetzt</strong> — das
+   ist so vorgesehen, kein Fehler.</li>
+<li>Kopieren Sie die Inhalte vom Stick in die Ordner, die Sie dabei gewählt haben:
+   Sicherungen in den Sicherungsordner, Schlüssel in den Schlüsselordner.</li>
+<li>Beenden Sie Vermora und starten Sie es erneut, damit der mitgebrachte Schlüssel
+   gefunden wird.</li>
+</ol>
+<p><strong>Schritt 8 — Wiederherstellen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Unter System-Status → Tab „Backup" steht Ihre mitgebrachte Sicherung
+  bereits in der Liste (Sie haben sie in Schritt 6 in den Sicherungsordner kopiert). Neben
+  jeder Sicherung steht ein Knopf „Wiederherstellen".</li>
+<li><strong>Was das bedeutet:</strong> Ab hier läuft die Wiederherstellung vollständig in Vermora selbst —
+  ohne Konsole und ohne weitere Werkzeuge. Haben Sie den Sicherungsordner in Schritt 6 aus
+  irgendeinem Grund übersprungen, steht darüber zusätzlich der Bereich „Sicherung hochladen":
+  Er nimmt die Sicherungsdatei direkt entgegen, ganz ohne Kopieren in einen Ordner.</li>
+<li><strong>Was Sie tun:</strong> Klicken Sie bei der gewünschten Sicherung auf „Wiederherstellen". Lesen
+  Sie den angezeigten Prüfbericht, bestätigen Sie Ihr Passwort erneut, tippen Sie zur
+  Bestätigung den Dateinamen der Sicherung ab und starten Sie die Wiederherstellung.
+  Beenden Sie Vermora anschließend und starten Sie es erneut — erst danach wird die
+  Wiederherstellung tatsächlich angewendet.</li>
+</ul>
+<p><strong>Erst wenn nach der Wiederherstellung auf dem neuen Rechner Ihre Bestände zu sehen
+sind</strong>, löschen Sie etwas auf dem alten. Vorher nicht.</p>
+<div class="admonition info">
+<p class="admonition-title">Kein still erzeugter neuer Schlüssel</p>
+<p>Wird der Schlüssel nicht gefunden, hält Vermora beim Start an mit einer Meldung,
+unter welchem Pfad er gesucht wurde — und erzeugt <strong>niemals still einen neuen</strong>. Ein
+still erzeugter neuer Schlüssel würde alle bisherigen Sicherungen unbrauchbar
+machen, ohne dass es jemand merkt.</p>
+</div>
+<h2 id="d5-so-horen-sie-auf">D5 So hören Sie auf<a class="headerlink" href="#d5-so-horen-sie-auf" title="Permanent link">&para;</a></h2>
+<p>Sie sollen jederzeit gehen können, mit allem, was Ihnen gehört. Deshalb steht das hier.</p>
+<p><strong>Schritt 1 — Ihre Daten herausholen (unbedingt zuerst)</strong></p>
+<ul>
+<li>Gehen Sie zu Einstellungen → Meine Daten und klicken Sie auf „Export erzeugen". Sie
+  erhalten eine Datei mit Ihrem vollständigen Bestand (Buchungen, Konten, Immobilien,
+  Familien- und Steuerdaten) im Format <strong>JSON</strong> — kein Tabellenkalkulationsformat wie
+  CSV oder Excel, aber mit einem Texteditor und vielen Programmen lesbar. Die
+  Datei ist unverschlüsselt; bewahren Sie sie entsprechend auf.</li>
+<li>Sichern Sie zusätzlich einmal von Hand und legen Sie Sicherung und Schlüssel beiseite.
+  Eine Sicherung ist der einzige Weg zurück, falls Sie es sich anders überlegen.</li>
+<li><code>DEINSTALLIEREN</code> (Schritt 2) bietet Ihnen diesen Export zwar noch einmal von sich aus
+  an, bevor es löscht — es <strong>erzwingt</strong> ihn aber nicht. Erledigen Sie ihn deshalb schon
+  jetzt, nicht erst dann.</li>
+</ul>
+<p><strong>Schritt 2 — Vermora entfernen</strong></p>
+<p>Klicken Sie in der Steuerzentrale in der linken Navigation auf „Deinstallieren" und dann
+auf den Knopf „Deinstallieren…". Steht kein Browser zur Verfügung, führen Sie
+stattdessen im entpackten Starterordner <code>notfall\DEINSTALLIEREN.cmd</code> (Windows) bzw.
+<code>notfall/DEINSTALLIEREN.sh</code> (Linux) aus. In beiden Fällen zeigt der Ablauf zunächst
+genau, was verschwindet (Datenbank, Protokolle, Netzwerk, Instanzordner, die beiden
+zuletzt verwendeten Programm-Abbilder) und was in jedem Fall bleibt, bietet den
+Datenexport noch einmal an und verlangt danach zwei Bestätigungen — zuletzt die Eingabe
+eines festen Wortes. Bis dahin ist ein Abbruch jederzeit vollständig folgenlos.</p>
+<p>Zusätzlich fragt es einzeln, ob auch der <strong>Sicherungsordner</strong> und ob auch der
+<strong>Schlüsselordner</strong> gelöscht werden sollen (Vorgabe für beide: nein, also behalten).
+<strong>Achtung:</strong> Wer beide löschen lässt, hat keine Wiederherstellung mehr — verschlüsselte
+Sicherungen ohne den zugehörigen Schlüssel sind ohnehin dauerhaft unlesbar. Wer unsicher
+ist, beantwortet beide Fragen mit Nein und entscheidet später von Hand.</p>
+<p><strong>Damit ist Ihre Vermora-Datenbank endgültig weg.</strong> Was danach von Hand bleibt: der
+ausgepackte Starterordner selbst (er überlebt den Lauf bewusst, <code>DEINSTALLIEREN</code> liegt
+dort) und ältere, nicht mehr referenzierte Programm-Abbilder aus früheren Updates — das
+Skript entfernt ausdrücklich ausschließlich die beiden zuletzt verwendeten.</p>
+<p><strong>Schritt 3 — Die Container-Umgebung entfernen (freiwillig)</strong></p>
+<p>Wenn Sie die Container-Umgebung sonst nirgends benutzen, deinstallieren Sie sie: Windows
+über Einstellungen → Apps; Linux mit dem Paketwerkzeug Ihrer Ausgabe.</p>
+<h2 id="d6-zugriff-von-anderen-geraten">D6 Zugriff von anderen Geräten<a class="headerlink" href="#d6-zugriff-von-anderen-geraten" title="Permanent link">&para;</a></h2>
+<p>Nach der Einrichtung ist Vermora <strong>ausschließlich von dem einen Rechner erreichbar, auf
+dem es läuft</strong>. Kein anderes Gerät im Haushalt kommt heran, und aus dem Internet erst
+recht niemand.</p>
+<p>Das ist die sicherste Voreinstellung, und für die meisten Menschen ist sie die richtige.</p>
+<p><strong>Vom Tablet oder Handy im eigenen Haushalt</strong> ist Vermora damit zunächst nicht
+erreichbar. Das lässt sich ändern — ein bewusster Eingriff über eine Einstellungsdatei,
+kein Schalter in der Oberfläche:</p>
+<ol>
+<li>Beenden Sie Vermora.</li>
+<li>Öffnen Sie die Datei <code>.env</code> im Ordner <code>%LOCALAPPDATA%\Vermora</code> (unter Linux:
+   <code>~/.local/share/vermora</code>) mit einem Texteditor.</li>
+<li>Suchen Sie die Zeile <code>BIND_ADDR=127.0.0.1</code> und ändern Sie sie auf
+   <code>BIND_ADDR=0.0.0.0</code>.</li>
+<li>Suchen Sie außerdem die Zeile <code>ALLOWED_HOSTS=localhost,127.0.0.1</code> und ändern Sie sie
+   auf <code>ALLOWED_HOSTS=*</code> — ohne diese zweite Änderung weist Vermora einen Zugriff über
+   die Netzwerk-Adresse Ihres Rechners weiterhin zurück, selbst wenn Schritt 3 bereits
+   erledigt ist.</li>
+<li>Speichern Sie die Datei und starten Sie Vermora erneut.</li>
+<li>Rufen Sie auf dem Tablet oder Handy dieselbe Adresse auf wie an Ihrem Rechner, aber
+   mit dessen Netzwerk-Adresse statt <code>localhost</code>, gefolgt von <code>:&lt;Port&gt;</code> wie gewohnt —
+   die Netzwerk-Adresse Ihres Rechners finden Sie in dessen Netzwerkeinstellungen. Die
+   Sicherheitswarnung des Browsers erscheint dort ebenfalls (siehe „Vorbereitung") und
+   ist normal.</li>
+</ol>
+<p><strong>Achtung:</strong> Nach dieser Änderung ist Vermora von <strong>jedem</strong> Gerät in Ihrem Heimnetz
+erreichbar, nicht ausschließlich vom Tablet — nehmen Sie diese Änderung ausschließlich
+dann vor, wenn Sie Ihrem Heimnetz vertrauen (z. B. kein offenes Gäste-WLAN ohne
+Passwort). Rückgängig machen Sie es, indem Sie beide Zeilen auf ihren ursprünglichen
+Wert zurücksetzen.</p>
+<p><strong>Von unterwegs</strong> führt der beschriebene Weg über ein <strong>privates Netz</strong> — einen Dienst,
+der Ihre Geräte miteinander verbindet, ohne Vermora ins offene Internet zu stellen.</p>
+<p><strong>Was dabei ehrlich gesagt sein muss:</strong> Bei den verbreiteten Anbietern dieser Art laufen
+die Angaben, welche Geräte Ihnen gehören und wann sie verbunden sind, über einen
+Koordinationsserver in den USA. <strong>Ihre Depotdaten laufen dort nicht darüber</strong> — wohl
+aber die Verbindungsangaben. Wer das nicht möchte, kann diesen Koordinationsserver
+selbst betreiben; auch das ist gleichrangig möglich.</p>
+<p><strong>Mehrere Benutzerkonten auf demselben Rechner</strong> (Linux-Desktop, Teil C): Jede Anmeldung
+bekommt automatisch eine eigene, vollständig getrennte Instanz — eigenen Speicherort,
+eigenen Zugang, eigenen Sicherungs- und Schlüsselordner. Ein gleichzeitiger Betrieb
+mehrerer Instanzen auf demselben Rechner ist dabei ausdrücklich vorgesehen.</p>
+<h2 id="d7-vermora-mit-der-demo-datenbank-ausprobieren">D7 Vermora mit der Demo-Datenbank ausprobieren<a class="headerlink" href="#d7-vermora-mit-der-demo-datenbank-ausprobieren" title="Permanent link">&para;</a></h2>
+<p>Sie möchten Vermora ansehen, ohne eigene Daten einzugeben? Zu jeder Fassung gehört eine
+<strong>Demo-Datenbank</strong>: eine fertig gefüllte Datenbank mit ausschließlich erfundenen Personen,
+Konten und Wertpapieren. Sie liegt als Datei <code>vermora-demo-&lt;Fassung&gt;.db.gz</code> auf der
+öffentlichen Seite <code>github.com/chgerhard/vermora-releases</code> unter „Releases" bei der
+jeweils neuesten Fassung. Die Prüfsumme der Datei steht im Text dieser Fassung.</p>
+<p><strong>Achtung:</strong> Die Demo-Datenbank hat ein bekanntes Passwort. Probieren Sie sie
+ausschließlich lokal auf Ihrem eigenen Rechner aus und geben Sie Vermora mit der Demo
+niemals im Netz frei.</p>
+<p><strong>Schritt 1 — Datei laden</strong></p>
+<p>Was Sie sehen: Die Seite der neuesten Fassung mit einer Liste von Dateien. Was das
+bedeutet: Dort liegt neben dem Programmpaket auch die Datei <code>vermora-demo-&lt;Fassung&gt;.db.gz</code>.
+Was Sie tun: Laden Sie diese Datei herunter und entpacken Sie sie <strong>nicht</strong> — Vermora
+liest die gepackte Datei selbst.</p>
+<p><strong>Schritt 2 — In Vermora einspielen</strong></p>
+<p>Was Sie sehen: Vermora ist installiert und eingerichtet, Sie sind als Administrator
+angemeldet. Was das bedeutet: Die Demo wird wie eine Sicherung eingespielt; Ihre
+bisherigen Daten werden dabei vorher automatisch gesichert. Was Sie tun:</p>
+<ol>
+<li>Öffnen Sie den Bereich „System" und dort den Reiter „Backup".</li>
+<li>Wählen Sie unter „Sicherung hochladen" die Datei aus.</li>
+<li>Klicken Sie bei der hochgeladenen Datei auf „Wiederherstellen", bestätigen Sie mit
+   Ihrem Passwort und tippen Sie den angezeigten Dateinamen ein.</li>
+<li>Beenden Sie Vermora und starten Sie es erneut.</li>
+</ol>
+<p>Erfolgsnachweis: Nach dem Neustart zeigt Vermora oben den Hinweis „Demo-Datenbank aktiv".
+Bei Abweichungen: Kapitel E.</p>
+<p><strong>Schritt 3 — Anmelden</strong></p>
+<p>Melden Sie sich als Benutzer <code>albert_lindhoff</code> mit dem Passwort <code>1234</code> an. Alle Daten, die
+Sie nun sehen, sind erfunden.</p>
+<p><strong>Schritt 4 — Demo wieder entfernen und von vorn beginnen</strong></p>
+<p>Was Sie sehen: Im Bereich „System" auf der Übersicht eine Karte „Demo-Datenbank". Diese
+Karte erscheint ausschließlich bei der Demo-Datenbank, nie bei Ihrer eigenen. Was das
+bedeutet: Der Knopf löscht die Demo vollständig, damit Sie bei null beginnen. Was Sie tun:</p>
+<ol>
+<li>Klicken Sie auf „Demo-Datenbank entfernen".</li>
+<li>Geben Sie Ihr Passwort ein und tippen Sie <code>DEMO ENTFERNEN</code>.</li>
+<li>Starten Sie Vermora neu. Erst jetzt wird die Demo gelöscht; danach beginnt die
+   Einrichtung wie bei der ersten Installation.</li>
+</ol>
+<p>Vor dem Löschen legt Vermora eine Sicherung an. Ihr Verschlüsselungsschlüssel und der
+Ordner mit Ihren Sicherungen bleiben erhalten — dort liegt auch die automatische Sicherung
+Ihrer eigenen Daten von vor dem Einspielen der Demo. Möchten Sie sie zurückholen, spielen
+Sie sie wie in Schritt 2 wieder ein.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../c-linux/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Teil C — Der Weg unter Linux-Desktop">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                Teil C — Der Weg unter Linux-Desktop
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../e-wenn-etwas-nicht-klappt/" class="md-footer__link md-footer__link--next" aria-label="Weiter: Teil E — Wenn etwas nicht klappt">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                Teil E — Wenn etwas nicht klappt
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes", "navigation.tabs", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  <script src="../assets/tastatur.js"></script>
+
+  </body>
+</html>

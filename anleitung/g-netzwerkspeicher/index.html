@@ -1,0 +1,1660 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Oeffentliche Installationsanleitung fuer Vermora (Issue #589). Eigene Quelle, eigener Bau, getrennt von der internen Pruef-Dokumentation (docs/pruefdoku/) -- diese Site ist bewusst frei von Betreiber-/Repo-Interna und darf veroeffentlicht werden (siehe redaktionsregeln.md und den Guard backend/tests/test_issue589_anleitung_oeffentlich.py).
+">
+      
+      
+      
+        <link rel="canonical" href="https://vermora.de/anleitung/g-netzwerkspeicher/">
+      
+      
+        <link rel="prev" href="../f-andere-wege/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Teil G — Betrieb auf einem Netzwerkspeicher - Vermora einrichten</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/tokens.css">
+    
+      <link rel="stylesheet" href="../../assets/fonts.css">
+    
+      <link rel="stylesheet" href="../../assets/marke.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#teil-g-betrieb-auf-einem-netzwerkspeicher" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="Vermora einrichten" class="md-header__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vermora einrichten
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Teil G — Betrieb auf einem Netzwerkspeicher
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-ueberblick/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ueberblick
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../a-vorbereitung/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bevor Sie beginnen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../b-windows/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Windows
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../c-linux/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../d-betrieb/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der laufende Betrieb
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../e-wenn-etwas-nicht-klappt/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Wenn etwas nicht klappt
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../f-andere-wege/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Andere Betriebswege
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Betrieb auf einem Netzwerkspeicher
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Vermora einrichten" class="md-nav__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vermora einrichten
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-ueberblick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ueberblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../a-vorbereitung/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bevor Sie beginnen
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bevor Sie beginnen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../b-windows/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Windows
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../c-linux/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../d-betrieb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der laufende Betrieb
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der laufende Betrieb
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../e-wenn-etwas-nicht-klappt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wenn etwas nicht klappt
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Wenn etwas nicht klappt
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../f-andere-wege/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Andere Betriebswege
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Andere Betriebswege
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#was-sie-am-ende-haben" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was Sie am Ende haben
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wichtig-vorab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wichtig vorab
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g1-was-sie-brauchen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G1 Was Sie brauchen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g2-vermora-auf-dem-nas-einrichten" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G2 Vermora auf dem NAS einrichten
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G2 Vermora auf dem NAS einrichten">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#falls-bereits-eine-vermora-instanz-auf-dem-nas-lauft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Falls bereits eine Vermora-Instanz auf dem NAS läuft
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g3-der-erste-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G3 Der erste Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g4-zugriff-von-anderen-geraten-im-heimnetz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G4 Zugriff von anderen Geräten im Heimnetz
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g5-aktualisieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G5 Aktualisieren
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g6-beenden-neustart-des-nas-automatischer-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G6 Beenden, Neustart des NAS, automatischer Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g8-sicherungen-an-einen-zweiten-ort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G8 Sicherungen an einen zweiten Ort
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G8 Sicherungen an einen zweiten Ort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variante-cloud-sync-statt-hyper-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variante: Cloud Sync statt Hyper Backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g9-den-datentrager-schutzen-regel-oder-verschlusselter-ordner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G9 Den Datenträger schützen — Regel oder verschlüsselter Ordner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g7-den-schlussel-getrennt-ablegen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G7 Den Schlüssel getrennt ablegen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g10-wenn-etwas-nicht-klappt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G10 Wenn etwas nicht klappt
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="teil-g-betrieb-auf-einem-netzwerkspeicher">Teil G — Betrieb auf einem Netzwerkspeicher<a class="headerlink" href="#teil-g-betrieb-auf-einem-netzwerkspeicher" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Noch nicht am Gerät abgenommen</p>
+<p>Der Ablauf des Server-Pakets ist geprüft. Die Klickwege in der Oberfläche des
+Netzwerkspeichers (DSM) sind es noch nicht: sie stammen aus der Beschreibung des
+Herstellers und sind noch nicht Schritt für Schritt am Gerät durchgegangen worden.
+Wo das gilt, steht <em>(am Gerät prüfen)</em>. Weicht Ihr Bildschirm ab, gilt der Bildschirm.</p>
+</div>
+<h2 id="was-sie-am-ende-haben">Was Sie am Ende haben<a class="headerlink" href="#was-sie-am-ende-haben" title="Permanent link">&para;</a></h2>
+<p>Vermora läuft in zwei Containern (zwei abgeschottete Programmpakete: Vermora selbst und
+Caddy, das die verschlüsselte Verbindung bereitstellt) auf Ihrem Netzwerkspeicher (kurz: NAS), ist im
+Heimnetz unter <code>https://meinnas:8443</code> erreichbar, startet nach einem Neustart des NAS
+von selbst und aktualisiert sich auf Knopfdruck mit automatischer Sicherung und
+Rückschaltung.</p>
+<h2 id="wichtig-vorab">Wichtig vorab<a class="headerlink" href="#wichtig-vorab" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Dieser Teil gilt für ein NAS im Heimnetz.</strong> Der Betriebsort <code>nas</code> ist der
+  beschriebene Weg. Ein angemieteter Server ist mit dem Paket nicht freigegeben.</li>
+<li><strong>Das NAS braucht einen x86_64-Prozessor</strong> (Intel oder AMD). Ein NAS mit ARM-Prozessor
+  geht nicht — das Paket bricht dort ab. Ob Ihr Modell x86_64 hat, steht im Datenblatt des
+  Herstellers; im SSH-Fenster (siehe G2) zeigt <code>uname -m</code> den Wert <code>x86_64</code>.</li>
+<li><strong>Läuft auf dem NAS schon eine Vermora-Instanz?</strong> Dann lesen Sie vor Schritt 5 den
+  Kasten „Falls bereits eine Vermora-Instanz auf dem NAS läuft“ am Ende von G2. Das Paket
+  legt eine zweite, leere Instanz an und rührt die Daten einer anderen Instanz nicht an.</li>
+</ul>
+<h2 id="g1-was-sie-brauchen">G1 Was Sie brauchen<a class="headerlink" href="#g1-was-sie-brauchen" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Wie prüfen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Synology-NAS mit Intel- oder AMD-Prozessor (x86_64)</td>
+<td><code>uname -m</code> zeigt <code>x86_64</code></td>
+</tr>
+<tr>
+<td>DSM 7.x (das Betriebssystem des NAS)</td>
+<td>Hauptmenü → Systemsteuerung → Info-Center <em>(am Gerät prüfen)</em></td>
+</tr>
+<tr>
+<td>Programm <strong>Container Manager</strong> (liefert Docker und <code>docker compose</code>)</td>
+<td>Paket-Zentrum → Installiert <em>(am Gerät prüfen)</em></td>
+</tr>
+<tr>
+<td>Mindestens 2 GB freier Arbeitsspeicher, einige GB freier Platz</td>
+<td>Ressourcenmonitor; das Paket prüft die Ressourcen beim Start selbst</td>
+</tr>
+<tr>
+<td>Ein Administrator-Konto mit SSH-Zugang</td>
+<td>siehe G2 Schritt 2 und 3</td>
+</tr>
+<tr>
+<td>Auf dem NAS vorhanden: <code>curl</code>, <code>sha256sum</code>, <code>base64</code></td>
+<td>Das Skript meldet ein fehlendes Programm <strong>mit Namen</strong> und bricht ab. Ein Entpackprogramm (<code>unzip</code>) ist <strong>nicht</strong> nötig: Sie entpacken in File Station, und der automatische Nachzug einer neueren Fassung hat einen Ersatzweg</td>
+</tr>
+<tr>
+<td>Zugang zum Internet vom NAS aus</td>
+<td>Die Programm-Abbilder werden beim ersten Start geladen</td>
+</tr>
+</tbody>
+</table>
+<h2 id="g2-vermora-auf-dem-nas-einrichten">G2 Vermora auf dem NAS einrichten<a class="headerlink" href="#g2-vermora-auf-dem-nas-einrichten" title="Permanent link">&para;</a></h2>
+<p><strong>Schritt 1 — Container Manager installieren</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Das Paket-Zentrum von DSM.</li>
+<li><strong>Was das bedeutet:</strong> Vermora läuft in Containern. Das Programm „Container Manager“
+  stellt diese Umgebung auf dem NAS bereit.</li>
+<li><strong>Was Sie tun:</strong> Installieren Sie „Container Manager“ <em>(am Gerät prüfen)</em>. Dabei legt
+  DSM den freigegebenen Ordner <code>docker</code> an; er erscheint in File Station links in der
+  Ordnerliste. Auf welchem Speichervolume er liegt, zeigt später SSH:
+  <code>ls -d /volume*/docker</code> (<code>volume1</code>, <code>volume2</code> …). Die Beispiele unten nutzen <code>volume1</code>.</li>
+</ul>
+<p><strong>Schritt 2 — SSH einschalten</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Systemsteuerung von DSM.</li>
+<li><strong>Was das bedeutet:</strong> SSH ist ein Zugang, über den Sie Befehle an das NAS tippen. Das
+  Paket wird über solche Befehle gestartet.</li>
+<li><strong>Was Sie tun:</strong> Systemsteuerung → Terminal &amp; SNMP → „SSH-Dienst aktivieren“
+  <em>(am Gerät prüfen)</em>. Schalten Sie den Dienst nach der Einrichtung wieder aus, wenn Sie
+  ihn nicht brauchen.</li>
+</ul>
+<p><strong>Schritt 3 — Per SSH anmelden</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Auf Ihrem Rechner ein Terminal oder eine PowerShell.</li>
+<li><strong>Was das bedeutet:</strong> Von hier aus tippen Sie die Befehle für das NAS.</li>
+<li><strong>Was Sie tun:</strong> Geben Sie <code>ssh admin@meinnas</code> ein. Ersetzen Sie <code>admin</code> durch den Namen
+  Ihres Administrator-Kontos und <code>meinnas</code> durch den Namen oder die Adresse Ihres NAS.
+  Beim ersten Mal fragt SSH nach dem Fingerabdruck des NAS: bestätigen Sie mit <code>yes</code>.
+  Geben Sie dann das Passwort des Kontos ein (beim Tippen erscheint nichts). Das Konto
+  muss in der Gruppe <em>administrators</em> sein, sonst funktioniert <code>sudo</code> nicht. Geben Sie
+  danach <code>sudo -i</code> ein. Es fragt dasselbe Passwort und macht Sie zum Administrator (root).
+  Das Skript muss als root laufen, weil es den Ordner <code>data</code> dem Container-Benutzer (3001)
+  zuweist.</li>
+</ul>
+<p><strong>Schritt 4 — Herunterladen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Auf Ihrem eigenen Rechner den Browser.</li>
+<li><strong>Was das bedeutet:</strong> Das Server-Paket ist eine ZIP-Datei auf der Bereitstellungsseite.</li>
+<li><strong>Was Sie tun:</strong> Öffnen Sie <code>https://github.com/chgerhard/vermora-releases/releases/latest</code>,
+  scrollen Sie zum Abschnitt <em>Assets</em> und speichern Sie <code>vermora-server-X.Y.Z.zip</code>
+  (X.Y.Z ist die Fassungsnummer). Die Prüfsumme steht dort neben der Datei (<code>sha256:…</code>).</li>
+</ul>
+<p><strong>Schritt 5 — Auf das NAS bringen und entpacken</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> File Station mit dem Ordner <code>docker</code>.</li>
+<li><strong>Was das bedeutet:</strong> Das Entpacken erzeugt den Ordner <code>vermora</code>. Dieser Ordner IST die
+  Instanz: dort liegen später <code>data/</code> und <code>logs/</code>.</li>
+<li><strong>Was Sie tun:</strong> Laden Sie die ZIP im Ordner <code>docker</code> hoch. Rechtsklick → <em>Entpacken</em> →
+  <em>Hierher</em> <em>(am Gerät prüfen)</em>. Der Ordnername ist frei; umbenennen dürfen Sie ihn
+  ausschließlich vor dem ersten Start. Eine Instanz, die noch in einem Ordner
+  <code>vermora-server-5.x.y</code> liegt, läuft unverändert weiter — es wird nichts umgezogen.
+  Wechseln Sie dann in SSH in den Ordner:</li>
+</ul>
+<pre><code class="language-bash">cd /volume1/docker/vermora
+ls
+</code></pre>
+<p>Sie sehen <code>EINRICHTEN.sh</code>, <code>AKTUALISIEREN.sh</code>, <code>BEENDEN.sh</code>, <code>LIESMICH.txt</code>,
+<code>einrichtung.ini</code> und den Ordner <code>lib</code>. Zeigt <code>ls -l *.sh</code> bei den Skripten kein <code>x</code>,
+geben Sie <code>chmod +x *.sh</code> ein.</p>
+<p><strong>Schritt 6 — Prüfsumme vergleichen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die hochgeladene ZIP im Ordner <code>docker</code>.</li>
+<li><strong>Was das bedeutet:</strong> Die Prüfsumme ist ein Fingerabdruck der Datei. Stimmt er mit dem
+  der Bereitstellungsseite überein, ist die Datei unverändert angekommen.</li>
+<li><strong>Was Sie tun:</strong> Geben Sie ein:</li>
+</ul>
+<pre><code class="language-bash">sha256sum /volume1/docker/vermora-server-*.zip
+</code></pre>
+<p>Der Wert muss mit der Prüfsumme der Bereitstellungsseite übereinstimmen. Weicht er ab,
+machen Sie <strong>nicht</strong> weiter. Löschen Sie danach die ZIP.</p>
+<p><strong>Schritt 7 — Einrichtungsdatei ausfüllen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Im Ordner die Datei <code>einrichtung.ini</code>.</li>
+<li><strong>Was das bedeutet:</strong> Sie enthält die Einstellungen für den ersten Start. Es wird nichts
+  kopiert: Sie bearbeiten die Datei dort, wo sie liegt. Das Paket liest sie beim ersten
+  Aufruf von <code>EINRICHTEN.sh</code>; danach stehen die Werte in <code>.env</code>, spätere Änderungen in der
+  Datei wirken nicht.</li>
+<li><strong>Was Sie tun:</strong> Öffnen Sie die Datei mit <code>vi einrichtung.ini</code> oder in File Station mit
+  dem Texteditor. Für ein NAS im Heimnetz gilt:</li>
+</ul>
+<pre><code>betriebsort=nas
+port=8443
+</code></pre>
+<p>Ein Port ist die Nummer, unter der Vermora im Netz antwortet. Er darf von keiner anderen
+Instanz und nicht von DSM (5000/5001) belegt sein. Der Schlüsselordner
+(<code>schluessel_ordner=</code>) bleibt leer: dann legt das Paket den Ordner <code>vermora-schluessel</code>
+<strong>neben</strong> dem Instanzordner an (siehe G7).</p>
+<p><strong>Schritt 8 — Starten</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Nach dem Befehl nummerierte Schritte. Es öffnet sich <strong>kein</strong> Fenster
+  und kein Browser.</li>
+<li><strong>Was das bedeutet:</strong> Das Paket richtet alles selbst ein.</li>
+<li><strong>Was Sie tun:</strong> Geben Sie ein:</li>
+</ul>
+<pre><code class="language-bash">./EINRICHTEN.sh
+</code></pre>
+<p>Beim ersten Aufruf laufen sechs Schritte: „Voraussetzungen prüfen“, „Programm aus dem
+Netz laden“, „Einstellungen schreiben“, „Rechte von data und logs werden gesetzt und
+geprüft“, „Programm starten“, „Datenbank einrichten“. Bei jedem weiteren Aufruf sind es
+vier.</p>
+<ul>
+<li><strong>Erfolg:</strong> Am Ende stehen <strong>Adresse</strong>, <strong>Einrichtungs-Wort</strong> und der Ort der
+  <strong>Schlüsseldatei</strong> auf dem Schirm. Notieren Sie alles und bewahren Sie eine Kopie der
+  Schlüsseldatei getrennt vom NAS auf. Dieselben Meldungen (außer dem Einrichtungs-Wort)
+  stehen in <code>start-protokoll.txt</code>.</li>
+<li><strong>Wenn es abbricht:</strong> Die letzte Zeile nennt den Grund im Klartext (fehlendes
+  Programm, ARM-Prozessor, zu wenig Speicher, Container-Umgebung nicht bereit). Beheben
+  Sie die Ursache und rufen Sie <code>./EINRICHTEN.sh</code> erneut auf. Ein zweiter Aufruf ändert an
+  einer bestehenden Instanz nichts; er zieht Rechte nach und startet. Die Meldungen
+  stehen in G10.</li>
+</ul>
+<h3 id="falls-bereits-eine-vermora-instanz-auf-dem-nas-lauft">Falls bereits eine Vermora-Instanz auf dem NAS läuft<a class="headerlink" href="#falls-bereits-eine-vermora-instanz-auf-dem-nas-lauft" title="Permanent link">&para;</a></h3>
+<p>Legen Sie die zweite Instanz in einem <strong>eigenen Ordner</strong> mit <strong>eigenem Port</strong> und
+<strong>eigenem Projektnamen</strong> an. Benennen Sie dazu in Schritt 5 den entpackten Ordner um,
+zum Beispiel in <code>vermora-zweit</code>, und tragen Sie in Schritt 7 ein:</p>
+<pre><code>betriebsort=nas
+port=8444
+projektname=vermora-zweit
+</code></pre>
+<p>Der Port darf von keiner anderen Instanz belegt sein. <strong>Ändern Sie den Projektnamen nach
+der Einrichtung nie</strong> — ein neuer Name erzeugt leere Speicherbereiche und eine neue
+Zertifikatswurzel. In den Beispielen dieses Teils ersetzen Sie dann <code>vermora</code> durch
+<code>vermora-zweit</code> und den Port 8443 durch 8444.</p>
+<h2 id="g3-der-erste-start">G3 Der erste Start<a class="headerlink" href="#g3-der-erste-start" title="Permanent link">&para;</a></h2>
+<p><strong>Schritt 1</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Auf einem Gerät im Heimnetz den Browser.</li>
+<li><strong>Was das bedeutet:</strong> Vermora ist unter der ausgegebenen Adresse erreichbar.</li>
+<li><strong>Was Sie tun:</strong> Öffnen Sie die ausgegebene Adresse, zum Beispiel <code>https://meinnas:8443</code>.</li>
+</ul>
+<p><strong>Schritt 2</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Warnung, dass die Verbindung nicht privat ist.</li>
+<li><strong>Was das bedeutet:</strong> Vermora nutzt eine eigene Zertifikatswurzel (einen selbst
+  ausgestellten Echtheitsnachweis). Der Browser kennt sie noch nicht. Das ist hier
+  erwartet.</li>
+<li><strong>Was Sie tun:</strong> Folgen Sie dem Kapitel zur Warnung („Die Warnung ‚Ihre Verbindung ist
+  nicht privat‘“, B6 unter Windows, C6 unter Linux). Wie Sie die Wurzel auf Geräten
+  dauerhaft als vertrauenswürdig eintragen, steht in D6.</li>
+</ul>
+<p><strong>Schritt 3</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Ein Feld für das Einrichtungs-Wort und Felder für ein neues Passwort.</li>
+<li><strong>Was das bedeutet:</strong> Das ist die Ersteinrichtung.</li>
+<li><strong>Was Sie tun:</strong> Geben Sie das Einrichtungs-Wort ein und vergeben Sie das erste Passwort.
+  Der Ablauf ist derselbe wie in B5 (Windows) und C5 (Linux); er wird hier nicht
+  wiederholt.</li>
+</ul>
+<p><strong>Erfolgsnachweis:</strong> Die Anmeldung klappt und die Startseite lädt. Weicht etwas ab, siehe
+Teil E.</p>
+<h2 id="g4-zugriff-von-anderen-geraten-im-heimnetz">G4 Zugriff von anderen Geräten im Heimnetz<a class="headerlink" href="#g4-zugriff-von-anderen-geraten-im-heimnetz" title="Permanent link">&para;</a></h2>
+<p>Das Paket bindet Vermora an alle Netzwerkanschlüsse des NAS (<code>0.0.0.0</code>). Jedes Gerät im
+Heimnetz kann die Adresse öffnen. <strong>Aus dem Internet</strong> ist Vermora dadurch nicht
+erreichbar, solange Ihr Router keinen Port weiterleitet. Leiten Sie <code>8443</code> (und <code>8444</code> bei
+einer zweiten Instanz) <strong>nicht</strong> an das Internet weiter. Zertifikat und Zugriff von
+anderen Geräten: D6 und Einstellungen → Zertifikat.</p>
+<h2 id="g5-aktualisieren">G5 Aktualisieren<a class="headerlink" href="#g5-aktualisieren" title="Permanent link">&para;</a></h2>
+<p>Melden Sie sich per SSH an (G2 Schritt 3) und geben Sie ein:</p>
+<pre><code class="language-bash">sudo -i
+cd /volume1/docker/vermora
+./AKTUALISIEREN.sh
+</code></pre>
+<p>Das Skript prüft, ob eine neuere Fassung vorliegt (es liest dafür allein die
+<code>SERVER_*</code>-Felder des signierten Manifests), lädt sie, prüft die Prüfsumme, <strong>sichert
+automatisch</strong> und spielt die neue Fassung ein. Startet sie nicht, schaltet es
+automatisch zurück. Der allgemeine Ablauf einer Aktualisierung steht in D3.</p>
+<ul>
+<li><strong>Neuere Paket-Fassung:</strong> Gibt es eine neuere Fassung des <strong>Pakets</strong> selbst, legt das
+  Skript sie als Ordner <code>paket.neu</code> ab und übernimmt sie „beim nächsten Aufruf von
+  EINRICHTEN.sh oder AKTUALISIEREN.sh“. Rufen Sie dann <code>./AKTUALISIEREN.sh</code> ein zweites
+  Mal auf. <code>einrichtung.ini</code>, <code>.env</code> und <code>data/</code> bleiben unberührt.</li>
+<li><strong>Keine neuere Fassung:</strong> Das Skript meldet: „Es liegt keine neuere Fassung vor, oder
+  sie ließ sich gerade nicht feststellen. Es wurde nichts verändert.“ Das ist kein Fehler.</li>
+<li><strong>Erfolgsnachweis:</strong> In Vermora unter „System → Übersicht“ steht die neue
+  Versionsnummer.</li>
+</ul>
+<h2 id="g6-beenden-neustart-des-nas-automatischer-start">G6 Beenden, Neustart des NAS, automatischer Start<a class="headerlink" href="#g6-beenden-neustart-des-nas-automatischer-start" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Beenden:</strong> Geben Sie <code>./BEENDEN.sh</code> ein. Die Daten bleiben erhalten.</li>
+<li><strong>Neustart des NAS:</strong> Die Container starten von selbst wieder (Einstellung
+  <code>restart: unless-stopped</code>). Das Paket richtet <strong>keinen</strong> Zeitplan ein, also keine
+  zeitgesteuerte Aktualisierung. Wer das möchte: Systemsteuerung → Aufgabenplanung →
+  Benutzerdefiniertes Skript als root mit
+  <code>cd /volume1/docker/vermora &amp;&amp; ./AKTUALISIEREN.sh</code> <em>(am Gerät prüfen; noch nicht
+  erprobt)</em>.</li>
+<li>Warten Sie nach einem Neustart zwei bis drei Minuten. Das Skript wartet bei einem
+  Aufruf selbst, bis die Container-Umgebung bereit ist.</li>
+<li>Haben Sie <strong>BEENDEN.sh</strong> ausgeführt und das NAS danach neu gestartet, bleibt Vermora aus,
+  bis Sie <code>./EINRICHTEN.sh</code> aufrufen.</li>
+</ul>
+<h2 id="g8-sicherungen-an-einen-zweiten-ort">G8 Sicherungen an einen zweiten Ort<a class="headerlink" href="#g8-sicherungen-an-einen-zweiten-ort" title="Permanent link">&para;</a></h2>
+<p><strong>Ziel:</strong> Die Sicherungen liegen zusätzlich an einem <strong>räumlich getrennten</strong> zweiten Ort.
+Die monatliche Wiederherstellungsprobe läuft bereits im Programm und <strong>ersetzt die
+Auslagerung nicht</strong>.</p>
+<p>Vermora legt Sicherungen im Datenordner ab; das Auslagern übernimmt das NAS. Richten Sie
+zwei Sicherungsaufgaben mit dem DSM-Programm <strong>Hyper Backup</strong> ein <em>(Klickwege am Gerät
+prüfen)</em>:</p>
+<ol>
+<li><strong>Angesteckte Platte</strong> (USB oder zweites Gerät am selben Ort): Ziel ist ein lokaler
+   Ordner oder ein externes Gerät, Quelle ist der Ordner <code>docker/vermora/data</code> (oder der
+   Sicherungsunterordner darin), Zeitplan täglich.</li>
+<li><strong>Verschlüsselt außer Haus</strong> (anderer Standort, Cloud-Ziel oder zweites NAS): Schalten
+   Sie die Verschlüsselung der Sicherungsaufgabe ein und bewahren Sie das Passwort
+   <strong>getrennt vom NAS</strong> auf.</li>
+<li><strong>Wichtig:</strong> Die Schlüsseldatei gehört <strong>nicht</strong> zusammen mit den Sicherungen an
+   denselben Ort. Beim Server-Paket liegt sie im Ordner <code>vermora-schluessel</code> neben dem
+   Instanzordner, also nicht in der Sicherung von <code>data/</code>. Eine ältere Instanz hat sie
+   noch in <code>data/.encryption_key</code>: nehmen Sie sie dort von der Sicherungsaufgabe aus und
+   ziehen Sie nach G7 (b) um.</li>
+<li><strong>Erfolgsnachweis:</strong> Starten Sie die Aufgabe einmal von Hand. Prüfen Sie am Ziel, dass
+   die Datei mit dem richtigen Datum da ist. Notieren Sie Datum und Ergebnis
+   schriftlich.</li>
+</ol>
+<h3 id="variante-cloud-sync-statt-hyper-backup">Variante: Cloud Sync statt Hyper Backup<a class="headerlink" href="#variante-cloud-sync-statt-hyper-backup" title="Permanent link">&para;</a></h3>
+<p>Das geht auch, ist aber ein Abgleich und keine versionierte Sicherung <em>(Klickwege am
+Gerät prüfen)</em>. Beachten Sie dabei:</p>
+<ul>
+<li><strong>Richtung:</strong> „Nur lokale Änderungen hochladen“ — nie in beide Richtungen (ein Fehler am
+  Ziel würde sonst auf das NAS zurückgeschrieben).</li>
+<li><strong>Haken</strong> „Dateien im Ziel nicht entfernen, wenn sie in der Quelle entfernt werden“:
+  setzen Sie ihn, sonst verschwinden von Vermora aufgeräumte Sicherungen auch am Ziel.</li>
+<li><strong>Quelle:</strong> Wählen Sie ausschließlich <code>data/backups</code>. Wer den ganzen Instanzordner
+  nimmt, überträgt zusätzlich die laufende Datenbank (eine Kopie mitten im Schreiben ist
+  möglich und nicht verlässlich), <code>.env</code>, <code>logs/</code> und bei einer älteren Instanz die
+  Schlüsseldatei.</li>
+<li><strong>Datenverschlüsselung der Aufgabe:</strong> Schalten Sie sie ein und bewahren Sie das Passwort getrennt vom
+  NAS auf. Wer sie bewusst auslässt (zum Beispiel bei einer eigenen Cloud-Instanz), hat am Ziel
+  alles im Klartext, was in der Quelle liegt. Die Sicherungen selbst bleiben von Vermora
+  verschlüsselt, solange der Schlüssel <strong>nicht</strong> mit übertragen wird.</li>
+<li><strong>Eigene Cloud bei einem Hoster</strong> (zum Beispiel Nextcloud in einem Rechenzentrum): Sie
+  zählt als räumlich getrennter Ort. Der Hoster betreibt den Speicher; Ihre Daten liegen
+  dort.</li>
+<li><strong>Schlüssel:</strong> Nie im Quellordner (siehe G7). Liegt er schon am Ziel, löschen Sie ihn dort
+  von Hand, einschließlich Papierkorb und Versionen. Wegen des Hakens oben verschwindet er
+  nicht von selbst.</li>
+<li><strong>Erfolgsnachweis:</strong> Der Verlauf der Aufgabe zeigt das Datum der letzten erfolgreichen
+  Synchronisierung.</li>
+</ul>
+<h2 id="g9-den-datentrager-schutzen-regel-oder-verschlusselter-ordner">G9 Den Datenträger schützen — Regel oder verschlüsselter Ordner<a class="headerlink" href="#g9-den-datentrager-schutzen-regel-oder-verschlusselter-ordner" title="Permanent link">&para;</a></h2>
+<p>Der Schutz der Platten im Ruhezustand ist Ihre Sache als Betreiber. Es gibt zwei
+gleichwertige Wege. Der verschlüsselte Ordner ist eine <strong>Option</strong>, keine Pflicht.</p>
+<p><strong>Weg 1 — Organisatorische Regel:</strong> „Kein Datenträger verlässt das Haus unvernichtet.“
+Defekte oder ausgemusterte Platten werden zerstört, statt sie an den Hersteller
+zurückzuschicken, zu verkaufen oder zu entsorgen. Schreiben Sie die Regel auf. Am
+Gerät ist dafür nichts umzustellen.</p>
+<p><strong>Weg 2 — Verschlüsselter Ordner (Option):</strong> Gehen Sie ihn erst, wenn G8 bestanden ist und
+eine aktuelle Sicherung am zweiten Ort liegt. Greifen Sie ihn auf, wenn sich der
+Gerätestandort ändert, Platten über den Hersteller getauscht werden sollen oder der
+Speicher außerhalb des Hauses steht.</p>
+<ol>
+<li>Beenden Sie Vermora mit <code>./BEENDEN.sh</code>.</li>
+<li>Erstellen Sie eine frische Sicherung (Hyper Backup von Hand starten).</li>
+<li>Legen Sie einen neuen <strong>verschlüsselten freigegebenen Ordner</strong> an: Systemsteuerung →
+   Gemeinsamer Ordner → Erstellen → „Diesen gemeinsamen Ordner verschlüsseln“ <em>(am Gerät
+   prüfen)</em>. Bewahren Sie Schlüssel und Passwort <strong>getrennt vom NAS</strong> auf.</li>
+<li>Kopieren Sie den ganzen Instanzordner (mit <code>data/</code>) in den verschlüsselten Ordner und
+   vergleichen Sie Größe und Dateizahl.</li>
+<li>Starten Sie die Instanz im neuen Ordner: wechseln Sie dorthin und rufen Sie
+   <code>./EINRICHTEN.sh</code> auf. <strong>Ändern Sie den Projektnamen nicht.</strong></li>
+<li><strong>Verhalten nach einem Neustart des NAS:</strong> Ein verschlüsselter Ordner ist nach einem
+   Neustart <strong>nicht</strong> eingehängt, bis Sie ihn in DSM freigeben. Vermora startet erst,
+   wenn der Ordner eingehängt ist <em>(Verhalten am Gerät prüfen, auch
+   Einschränkungen von Docker mit verschlüsselten Ordnern)</em>.</li>
+<li><strong>Erfolgsnachweis:</strong> Melden Sie sich an. Die Daten sind vollständig da.</li>
+<li><strong>Rückweg:</strong> Lassen Sie den alten Ordner bis zum bestandenen Nachweis unverändert
+   stehen. Erst danach entfernen Sie ihn.</li>
+</ol>
+<h2 id="g7-den-schlussel-getrennt-ablegen">G7 Den Schlüssel getrennt ablegen<a class="headerlink" href="#g7-den-schlussel-getrennt-ablegen" title="Permanent link">&para;</a></h2>
+<p>Das Server-Paket legt den Schlüssel von Anfang an <strong>getrennt</strong> ab, genauso wie das
+Starterpaket unter Windows und Linux. Der Schlüssel liegt in einem Ordner <strong>außerhalb des
+Instanzordners</strong>, aber nicht in einem verschlüsselten freigegebenen Ordner: Der wäre nach
+einem Neustart des NAS nicht eingehängt, und Vermora würde nicht starten.</p>
+<p><strong>(a) Neuinstallation mit dem Server-Paket</strong></p>
+<p>Hier ist nichts zu tun außer:</p>
+<ol>
+<li><code>EINRICHTEN.sh</code> legt die Datei <code>fernet.key</code> im Ordner <code>vermora-schluessel</code> neben dem
+   Instanzordner an, oder in dem Ordner, den <code>schluessel_ordner=</code> in <code>einrichtung.ini</code>
+   nennt (absoluter Pfad, nie innerhalb des Instanzordners — sonst bricht die Einrichtung
+   mit einer Meldung ab). Besitzer ist 3001, der Ordner hat die Rechte 0700, die Datei 0400.</li>
+<li><strong>Bewahren Sie eine Kopie der Datei <code>fernet.key</code> getrennt vom NAS auf.</strong> Ohne sie sind
+   Ihre Sicherungen wertlos.</li>
+<li>Nehmen Sie den Schlüsselordner von allen Sicherungs- und Sync-Aufgaben aus (G8 Punkt 3).</li>
+<li><strong>Erfolgsnachweis:</strong> Öffnen Sie in Vermora „System“, den Reiter „Backup“ und die Karte
+   „Betriebsnachweise“. Dort stehen drei Zeilen, alle mit „Ja“: „Eigene Schlüsseldatei
+   aktiv“, „Schlüsseldatei liegt außerhalb des Datenordners“ und „Schlüsseldatei am
+   eingetragenen Ort vorhanden“. Speichern Sie ein Bildschirmfoto als Nachweis.</li>
+</ol>
+<p><strong>(b) Umstieg einer bestehenden Instanz</strong> (der Schlüssel liegt noch in
+<code>data/.encryption_key</code>)</p>
+<p><code>EINRICHTEN.sh</code> ändert daran nichts automatisch und verschiebt nie einen Schlüssel; es gibt
+einmalig einen Hinweis im Protokoll aus. Der Umstieg läuft von Hand.</p>
+<p><strong>Schritt 1 — Zielordner anlegen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Eine SSH-Sitzung als root im Instanzordner.</li>
+<li><strong>Was das bedeutet:</strong> Der Schlüssel braucht einen Ordner außerhalb des Instanzordners und
+  außerhalb des Quellordners jeder Sicherungs- oder Sync-Aufgabe.</li>
+<li><strong>Was Sie tun:</strong> Geben Sie ein:</li>
+</ul>
+<pre><code class="language-bash">mkdir -p /volume1/docker/vermora-schluessel
+</code></pre>
+<p><strong>Schritt 2 — Schlüssel kopieren, nie verschieben</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Datei <code>data/.encryption_key</code> im Instanzordner.</li>
+<li><strong>Was das bedeutet:</strong> Das ist Ihr bisheriger Schlüssel. Er bleibt vorerst an seinem Platz.</li>
+<li><strong>Was Sie tun:</strong> Kopieren Sie die Datei und prüfen Sie mit <code>cmp</code>, dass beide gleich sind:</li>
+</ul>
+<pre><code class="language-bash">cp data/.encryption_key /volume1/docker/vermora-schluessel/fernet.key
+cmp data/.encryption_key /volume1/docker/vermora-schluessel/fernet.key
+</code></pre>
+<p><code>cmp</code> gibt bei gleichen Dateien nichts aus.</p>
+<p><strong>Schritt 3 — Besitzer und Rechte setzen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Den kopierten Schlüssel im neuen Ordner.</li>
+<li><strong>Was das bedeutet:</strong> Der Container-Benutzer (3001) muss die Datei lesen können, sonst
+  niemand.</li>
+<li><strong>Was Sie tun:</strong> Geben Sie ein:</li>
+</ul>
+<pre><code class="language-bash">chown 3001:3001 /volume1/docker/vermora-schluessel /volume1/docker/vermora-schluessel/fernet.key
+chmod 700 /volume1/docker/vermora-schluessel
+chmod 400 /volume1/docker/vermora-schluessel/fernet.key
+</code></pre>
+<p><strong>Schritt 4 — <code>.env</code> ergänzen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Datei <code>.env</code> im Instanzordner.</li>
+<li><strong>Was das bedeutet:</strong> Sie sagt Vermora, wo der Schlüssel liegt.</li>
+<li><strong>Was Sie tun:</strong> Fügen Sie diese zwei Zeilen hinzu:</li>
+</ul>
+<pre><code>KEY_DIR=/volume1/docker/vermora-schluessel
+ENCRYPTION_KEY_FILE=/schluessel/fernet.key
+</code></pre>
+<p><strong>Schritt 5 — Neu starten</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Nach <code>./EINRICHTEN.sh</code> die nummerierten Schritte wie in G2.</li>
+<li><strong>Was das bedeutet:</strong> Vermora startet mit dem Schlüssel aus dem neuen Ordner. Bei falschem
+  oder fehlendem Pfad bricht der Start ab; es wird nie still ein neuer Schlüssel angelegt.</li>
+<li><strong>Was Sie tun:</strong> Geben Sie <code>./EINRICHTEN.sh</code> ein. Bricht der Start ab, prüfen Sie den
+  Pfad und erzeugen Sie die Datei <strong>nicht</strong> neu.</li>
+</ul>
+<p><strong>Schritt 6 — Erfolgsnachweis</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Die Anmeldeseite.</li>
+<li><strong>Was das bedeutet:</strong> Gespeicherte Zugangsdaten sind mit dem Schlüssel lesbar, wenn zum
+  Beispiel ein Kursabruf gelingt.</li>
+<li><strong>Was Sie tun:</strong> Melden Sie sich an und prüfen Sie die Karte „Betriebsnachweise“ wie in
+  (a) Punkt 4.</li>
+</ul>
+<p><strong>Schritt 7 — Alte Datei löschen</strong></p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Weiterhin die Datei <code>data/.encryption_key</code>.</li>
+<li><strong>Was das bedeutet:</strong> Solange sie dort liegt, steckt der Schlüssel in jeder Sicherung von
+  <code>data/</code>.</li>
+<li><strong>Was Sie tun:</strong> Löschen Sie sie <strong>erst jetzt</strong>. Liegt eine Altkopie schon am zweiten
+  Sicherungsort (G8), löschen Sie sie dort von Hand, einschließlich Papierkorb und
+  Versionen.</li>
+</ul>
+<p><strong>Rückweg:</strong> Entfernen Sie die zwei <code>.env</code>-Zeilen und rufen Sie <code>./EINRICHTEN.sh</code> auf. Der
+Schlüssel liegt dann wieder in <code>data/</code>; kopieren Sie die Datei aus Schritt 2 zurück, falls
+Sie die alte schon gelöscht haben.</p>
+<h2 id="g10-wenn-etwas-nicht-klappt">G10 Wenn etwas nicht klappt<a class="headerlink" href="#g10-wenn-etwas-nicht-klappt" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Meldung oder Beobachtung</th>
+<th>Ursache</th>
+<th>Was tun</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>„Auf diesem Gerät fehlt das Programm "curl". Installieren Sie es und starten Sie die Einrichtung erneut.“ (der Name des Programms steht in der Meldung)</td>
+<td>Das Programm ist auf dem NAS nicht installiert</td>
+<td>Installieren Sie es oder melden Sie sich bei der Hilfe (E2)</td>
+</tr>
+<tr>
+<td>„Dieser Rechner hat einen ARM-Prozessor (zum Beispiel Apple Silicon oder ein ARM-Windows-Gerät). Vermora wird für x86_64-Prozessoren gebaut und startet auf ARM nicht - das ist keine Einstellungssache, sondern eine Grenze der heutigen Fassung, kein vorbeigehender Fehler.“</td>
+<td>Das NAS hat einen ARM-Prozessor</td>
+<td>Das Paket läuft auf diesem NAS nicht</td>
+</tr>
+<tr>
+<td>„In der Einrichtungsdatei hat "schluessel_ordner" einen ungültigen Wert: …“ (oder ein anderer Eintrag)</td>
+<td>Der Wert in <code>einrichtung.ini</code> ist falsch, beim Schlüsselordner zum Beispiel ein Pfad innerhalb des Instanzordners</td>
+<td>Tragen Sie einen gültigen Wert ein (Schlüsselordner: absoluter Pfad außerhalb des Instanzordners, siehe G7) und rufen Sie <code>./EINRICHTEN.sh</code> erneut auf</td>
+</tr>
+<tr>
+<td>„Die Container-Umgebung ist installiert, läuft aber gerade nicht. Bitte starten Sie sie und warten Sie, bis das Symbol im Infobereich ruhig steht. Starten Sie danach dieses Fenster erneut.“</td>
+<td>Container Manager fehlt oder startet noch. Auf dem NAS gibt es kein Symbol im Infobereich: Gemeint ist, dass die Umgebung bereit ist</td>
+<td>Prüfen Sie im Paket-Zentrum, ob „Container Manager“ läuft, warten Sie ein bis zwei Minuten und rufen Sie <code>./EINRICHTEN.sh</code> erneut auf</td>
+</tr>
+<tr>
+<td>Der Port ist belegt</td>
+<td>Eine zweite Instanz oder DSM nutzt den Port</td>
+<td>Tragen Sie in <code>einrichtung.ini</code> einen anderen <code>port=</code> ein — <strong>vor</strong> dem ersten Start</td>
+</tr>
+<tr>
+<td>Der Browser erreicht die Adresse nicht</td>
+<td>Die Firewall in DSM blockiert den Port</td>
+<td>Systemsteuerung → Sicherheit → Firewall: Port erlauben <em>(am Gerät prüfen)</em></td>
+</tr>
+<tr>
+<td>Vermora bleibt nach einem Neustart des NAS aus</td>
+<td><code>BEENDEN.sh</code> war vorher ausgeführt, oder ein verschlüsselter Ordner ist nicht eingehängt</td>
+<td>Rufen Sie <code>./EINRICHTEN.sh</code> auf; hängen Sie den Ordner in DSM ein</td>
+</tr>
+</tbody>
+</table>
+<p>Weiteres: Teil E.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../f-andere-wege/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Teil F — Andere Betriebswege">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                Teil F — Andere Betriebswege
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes", "navigation.tabs", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  <script src="../assets/tastatur.js"></script>
+
+  </body>
+</html>

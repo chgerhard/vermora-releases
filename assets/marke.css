@@ -1,0 +1,71 @@
+/* Markenfarben und Schrift fuer die Installationsanleitung unter /anleitung (Issue #1234, E2).
+   Die Anleitung wird mit mkdocs-material gebaut; diese Datei legt die Material-Variablen auf
+   die Rollen aus tokens.css (--vm-*). Keine Hexwerte hier: die Palette steht nur in tokens.css
+   (Guard `hexwerte`); hell/dunkel folgt wie auf der Startseite dem Betriebssystem
+   (prefers-color-scheme), der Umschalter der Anleitung entfaellt (mkdocs.web.yml).
+   Geladen wird sie zusammen mit tokens.css und fonts.css aus dem Seitenstamm (../assets/). */
+
+/* Material setzt seine Variablen auf `:root > *` (also am body), nicht nur am :root. */
+:root,
+:root > *,
+:root[data-md-color-scheme],
+[data-md-color-scheme] {
+  color-scheme: light dark;
+
+  --md-default-bg-color: var(--vm-paper);
+  --md-default-fg-color: var(--vm-ink);
+  --md-default-fg-color--light: var(--vm-ink-soft);
+  --md-default-fg-color--lighter: var(--vm-ink-light);
+  --md-default-fg-color--lightest: var(--vm-line);
+
+  --md-primary-fg-color: var(--vm-fond);
+  --md-primary-fg-color--light: var(--vm-interaktiv);
+  --md-primary-fg-color--dark: var(--vm-fond);
+  --md-primary-bg-color: var(--vm-fond-ink);
+  --md-primary-bg-color--light: var(--vm-fond-soft);
+  --md-accent-fg-color: var(--vm-interaktiv);
+
+  --md-typeset-color: var(--vm-ink);
+  --md-typeset-a-color: var(--vm-interaktiv);
+  --md-typeset-table-color: var(--vm-line);
+  --md-typeset-mark-color: var(--vm-tint-warm);
+
+  --md-code-bg-color: var(--vm-tint-kuehl);
+  --md-code-fg-color: var(--vm-ink);
+
+  --md-footer-bg-color: var(--vm-fond);
+  --md-footer-bg-color--dark: var(--vm-fond);
+  --md-footer-fg-color: var(--vm-fond-ink);
+  --md-footer-fg-color--light: var(--vm-fond-soft);
+  --md-footer-fg-color--lighter: var(--vm-fond-soft);
+
+  --md-admonition-bg-color: var(--vm-card);
+  --md-text-font: var(--vm-sans);
+}
+
+.md-typeset h1,
+.md-typeset h2 {
+  font-family: var(--vm-serif);
+  font-weight: 600;
+  color: var(--vm-anker);
+}
+
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--vm-ink);
+}
+
+.md-typeset table:not([class]) {
+  background-color: var(--vm-card);
+  border-color: var(--vm-line);
+}
+
+.md-typeset code {
+  border-radius: var(--vm-radius);
+}
+
+.md-search__form,
+.md-search__output {
+  background-color: var(--vm-card);
+  color: var(--vm-ink);
+}

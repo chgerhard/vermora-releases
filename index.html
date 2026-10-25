@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Vermora — Ein Vermögen. Ein Wahrheitsort.</title>
+<meta name="description" content="Vermora führt Depots, Konten, Immobilien und Nachfolge an einer Stelle zusammen und rechnet nachvollziehbar — kostenlos, auf Ihrer eigenen Infrastruktur.">
+<link rel="canonical" href="https://vermora.de/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vermora">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Vermora — Ein Vermögen. Ein Wahrheitsort.">
+<meta property="og:description" content="Vermora führt Depots, Konten, Immobilien und Nachfolge an einer Stelle zusammen und rechnet nachvollziehbar — kostenlos, auf Ihrer eigenen Infrastruktur.">
+<meta property="og:url" content="https://vermora.de/">
+<meta property="og:image" content="https://vermora.de/assets/bildstrecke/01-gesamtwert.webp">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Vermora: Gesamtwert eines Beispielvermögens im Zeitverlauf (erfundene Beispieldaten)">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vermora","url":"https://vermora.de/","applicationCategory":"FinanceApplication","operatingSystem":"Windows, Linux","inLanguage":"de","isAccessibleForFree":true,"description":"Vermora führt Depots, Konten, Immobilien und Nachfolge an einer Stelle zusammen und rechnet nachvollziehbar — kostenlos, auf Ihrer eigenen Infrastruktur."}
+</script>
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/szene.js"></script>
+<script src="assets/bildstrecke.js" defer></script>
+<script src="assets/mail.js" defer></script>
+<!--
+  Stand v1.0 -- Issue #1234 (Geschenk-Hinweis mit PayPal-Link aus dem Secret
+  ANGABE_PAYPAL_LINK, Link auf die Installationsanleitung unter anleitung/, Schemata skalieren
+  mit der Spaltenbreite), davor v0.9: kein Kontaktformular mehr (Fragen ueber GitHub oder
+  E-Mail), Geschenk nur als Text; davor v0.8: Geschenkmodell statt Verkauf,
+  ich-Form, Projektgeschichte; davor v0.7: #615 (Marke, Grenzen), #945 (Funktionen nach
+  vorn, Broker-Geschichten), #947 (Warum als Geschichte mit zwei eigenen Schemata, eigene
+  Einstellungen unter "Was drin ist"). Pflichtseiten aus #616 in der Fusszeile verlinkt.
+
+  Maschinell geprueft (pruefen.py): keine Preisangabe (K1) - kein Verkaufswortschatz -
+  Wortliste #881 W1 - Haftungssatz woertlich wie in der Anwendung - kein Hexwert ausserhalb
+  tokens.css - Markenzeichen nur als Platzhalter, nie abgetippt - keine externen Aufrufe
+  (K23), jetzt durch die Pruefung "extern" tatsaechlich abgesichert.
+
+  Bildstrecke (Issue #1234 D1, #518): neun Ansichten der Anwendung mit erfundenen Beispieldaten,
+  jede mit eigenem Untertitel und eigenem Alternativtext. Ohne Skript stehen alle Bilder
+  untereinander; bildstrecke.js macht daraus ein Karussell ohne Selbstablauf. Die beiden
+  Schemata im Abschnitt "Warum es das gibt" zeigen dagegen die Ausgangslage, nicht die Oberflaeche.
+  Farben stehen als Rolle in site.css, nie als Hexwert im SVG (Guard `hexwerte`).
+-->
+</head>
+<body>
+<!-- Symbole (Issue #964): einmal definiert, per <use href="#sy-..."> eingebunden. -->
+<svg hidden width="0" height="0" aria-hidden="true">
+  <symbol id="sy-depot" viewBox="0 0 24 24"><path d="M3 21h18M6 21V11M12 21V4M18 21V14"/></symbol>
+  <symbol id="sy-haus" viewBox="0 0 24 24"><path d="M3 11L12 3l9 8M5 10v11h14V10M10 21v-6h4v6"/></symbol>
+  <symbol id="sy-optionen" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></symbol>
+  <symbol id="sy-gesamt" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></symbol>
+  <symbol id="sy-verlauf" viewBox="0 0 24 24"><path d="M3 3v18h18M7 12h3l2 3 3-2h3"/></symbol>
+  <symbol id="sy-verteilung" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-9zM15 3.5A9 9 0 0 1 20.5 9H15z"/></symbol>
+  <symbol id="sy-ertrag" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15 9a4 4 0 1 0 0 6M7.5 11h6M7.5 13h6"/></symbol>
+  <symbol id="sy-liquiditaet" viewBox="0 0 24 24"><path d="M3 7h16a2 2 0 0 1 2 2v10H5a2 2 0 0 1-2-2zM3 7l3-3h11M16 14h2"/></symbol>
+  <symbol id="sy-nachfolge" viewBox="0 0 24 24"><path d="M12 21v-9M12 12L6 8M12 12l6-4M4 5.5a2 2 0 1 0 4 0 2 2 0 1 0-4 0M16 5a2 2 0 1 0 4 0 2 2 0 1 0-4 0"/></symbol>
+  <symbol id="sy-dossier" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7"/></symbol>
+  <symbol id="sy-pdf" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 17h6"/></symbol>
+  <symbol id="sy-csv" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 10h18M9 5v14M15 5v14"/></symbol>
+  <symbol id="sy-modul" viewBox="0 0 24 24"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM17 13v8M13 17h8"/></symbol>
+  <symbol id="sy-anbindung" viewBox="0 0 24 24"><path d="M9 15l6-6M8 11l-2 2a3.5 3.5 0 0 0 5 5l2-2M16 13l2-2a3.5 3.5 0 0 0-5-5l-2 2"/></symbol>
+  <symbol id="sy-vermittler" viewBox="0 0 24 24"><path d="M3 11a2 2 0 1 0 4 0 2 2 0 1 0-4 0M17 11a2 2 0 1 0 4 0 2 2 0 1 0-4 0M10 8h4v6h-4zM7 11h3M14 11h3"/></symbol>
+  <symbol id="sy-umzug" viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v9l-9 5-9-5zM3 8l9 5 9-5M12 13v9"/></symbol>
+  <symbol id="sy-kurse" viewBox="0 0 24 24"><path d="M7 5v14M5 8h4v7H5zM17 3v14M15 6h4v8h-4z"/></symbol>
+  <symbol id="sy-waehrung" viewBox="0 0 24 24"><path d="M4 9h14l-3-3M20 15H6l3 3"/></symbol>
+  <symbol id="sy-unterkonto" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 12h18M12 12v6"/></symbol>
+  <symbol id="sy-buch" viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2zM5 18a2 2 0 0 1 2-2h12M9 8h6"/></symbol>
+  <symbol id="sy-pruefung" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM8 12l3 3 5-6"/></symbol>
+  <symbol id="sy-spalten" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM9 4v16M15 4v16"/></symbol>
+  <symbol id="sy-format" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></symbol>
+  <symbol id="sy-kacheln" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></symbol>
+  <symbol id="sy-quoten" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16M7 8a2 2 0 1 0 4 0 2 2 0 1 0-4 0M13 16a2 2 0 1 0 4 0 2 2 0 1 0-4 0"/></symbol>
+  <symbol id="sy-schwelle" viewBox="0 0 24 24"><path d="M6 17v-6a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></symbol>
+  <symbol id="sy-sicherung" viewBox="0 0 24 24"><path d="M4 6c0-1.5 3.5-3 8-3s8 1.5 8 3-3.5 3-8 3-8-1.5-8-3zM4 6v12c0 1.5 3.5 3 8 3s8-1.5 8-3V6M4 12c0 1.5 3.5 3 8 3s8-1.5 8-3"/></symbol>
+  <symbol id="sy-darstellung" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 3v18"/></symbol>
+  <symbol id="sy-export" viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M4 20h16"/></symbol>
+  <symbol id="sy-rechner" viewBox="0 0 24 24"><path d="M3 4h18v12H3zM8 20h8M12 16v4"/></symbol>
+  <symbol id="sy-nas" viewBox="0 0 24 24"><path d="M3 5h18v6H3zM3 13h18v6H3zM7 8h.01M7 16h.01"/></symbol>
+  <symbol id="sy-server" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9z"/></symbol>
+</svg>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="bahn kopf-innen">
+    <a class="marke-block" href="#inhalt" aria-label="Vermora – zur Startseite">
+      <span class="zeichen"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+     aria-hidden="true" focusable="false">
+  <path d="M12 3C7 3 3.6 6.6 4 11c.3 3.4 3 6 6.4 6"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M12 6.4c3.2 0 5.8 2.4 6 5.5.2 2.9-1.9 5.4-4.7 5.9"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".72"/>
+  <path d="M12 9.6c1.5 0 2.7 1.1 2.8 2.5.1 1.5-1 2.7-2.4 2.9"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".46"/>
+  <circle cx="12" cy="12" r="1.3" fill="currentColor"/>
+</svg></span>
+      <span class="marke">Vermora</span>
+    </a>
+    <nav aria-label="Hauptbereiche">
+      <ul>
+        <li><a href="#warum">Warum</a></li>
+        <li><a href="#umfang">Was drin ist</a></li>
+        <li><a href="#selbst-erklaeren">Selbst erklären</a></li>
+        <li><a href="#herkunft">Nachvollziehbarkeit</a></li>
+        <li><a href="#grenzen">Grenzen</a></li>
+        <li><a href="#wo">Wo es läuft</a></li>
+        <li><a href="#hilfe">Kontakt</a></li>
+        <li><a href="#start">Download</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="inhalt" tabindex="-1">
+
+  <section class="hero">
+    <div class="bahn">
+      <p class="dachzeile">Läuft auf Ihrem Rechner, Ihrer Hardware oder Ihrem gemieteten Server</p>
+      <h1>Ein Vermögen.<br>Ein Wahrheitsort.</h1>
+      <p class="lead">
+        Depots, Konten, Immobilien und Nachfolge — an einer Stelle erfasst,
+        über Jahre ausgewertet und bis zur Steuerformel durchgerechnet. Keine Cloud, die Sie
+        nicht selbst betreiben.
+      </p>
+      <p class="hero-wege"><a class="knopf" href="#umfang">Ansehen, was drin ist</a></p>
+
+      <section class="bildstrecke" aria-label="Ansichten der Anwendung">
+        <p class="dachzeile">So sieht es aus</p>
+        <div class="bs-folien">
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/01-gesamtwert.webp"
+                 srcset="assets/bildstrecke/01-gesamtwert-720.webp 720w, assets/bildstrecke/01-gesamtwert.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Dashboard mit drei Kennzahlen, Wertkurve und Balken der Verteilung nach Position" decoding="async">
+            <figcaption>Das Dashboard: Gesamtwert, Wert zu Periodenbeginn und Gewinn oder Verlust im gewählten Zeitraum. Darunter die Wertkurve gegen den Einstandswert und die Verteilung nach Position.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/02-performance.webp"
+                 srcset="assets/bildstrecke/02-performance-720.webp 720w, assets/bildstrecke/02-performance.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Seite Performance mit Kennzahlen und Liniendiagramm der Wertentwicklung" loading="lazy" decoding="async">
+            <figcaption>Die Seite Performance: zeitgewichtete Rendite, interner Zinsfuß, größter Rückgang und absoluter Gewinn. Das Diagramm stellt die Wertentwicklung zwei Vergleichsreihen gegenüber, die als Nachbau gekennzeichnet sind.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/03-anlageklassen.webp"
+                 srcset="assets/bildstrecke/03-anlageklassen-720.webp 720w, assets/bildstrecke/03-anlageklassen.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Ringdiagramm der Anlageklassen mit Tabelle der Anteile" loading="lazy" decoding="async">
+            <figcaption>Die Auswertung nach Anlageklassen: ein Ringdiagramm mit Gesamtwert, daneben je Knoten der Gliederung Wert und Anteil. Gliederungen legen Sie selbst an.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/04-ertraege-monat.webp"
+                 srcset="assets/bildstrecke/04-ertraege-monat-720.webp 720w, assets/bildstrecke/04-ertraege-monat.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Balkendiagramm der Dividenden je Monat, gebucht und geplant" loading="lazy" decoding="async">
+            <figcaption>Dividenden und Erträge eines Jahres je Monat: gebuchte und geplante Beträge als Balken, dazu der Monatsdurchschnitt als gestrichelte Linie.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/05-schenkungsplanung.webp"
+                 srcset="assets/bildstrecke/05-schenkungsplanung-720.webp 720w, assets/bildstrecke/05-schenkungsplanung.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Nachlassplaner mit Freibeträgen je Empfänger und Tabelle geplanter Schenkungen" loading="lazy" decoding="async">
+            <figcaption>Der Nachlassplaner, Reiter Schenkungsplanung: je Empfänger der Freibetrag, der genutzte und der verbleibende Betrag im Zehnjahreszeitraum. Darunter die geplanten Schenkungen. Die Seite selbst weist darauf hin, dass sie keine Anlageberatung ist.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/06-steuer-referenzdaten.webp"
+                 srcset="assets/bildstrecke/06-steuer-referenzdaten-720.webp 720w, assets/bildstrecke/06-steuer-referenzdaten.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Tabelle der Steuer-Referenzdaten je Jahr mit Sparer-Pauschbetrag und Grundfreibetrag" loading="lazy" decoding="async">
+            <figcaption>Die Steuer-Referenzdaten der Jahre 2019 bis 2026: Sparer-Pauschbetrag und Grundfreibetrag je Steuerjahr, jeweils mit Gesetzesbezug, Quelle und Anmerkung.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/07-herleitung-dividenden.webp"
+                 srcset="assets/bildstrecke/07-herleitung-dividenden-720.webp 720w, assets/bildstrecke/07-herleitung-dividenden.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Dialog Herleitung Dividenden mit Rechtsgrundlage, Einzelposten und Gegenprobe" loading="lazy" decoding="async">
+            <figcaption>Herkunft einer Zahl: Der Dialog zur Anlage KAP führt die Dividendensumme auf ihre neun Einzelbuchungen zurück, nennt die Rechtsgrundlage und stellt eine Gegenprobe an.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/08-immobilien.webp"
+                 srcset="assets/bildstrecke/08-immobilien-720.webp 720w, assets/bildstrecke/08-immobilien.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Seite Immobilien mit Verkehrswert gesamt, Restschuld, Wert im Vermögen und zwei Objektkarten, eine davon mit dem Abzeichen Eigentum beendet" loading="lazy" decoding="async">
+            <figcaption>Die Seite Immobilien: Verkehrswert der gehaltenen Objekte, die Restschuld der Darlehen und der Betrag, der netto im Vermögen berücksichtigt wird. Ein Objekt, das Sie verkauft oder verschenkt haben, bleibt als Karte mit dem Abzeichen „Eigentum beendet“ stehen und zählt nicht mehr in die Summen.</figcaption>
+          </figure>
+          <figure class="bs-folie">
+            <img src="assets/bildstrecke/09-cashflow.webp"
+                 srcset="assets/bildstrecke/09-cashflow-720.webp 720w, assets/bildstrecke/09-cashflow.webp 1440w"
+                 sizes="(min-width: 62rem) 57rem, calc(100vw - 2.5rem)"
+                 width="1440" height="900" alt="Seite Cashflow für ein Jahr mit Soll und Ist von Einkommen und Ausgaben sowie Balkendiagramm je Kategorie" loading="lazy" decoding="async">
+            <figcaption>Der Cashflow eines Jahres: Einkommen und Ausgaben, geplant (Soll) und tatsächlich gebucht (Ist), dazu der Nettosaldo und je Kategorie ein Balken für Soll und Ist. Die Kategorien und die Planung legen Sie selbst an.</figcaption>
+          </figure>
+        </div>
+        <p class="fussnote bs-hinweis">
+          Die Bilder zeigen die Anwendung mit erfundenen Beispieldaten und dem echten Wortlaut der
+          Oberfläche. Personen- und Kontonamen sind erfunden; genannte Wertpapiere gehören zu
+          diesen Beispieldaten und sind keine Auswahl durch Vermora.
+        </p>
+      </section>
+    </div>
+  </section>
+
+  <section id="warum" class="kap-problem">
+    <div class="bahn">
+      <p class="dachzeile">Warum es das gibt</p>
+      <h2>Sie kennen jede Zahl einzeln — und das Ganze nicht.</h2>
+
+      <p class="fliess">
+        Angefangen hat es bei mir mit Tabellenkalkulation. Ich wollte wissen, was da ist und wie es sich
+        entwickelt, und habe mir die Übersicht selbst gebaut: Auswertungen in Tabellen, daneben
+        ein Haushaltsbuch, später die Fortschreibung von Darlehen mit Zins und Tilgung. Jede
+        Tabelle war für sich übersichtlich. Zusammen ergaben sie kein Bild.
+      </p>
+
+      <p class="fliess">
+        Dann kam ein Depot in Fremdwährung bei einer Bank ohne deutschen Steuerabzug dazu. Jeden
+        Kauf, jeden Verkauf und jede Dividende habe ich selbst aufbereitet, zum Umrechnungskurs
+        des jeweiligen Tages, Jahr für Jahr. Für die Übersicht über die Wertpapiere habe ich
+        fremde Programme genutzt; was außerhalb des Depots lag, kannten sie nicht. Am Ende wollte
+        ich auch Erbschaften durchrechnen können, mit denselben Zahlen und nicht mit einer
+        weiteren Tabelle.
+      </p>
+
+      <figure class="abbildung">
+        <div class="szene szene-aufbau" tabindex="0" role="group" aria-label="Schema, seitlich scrollbar">
+          <svg viewBox="0 0 680 320" role="img" aria-labelledby="szene1-titel szene1-text">
+            <title id="szene1-titel">Fünf getrennte Quellen, dazwischen eine leere Mitte</title>
+            <desc id="szene1-text">Schematische Darstellung: eine Tabelle, ein Stapel Kontoauszüge, ein Onlinezugang, ein externes Programm und ein zweites Depot liegen nebeneinander. Von jedem führt eine gestrichelte Linie zur Mitte, die leer bleibt.</desc>
+
+            <!-- Tabelle -->
+            <g class="s-schritt" style="--i:0">
+              <rect class="s-karte" x="20" y="30" width="176" height="100" rx="4"/>
+              <rect class="s-kopf" x="20" y="30" width="176" height="18" rx="4"/>
+              <path class="s-linie" d="M78 48V130M137 48V130M20 74H196M20 100H196"/>
+              <text class="s-text" x="20" y="150">Tabelle</text>
+            </g>
+
+            <!-- Kontoauszüge -->
+            <g class="s-schritt" style="--i:1">
+              <rect class="s-karte" x="264" y="34" width="116" height="90" rx="4"/>
+              <rect class="s-karte" x="257" y="28" width="116" height="90" rx="4"/>
+              <rect class="s-karte" x="250" y="22" width="116" height="90" rx="4"/>
+              <path class="s-linie" d="M262 44H354M262 58H354M262 72H330M262 86H354M262 100H310"/>
+              <text class="s-text" x="250" y="142">Kontoauszüge</text>
+            </g>
+
+            <!-- Onlinezugang -->
+            <g class="s-schritt" style="--i:2">
+              <rect class="s-karte" x="440" y="30" width="200" height="100" rx="4"/>
+              <rect class="s-kopf" x="440" y="30" width="200" height="20" rx="4"/>
+              <circle class="s-punkt" cx="452" cy="40" r="3"/>
+              <circle class="s-punkt" cx="463" cy="40" r="3"/>
+              <circle class="s-punkt" cx="474" cy="40" r="3"/>
+              <rect class="s-feld" x="488" y="35" width="140" height="10" rx="5"/>
+              <path class="s-linie" d="M452 68H540M452 84H628M452 100H584M452 116H520"/>
+              <text class="s-text" x="440" y="150">Onlinezugang</text>
+            </g>
+
+            <!-- Externes Programm -->
+            <g class="s-schritt" style="--i:3">
+              <rect class="s-karte" x="20" y="196" width="180" height="84" rx="4"/>
+              <rect class="s-kopf" x="20" y="196" width="180" height="16" rx="4"/>
+              <rect class="s-balken" x="36" y="248" width="18" height="20"/>
+              <rect class="s-balken" x="64" y="234" width="18" height="34"/>
+              <rect class="s-balken" x="92" y="242" width="18" height="26"/>
+              <rect class="s-balken" x="120" y="226" width="18" height="42"/>
+              <rect class="s-balken" x="148" y="238" width="18" height="30"/>
+              <text class="s-text" x="20" y="300">Externes Programm</text>
+            </g>
+
+            <!-- Zweites Depot -->
+            <g class="s-schritt" style="--i:4">
+              <rect class="s-karte" x="460" y="196" width="180" height="84" rx="4"/>
+              <path class="s-linie" d="M476 218H624M476 236H624M476 254H584"/>
+              <circle class="s-punkt" cx="470" cy="218" r="3"/>
+              <circle class="s-punkt" cx="470" cy="236" r="3"/>
+              <circle class="s-punkt" cx="470" cy="254" r="3"/>
+              <text class="s-text" x="460" y="300">Zweites Depot</text>
+            </g>
+
+            <!-- die Mitte, die fehlt -->
+            <g class="s-schritt" style="--i:5">
+              <path class="s-linie s-gestrichelt" d="M196 112L242 152M340 150V162M436 116L400 152M204 234L246 222M456 234L434 222"/>
+            </g>
+
+            <g class="s-schritt" style="--i:6">
+              <rect class="s-leer" x="250" y="162" width="180" height="60" rx="6"/>
+              <text class="s-frage" x="340" y="198" text-anchor="middle">Das Ganze?</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          Fünf Quellen, fünf Stichtage, fünf Darstellungen — und keine Stelle, an der
+          zusammenläuft, was zusammengehört. Schematische Darstellung, keine Ansicht der
+          Anwendung.
+        </figcaption>
+      </figure>
+
+      <p class="fliess">
+        Jede dieser Quellen ist für sich genommen richtig. Nur beantwortet keine von ihnen die
+        Fragen, die man tatsächlich hat: Was ist das Vermögen insgesamt wert — heute, nicht
+        zum letzten Jahresabschluss? Wie viel davon hängt an einem einzigen Wert? Was ist im
+        vergangenen Jahr tatsächlich hereingekommen, über alle Konten und Depots hinweg? Und
+        was würde davon übrig bleiben, wenn es einmal an die nächste Generation geht?
+      </p>
+
+      <p class="fliess">
+        Am deutlichsten wird die Lücke beim Depot ohne deutschen Steuerabzug. Eine
+        inländische Bank führt still mit, was am Jahresende in die Steuerunterlagen gehört.
+        Ein Broker ohne diesen Einbehalt tut das nicht — dort bleibt die Aufstellung bei
+        Ihnen: jede Bewegung, jeder Umrechnungskurs, jedes Jahr. Wer das einmal von Hand
+        gemacht hat, weiß, wie lange eine Tabelle dafür trägt.
+      </p>
+
+      <figure class="abbildung">
+        <div class="szene szene-aufbau" tabindex="0" role="group" aria-label="Schema, seitlich scrollbar">
+          <svg viewBox="0 0 680 320" role="img" aria-labelledby="szene2-titel szene2-text">
+            <title id="szene2-titel">Dieselben Quellen laufen an einer Stelle zusammen</title>
+            <desc id="szene2-text">Schematische Darstellung: fünf Quellen oben führen über eine gemeinsame Linie in eine einzige Fläche darunter, die Bestand, Verlauf und Herleitung zeigt.</desc>
+
+            <!-- die fünf Quellen -->
+            <g class="s-schritt" style="--i:0">
+              <rect class="s-karte" x="16" y="16" width="112" height="40" rx="4"/>
+              <path class="s-linie" d="M30 32H114M30 44H92"/>
+            </g>
+
+            <g class="s-schritt" style="--i:1">
+              <rect class="s-karte" x="152" y="16" width="112" height="40" rx="4"/>
+              <path class="s-linie" d="M166 32H250M166 44H228"/>
+            </g>
+
+            <g class="s-schritt" style="--i:2">
+              <rect class="s-karte" x="288" y="16" width="112" height="40" rx="4"/>
+              <path class="s-linie" d="M302 32H386M302 44H364"/>
+            </g>
+
+            <g class="s-schritt" style="--i:3">
+              <rect class="s-karte" x="424" y="16" width="112" height="40" rx="4"/>
+              <path class="s-linie" d="M438 32H522M438 44H500"/>
+            </g>
+
+            <g class="s-schritt" style="--i:4">
+              <rect class="s-karte" x="560" y="16" width="112" height="40" rx="4"/>
+              <path class="s-linie" d="M574 32H658M574 44H636"/>
+            </g>
+
+            <!-- sie laufen zusammen -->
+            <g class="s-schritt" style="--i:5">
+              <path class="s-fluss" d="M72 56V86M208 56V86M344 56V86M480 56V86M616 56V86M72 86H616M344 86V112"/>
+              <path class="s-pfeil" d="M336 110L344 120L352 110Z"/>
+            </g>
+
+            <!-- ein Stand -->
+            <g class="s-schritt" style="--i:6">
+              <rect class="s-karte" x="60" y="124" width="560" height="168" rx="4"/>
+              <rect class="s-kopf" x="60" y="124" width="560" height="22" rx="4"/>
+              <text class="s-text-stark" x="76" y="140">Ein Stand</text>
+            </g>
+
+            <g class="s-schritt" style="--i:7">
+              <path class="s-achse" d="M92 258H588"/>
+              <path class="s-kurve" d="M92 236L174 244L256 214L338 224L420 190L502 198L588 168"/>
+              <circle class="s-marke" cx="588" cy="168" r="4"/>
+            </g>
+
+            <g class="s-schritt" style="--i:8">
+              <text class="s-text-klein" x="92" y="280">Bestand</text>
+              <text class="s-text-klein" x="282" y="280">Verlauf über Jahre</text>
+              <text class="s-text-klein" x="452" y="280">Herleitung je Buchung</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          Dieselben Quellen, einmal erfasst: ein Stand, eine Zeitreihe — und zu jeder Zahl
+          der Weg zurück zur einzelnen Buchung. Schematische Darstellung, keine Ansicht der
+          Anwendung.
+        </figcaption>
+      </figure>
+
+      <p class="fliess">
+        Genau diese eine Stelle fehlte mir. Vermora ist mein Versuch, sie zu bauen: für den
+        eigenen Haushalt, auf eigener Hardware, mit offengelegtem Rechenweg.
+      </p>
+
+      <p class="merksatz">Es fehlt nicht an Zahlen. Es fehlt der Zusammenhang.</p>
+
+      <h3 class="zwischen">Woher der Name kommt</h3>
+      <p class="fliess">
+        Vermora ist ein Kunstwort aus <strong>Verm</strong>ögen und <strong>Aura</strong>. Unter
+        mehreren Namen, die zur Wahl standen, war es mir der liebste: Das Wort „Vermögen“ bleibt
+        erkennbar, und die weiche Endung nimmt einem eher trockenen Thema etwas von seiner
+        Schwere. Der Satz „Ein Vermögen. Ein Wahrheitsort.“ sagt, worum es geht: eine Stelle, an
+        der alles zusammenläuft und jede Zahl zeigt, woher sie kommt.
+      </p>
+
+      <h3 class="zwischen">Wie es entstanden ist</h3>
+      <p class="fliess">
+        Vermora ist das Projekt einer Privatperson. Ich entwickle es in meiner freien Zeit, mit
+        Hilfe von Claude Code, einem KI-Werkzeug zum Programmieren. Die KI ist dabei Werkzeug,
+        nicht Teil des Programms: Vermora selbst ruft keine KI auf. Eine Anbindung gibt es nur,
+        wenn Sie sie selbst einrichten.
+      </p>
+      <p class="fliess">
+        Drei Dinge hatten von Anfang an Vorrang: Sicherheit, Datenschutz und Barrierefreiheit.
+        Was das konkret heißt:
+      </p>
+      <ul class="grenzliste">
+        <li><strong>Ihre Daten bleiben auf Ihrer Hardware.</strong> Es gibt kein Konto bei mir
+        und keinen Server von mir, über den etwas läuft.</li>
+        <li><strong>Keine Telemetrie.</strong> Die Anwendung schickt mir weder Nutzungsdaten noch
+        Fehlerberichte. Nach außen spricht sie nur mit den Kursquellen, die Sie nutzen, und mit
+        der Stelle, an der neue Fassungen stehen.</li>
+        <li><strong>Signierte Updates.</strong> Jede neue Fassung ist signiert; die Anwendung
+        prüft die Signatur, bevor sie eine Fassung anbietet.</li>
+        <li><strong>Verschlüsselung.</strong> Zugangsschlüssel, etwa für die Broker-Schnittstelle,
+        liegen verschlüsselt; Sicherungen lassen sich verschlüsselt ablegen.</li>
+        <li><strong>Geprüfte Abhängigkeiten.</strong> Die verwendeten Fremdbibliotheken werden
+        regelmäßig auf bekannte Sicherheitslücken geprüft.</li>
+        <li><strong>Orientiert an WCAG 2.2 AA.</strong> Bedienung per Tastatur, sichtbarer Fokus,
+        nachgemessene Kontraste im hellen und im dunklen Modus.</li>
+      </ul>
+      <p class="fliess">Das beschreibt die Bauweise. Eine Zusicherung ist es nicht.</p>
+    </div>
+  </section>
+
+  <section id="umfang" class="kap-leistung">
+    <div class="bahn">
+      <p class="dachzeile">Was drin ist</p>
+      <h2>Alles, was zu einem Vermögen gehört — und was sich daraus ablesen lässt</h2>
+      <p class="fliess">
+        Vermora ist zuerst eine Übersicht: Was ist da, was ist es heute wert, wie hat es sich
+        entwickelt. Die steuerliche Aufbereitung kommt später in der Kette — sie ist eine
+        Fähigkeit unter mehreren, nicht der Zweck.
+      </p>
+
+      <h3 class="zwischen">Das Vermögen selbst</h3>
+      <div class="karten drei">
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-depot"/></svg><h4>Depots &amp; Konten</h4></div>
+          <p>Mehrere Broker nebeneinander, FIFO-Kaufposten je Papier, Kontostände und Zinsen in
+          derselben Übersicht.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-haus"/></svg><h4>Immobilien &amp; Darlehen</h4></div>
+          <p>Objekte mit Wertansatz, Tilgungspläne, Restschulden — das Nettovermögen bleibt
+          laufend aktuell statt einmal im Jahr. Auch eine vermietete Immobilie ist Teil des
+          Vermögens: Objekt, Darlehen und zugehörige Kontobuchungen stehen zusammen.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-optionen"/></svg><h4>Optionen &amp; Krypto</h4></div>
+          <p>Prämien, Ausübungen, Andienungen und Wallet-Bestände sauber verbucht statt in
+          einer Nebenrechnung.</p>
+        </article>
+      </div>
+
+      <h3 class="zwischen">Was Sie daraus ablesen können</h3>
+      <div class="karten drei">
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-gesamt"/></svg><h4>Gesamtbild über alle Klassen</h4></div>
+          <p>Ein Stand für alles: Wertpapiere, Immobilien, Konten und Darlehen
+          in einer Summe — und jede Position einzeln dahinter.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-verlauf"/></svg><h4>Verlauf über Jahre</h4></div>
+          <p>Entwicklung des Vermögens und einzelner Positionen über beliebige Zeiträume,
+          nicht nur seit dem letzten Jahreswechsel.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-verteilung"/></svg><h4>Verteilung und Konzentration</h4></div>
+          <p>Aufteilung nach Anlageklassen, Währungen, Ländern und Einzelwerten — als
+          Kennzahl, ohne Note und ohne Zielvorgabe durch das Programm.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-ertrag"/></svg><h4>Erträge, aufgeschlüsselt</h4></div>
+          <p>Ausschüttungen, Zinsen und Prämien je Papier, je Konto und je Zeitraum,
+          einschließlich einbehaltener Quellensteuer und ihrer Anrechnung.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-liquiditaet"/></svg><h4>Liquidität und Verpflichtungen</h4></div>
+          <p>Wiederkehrende Buchungen, Darlehensraten und fällige Beträge — was gebunden ist
+          und was frei bleibt.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-nachfolge"/></svg><h4>Nachfolge durchgerechnet</h4></div>
+          <p>Pflichtteile, Erbschaftsteuer und Begünstigte je Szenario, das Sie festlegen —
+          mit denselben Werten wie die laufende Übersicht.</p>
+        </article>
+        <article class="karte voll">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-dossier"/></svg><h4>Eine Aufstellung für den Ernstfall</h4></div>
+          <p>Ein Dossier zum Stichtag als PDF: was vorhanden ist, wo es liegt, was daran
+          hängt. Gedacht für den Tag, an dem jemand anderes sich zurechtfinden muss —
+          ohne sich durch fünf Zugänge zu arbeiten.</p>
+        </article>
+      </div>
+
+      <h3 class="zwischen">Wie die Zahlen hereinkommen</h3>
+      <p class="fliess">
+        Ausgewertet werden kann nur, was erfasst ist. Vermora holt die Bewegungen dort ab, wo
+        sie entstehen — und bucht nichts, ohne dass Sie es vorher gesehen haben.
+      </p>
+      <div class="karten drei">
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-pdf"/></svg><h4>Kontoauszüge als PDF</h4></div>
+          <p>Auszüge und Abrechnungen werden gelesen und den Konten zugeordnet; die Bank
+          erkennt die Anwendung an der Form des Dokuments. Mitgeliefert sind derzeit
+          comdirect und DKB.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-csv"/></svg><h4>CSV aus dem Onlinebanking</h4></div>
+          <p>Fertige Leseregeln für DKB, comdirect, ING, Trade Republic, Scalable Capital,
+          Degiro und Interactive Brokers. Für jedes andere Haus ordnen Sie die Spalten einmal
+          von Hand zu.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-modul"/></svg><h4>Eigene Importmodule</h4></div>
+          <p>Ein noch unbekanntes Format beschreiben Sie in einer Moduldatei — Spalten
+          benennen, Probelauf fahren, erst dann übernehmen. Ohne zu programmieren, und ohne
+          auf mich zu warten.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-anbindung"/></svg><h4>Direkte Anbindung an Interactive Brokers</h4></div>
+          <p>Über die Flex-Schnittstelle holt Vermora die Buchungen nachts selbst ab, für
+          mehrere Konten nebeneinander; der Zugangs-Token liegt verschlüsselt auf Ihrem
+          Server. Gebucht wird trotzdem nichts von allein: Sie sehen die Vorschau und
+          bestätigen.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-vermittler"/></svg><h4>Auch über einen deutschen Vermittler</h4></div>
+          <p>CapTrader, LYNX, Estably, AGORA direct, WH SelfInvest, FXFlat und weitere
+          führen das Depot im Hintergrund bei Interactive Brokers. Die Schnittstelle ist
+          dieselbe — deutschsprachige Betreuung und direkte Übernahme schließen sich
+          nicht aus.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-umzug"/></svg><h4>Umzug aus Portfolio Performance</h4></div>
+          <p>Eine vorhandene XML-Datei wird vollständig eingelesen: Wertpapiere, Konten,
+          Buchungen, Kurse. Was Sie über Jahre gepflegt haben, ziehen Sie mit um statt es
+          noch einmal zu erfassen.</p>
+        </article>
+        <article class="karte voll">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-kurse"/></svg><h4>Kurse aus freien Quellen</h4></div>
+          <p>Aktuelle Kurse holt Vermora aus frei zugänglichen Quellen: yfinance, Stooq und
+          Bitvavo, die Zuordnung von Wertpapierkennungen über OpenFIGI. Wechselkurse kommen
+          von der Europäischen Zentralbank und der Bundesbank. Kurse aus einer CSV-Datei
+          lassen sich ebenso einlesen; Aktiensplits werden in den Kursreihen berücksichtigt.
+          Dafür ist kein Vertrag mit einem Datenanbieter nötig.</p>
+        </article>
+      </div>
+
+      <h3 class="zwischen">Konten, wie sie im Alltag wirklich aussehen</h3>
+      <div class="karten zwei">
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-waehrung"/></svg><h4>Mehrere Währungen</h4></div>
+          <p>Jede Buchung trägt ihre eigene Währung und den Kurs ihres Buchungstags — nicht
+          einen Jahresmittelkurs. Grundlage sind die Referenzkurse der Europäischen
+          Zentralbank; wo ein Wochenende oder Feiertag keinen Kurs hat, ist der herangezogene
+          Tag als solcher gekennzeichnet.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-unterkonto"/></svg><h4>Unterkonten</h4></div>
+          <p>Ein Girokonto lässt sich in benannte Töpfe teilen — Rücklage, Urlaub, laufende
+          Steuer —, jeder mit eigener Farbe und eigenem Stand. Die Töpfe sind eine Sicht auf
+          dieselben Buchungen, kein zweites Konto bei der Bank.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-buch"/></svg><h4>Haushaltsbuch</h4></div>
+          <p>Einnahmen und Ausgaben mit eigenen Kategorien, wiederkehrende Buchungen
+          monatlich, vierteljährlich oder jährlich, dazu ein Monatsplan und der Abgleich
+          zwischen Plan und Ist.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-pruefung"/></svg><h4>Was nicht zusammenpasst, fällt auf</h4></div>
+          <p>Laufende Prüfungen melden Lücken in der Reihenfolge, doppelt erfasste
+          Bewegungen und Bestände, die rechnerisch nicht aufgehen. Was Sie geprüft und für in
+          Ordnung befunden haben, blenden Sie dauerhaft aus.</p>
+        </article>
+      </div>
+
+      <h3 class="zwischen">Was Sie selbst einstellen</h3>
+      <p class="fliess">
+        Vermora gibt wenig vor. Das meiste, was Sie sehen, richten Sie auf Ihre Arbeitsweise
+        ein — und es bleibt so, bis Sie es ändern.
+      </p>
+      <div class="karten drei">
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-spalten"/></svg><h4>Spalten je Tabelle</h4></div>
+          <p>Welche Spalten eine Tabelle zeigt, legen Sie fest — und speichern mehrere
+          benannte Sätze nebeneinander: einen für den Überblick, einen für die Steuer, einen
+          für den Verkauf. Dazu Sortierung und Filter je Spalte.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-format"/></svg><h4>Ausgabeformate</h4></div>
+          <p>Für den CSV-Export bestimmen Sie Trennzeichen, Dezimalzeichen und Datumsformat
+          und legen die Einstellung unter eigenem Namen ab — passend zu dem Programm, das die
+          Datei danach liest.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-kacheln"/></svg><h4>Startseite und Umfang</h4></div>
+          <p>Die Kacheln der Startseite ordnen Sie per Ziehen an. Ganze Bereiche, die Sie
+          nicht brauchen, blenden Sie aus — sie verschwinden dann auch aus der Navigation.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-quoten"/></svg><h4>Eigene Gliederungen und Zielquoten</h4></div>
+          <p>Sie legen eigene Gliederungen an — nach Region, Branche, Rolle im Haushalt, wie
+          Sie mögen — und tragen dazu Zielquoten mit Toleranz ein. Die Vorgabe kommt von
+          Ihnen; Vermora rechnet die Abweichung aus.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-schwelle"/></svg><h4>Eigene Schwellen</h4></div>
+          <p>Für ein beobachtetes Papier hinterlegen Sie Schwellen, etwa einen Kurs oder eine
+          Ausschüttungsrendite. Wird eine berührt, sagt Vermora Bescheid. Was daraus folgt,
+          entscheiden Sie.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-sicherung"/></svg><h4>Sicherung und Zeitplan</h4></div>
+          <p>Wann die nächtlichen Aufgaben laufen, wie viele Sicherungen aufgehoben werden —
+          täglich, wöchentlich, monatlich — und ab wann eine veraltete Sicherung gemeldet
+          wird: Ihre Einstellung. Einmal im Monat wird eine Sicherung zur Probe
+          zurückgespielt und das Ergebnis mitgeschrieben.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-darstellung"/></svg><h4>Darstellung und Profile</h4></div>
+          <p>Helles oder dunkles Thema, Navigation seitlich oder oben, Sprache, Zeitzone,
+          Zahlen- und Datumsformat. Mehrere Personen im Haushalt arbeiten in eigenen
+          Profilen, jede mit eigenen Einstellungen.</p>
+        </article>
+        <article class="karte">
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-export"/></svg><h4>Alles wieder herausholen</h4></div>
+          <p>Ein vollständiger Export gibt Ihnen sämtliche Daten am Stück zurück — maschinell
+          lesbar, ohne Umweg über mich. Mitgehen können sie ohnehin jederzeit: Die Datenbank
+          steht auf Ihrem Gerät.</p>
+        </article>
+      </div>
+
+      <h3 class="zwischen">Eigene Erweiterungen</h3>
+      <p class="fliess">
+        Was nicht zum Umfang gehört, können Sie bei Bedarf als eigene Erweiterung ergänzen —
+        etwa eine Auswertung, die nur Sie brauchen. Die Erweiterung läuft in Ihrer eigenen
+        Instanz. Wie sie angelegt wird, steht in der Hilfe der Anwendung.
+      </p>
+
+      <div class="hervorgehoben">
+        <h3>Und daraus dann: die Steuerunterlagen</h3>
+        <p>
+          Weil die Bewegungen ohnehin vollständig erfasst sind, fallen die steuerlichen Werte
+          als Nebenprodukt an: Anlage&nbsp;KAP, Anlage&nbsp;KAP-INV und Anlage&nbsp;SO,
+          einschließlich Vorabpauschale, Teilfreistellung und Verlustverrechnung — zu jeder
+          Zahl der Weg dorthin, von der einzelnen Buchung bis zur Zeile im Vordruck. Die
+          Erklärung geben Sie ab.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="selbst-erklaeren" class="kap-leistung">
+    <div class="bahn">
+      <p class="dachzeile">Ein Fall, der oft unterschätzt wird</p>
+      <h2>Kein deutscher Steuerabzug? Dann erklären Sie selbst.</h2>
+      <p class="fliess">
+        Bei einer inländischen Bank behält die Bank die Kapitalertragsteuer ein. Bei einem
+        Broker ohne deutschen Steuerabzug — typischerweise im Ausland — geschieht das nicht.
+        Die Erträge gehören dann in die Anlage&nbsp;KAP, Erträge aus Fonds und ETF zusätzlich
+        in die Anlage&nbsp;KAP-INV: mit Vorabpauschale, Teilfreistellung und getrennter
+        Verlustverrechnung, Jahr für Jahr, in eigener Zuständigkeit.
+      </p>
+      <p class="fliess">
+        Dafür braucht es nicht die Jahresübersicht des Brokers, sondern die Bewegungen selbst:
+        jeden Kauf, jeden Teilverkauf, jede Ausschüttung, jede Gebühr, jeden Umrechnungskurs —
+        über Jahre hinweg, in der Reihenfolge, in der sie angefallen sind.
+      </p>
+      <figure class="abbildung">
+        <div class="szene szene-aufbau" tabindex="0" role="group" aria-label="Schema, seitlich scrollbar">
+          <svg viewBox="0 0 680 300" role="img" aria-labelledby="szene3-titel szene3-text">
+            <title id="szene3-titel">FIFO: der Teilverkauf greift auf die ältesten Kaufposten zu</title>
+            <desc id="szene3-text">Schematische Darstellung: vier Kaufposten untereinander, der älteste oben. Ein Teilverkauf verbraucht den ältesten Kaufposten ganz und vom zweiten einen Teil. Die übrigen Kaufposten bleiben unberührt.</desc>
+
+            <!-- die Kaufposten, ältester zuerst -->
+            <g class="s-schritt" style="--i:0">
+              <text class="s-text" x="20" y="63">Posten 1 · ältester</text>
+              <rect class="s-balken" x="170" y="40" width="150" height="36" rx="4"/>
+            </g>
+
+            <g class="s-schritt" style="--i:1">
+              <text class="s-text" x="20" y="113">Posten 2</text>
+              <rect class="s-balken" x="170" y="90" width="60" height="36" rx="4"/>
+              <rect class="s-posten-alt" x="230" y="90" width="50" height="36" rx="4"/>
+            </g>
+
+            <g class="s-schritt" style="--i:2">
+              <text class="s-text" x="20" y="163">Posten 3</text>
+              <rect class="s-posten-alt" x="170" y="140" width="170" height="36" rx="4"/>
+            </g>
+
+            <g class="s-schritt" style="--i:3">
+              <text class="s-text" x="20" y="213">Posten 4 · jüngster</text>
+              <rect class="s-posten-alt" x="170" y="190" width="130" height="36" rx="4"/>
+            </g>
+
+            <!-- der Teilverkauf -->
+            <g class="s-schritt" style="--i:4">
+              <rect class="s-karte" x="470" y="58" width="190" height="50" rx="4"/>
+              <text class="s-text-stark" x="565" y="88" text-anchor="middle">Teilverkauf</text>
+            </g>
+
+            <g class="s-schritt" style="--i:5">
+              <path class="s-fluss" d="M334 40H346V126H334M346 83H470"/>
+              <path class="s-pfeil" d="M360 75L348 83L360 91Z"/>
+              <text class="s-text-klein" x="470" y="134">greift zuerst auf das älteste zu</text>
+            </g>
+
+            <!-- Legende -->
+            <g class="s-schritt" style="--i:6">
+              <rect class="s-balken" x="170" y="258" width="18" height="14" rx="2"/>
+              <text class="s-text-klein" x="196" y="270">aus dem Bestand genommen</text>
+              <rect class="s-posten-alt" x="420" y="258" width="18" height="14" rx="2"/>
+              <text class="s-text-klein" x="446" y="270">bleibt im Bestand</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          Jeder Zugang bleibt ein eigener Kaufposten. Ein Teilverkauf nimmt zuerst den ältesten
+          vollständig, dann vom nächsten nur den nötigen Teil. Schematische Darstellung, keine
+          Ansicht der Anwendung.
+        </figcaption>
+      </figure>
+
+      <div class="karten drei">
+        <article class="karte">
+          <h3>Kaufposten statt Durchschnitt</h3>
+          <p>Jeder Zugang bleibt ein eigener Kaufposten mit Datum, Kurs und Kosten. Ein Teilverkauf
+          greift nach FIFO auf die ältesten Kaufposten zu — nachvollziehbar Stück für Stück.</p>
+        </article>
+        <article class="karte">
+          <h3>Fonds und ETF über Jahre</h3>
+          <p>Vorabpauschale je Jahr und Anteil, Teilfreistellungsquote nach Fondsart,
+          fortgeschrieben bis zum Verkauf — dort mindern die angesetzten Beträge den Gewinn.</p>
+        </article>
+        <article class="karte">
+          <h3>Fremdwährung sauber gerechnet</h3>
+          <p>Anschaffung und Veräußerung jeweils zum Kurs des Tages, Quellensteuer nach dem
+          Abkommen des betreffenden Staates.</p>
+        </article>
+      </div>
+      <p class="fussnote">
+        Das ist der Fall, in dem eine vollständige Aufstellung nicht bequem ist, sondern
+        notwendig — und in dem sich der Aufwand, alles einmal ordentlich zu erfassen, von
+        selbst erklärt.
+      </p>
+    </div>
+  </section>
+
+  <section id="herkunft" class="kap-leistung">
+    <div class="bahn">
+      <p class="dachzeile">Nachvollziehbarkeit</p>
+      <h2>Zu jeder Steuerzahl: woher sie kommt.</h2>
+      <p class="fliess">
+        Jeder steuerliche Parameter trägt seinen Gesetzesbezug, seinen aktuellen Wert — und
+        die Angabe, wer ihn pflegt. Alle Werte lassen sich über Pflegedialoge in der Anwendung
+        selbst anpassen, ohne dass Sie auf ein Update warten müssen — und Sie sehen jederzeit ein.
+      </p>
+      <figure class="abbildung">
+        <div class="szene szene-aufbau" tabindex="0" role="group" aria-label="Schema, seitlich scrollbar">
+          <svg viewBox="0 0 680 200" role="img" aria-labelledby="szene4-titel szene4-text">
+            <title id="szene4-titel">Herleitungskette von der Buchung bis zur Zeile im Vordruck</title>
+            <desc id="szene4-text">Schematische Darstellung: vier Stationen nebeneinander, Buchung, Kaufposten, Jahreswert und Zeile im Vordruck, jeweils mit einem Pfeil zur nächsten. Darunter eine Linie, die den Weg von der Zeile im Vordruck zurück zur einzelnen Buchung zeigt.</desc>
+
+            <!-- die vier Stationen -->
+            <g class="s-schritt" style="--i:0">
+              <rect class="s-karte" x="16" y="40" width="138" height="70" rx="4"/>
+              <text class="s-text-stark" x="85" y="72" text-anchor="middle">Buchung</text>
+              <text class="s-text-klein" x="85" y="94" text-anchor="middle">Kauf, Verkauf</text>
+            </g>
+
+            <g class="s-schritt" style="--i:1">
+              <path class="s-fluss" d="M154 75H172"/>
+              <path class="s-pfeil" d="M170 69L182 75L170 81Z"/>
+              <rect class="s-karte" x="184" y="40" width="138" height="70" rx="4"/>
+              <text class="s-text-stark" x="253" y="72" text-anchor="middle">Kaufposten</text>
+              <text class="s-text-klein" x="253" y="94" text-anchor="middle">FIFO-Zuordnung</text>
+            </g>
+
+            <g class="s-schritt" style="--i:2">
+              <path class="s-fluss" d="M322 75H340"/>
+              <path class="s-pfeil" d="M338 69L350 75L338 81Z"/>
+              <rect class="s-karte" x="352" y="40" width="138" height="70" rx="4"/>
+              <text class="s-text-stark" x="421" y="72" text-anchor="middle">Jahreswert</text>
+              <text class="s-text-klein" x="421" y="94" text-anchor="middle">je Papier, je Jahr</text>
+            </g>
+
+            <g class="s-schritt" style="--i:3">
+              <path class="s-fluss" d="M490 75H508"/>
+              <path class="s-pfeil" d="M506 69L518 75L506 81Z"/>
+              <rect class="s-karte" x="520" y="40" width="138" height="70" rx="4"/>
+              <text class="s-text-stark" x="589" y="72" text-anchor="middle">Vordruck</text>
+              <text class="s-text-klein" x="589" y="94" text-anchor="middle">Zeile in Anlage KAP</text>
+            </g>
+
+            <!-- der Weg zurück -->
+            <g class="s-schritt" style="--i:4">
+              <path class="s-linie s-gestrichelt" d="M85 110V150M253 110V150M421 110V150M589 110V150"/>
+            </g>
+
+            <g class="s-schritt" style="--i:5">
+              <path class="s-fluss" d="M589 150H104"/>
+              <path class="s-pfeil" d="M106 143L92 150L106 157Z"/>
+            </g>
+
+            <g class="s-schritt" style="--i:6">
+              <text class="s-text-klein" x="340" y="180" text-anchor="middle">Der Weg zurück: von der Zeile bis zur einzelnen Buchung</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          Jeder Wert im Vordruck lässt sich rückwärts bis zur einzelnen Buchung verfolgen.
+          Schematische Darstellung, keine Ansicht der Anwendung.
+        </figcaption>
+      </figure>
+
+      <section class="bs-video" aria-labelledby="kv-titel">
+        <h3 class="zwischen" id="kv-titel">Im Video: von der Buchung zur Steuerzahl</h3>
+        <figure>
+          <video controls preload="none" width="1440" height="810"
+                 poster="assets/video/kurzvideo-poster.webp" aria-describedby="kv-text">
+            <source src="assets/video/kurzvideo.webm" type="video/webm">
+            Ihr Browser spielt dieses Video nicht ab.
+            <a href="assets/video/kurzvideo.webm" target="_blank" rel="noopener noreferrer">Videodatei herunterladen<span class="sr-hinweis"> (öffnet in neuem Fenster)</span></a>
+          </video>
+          <figcaption id="kv-text">
+            28 Sekunden, ohne Ton: Ein Aktienverkauf wird gebucht, die Summe in der Anlage KAP
+            ändert sich, und die Herleitung zeigt, aus welchen Buchungen sie besteht. Das Video
+            startet nicht von selbst.
+          </figcaption>
+        </figure>
+        <details class="bs-ablauf">
+          <summary>Ablauf als Text</summary>
+          <ol>
+            <li>Auf der Seite „Buchungen“ wird ein Verkauf erfasst: Konto, Wertpapier, Handelstag,
+              Stückzahl, Kurs und Gebühren. Im Beispiel sind es 100 Aktien in einem Depot in
+              US-Dollar.</li>
+            <li>In der Anlage KAP für 2026 steigt die Summe „Veräußerungsgewinne Aktien“ um den
+              Gewinn aus diesem Verkauf.</li>
+            <li>Die Schaltfläche „Herleitung“ öffnet den Rechenweg: den ausgewiesenen Betrag, die
+              Summe der Einzelposten und die Gegenprobe („stimmt überein“). Jede Veräußerung steht
+              mit Datum, Anschaffung, Stückzahl, Erlös und Anschaffungskosten darin. Die neue
+              Buchung ist die letzte Zeile.</li>
+          </ol>
+        </details>
+        <p class="fussnote">
+          Das Video zeigt die Anwendung mit erfundenen Beispieldaten. Erlös und Anschaffungskosten
+          werden zum Kurs des jeweiligen Handelstages in Euro umgerechnet.
+        </p>
+      </section>
+
+      <div class="tabellen-rahmen" tabindex="0" role="group" aria-label="Tabelle der Parameter, seitlich scrollbar">
+      <table class="parameter">
+        <caption>Beispiele für Parameter, die die Anwendung offenlegt</caption>
+        <thead>
+          <tr><th scope="col">Parameter</th><th scope="col">Grundlage</th><th scope="col">Gepflegt von</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Basiszins</td><td>§&nbsp;18 InvStG</td><td>Sie pflegen sie</td></tr>
+          <tr><td>Teilfreistellung Aktienfonds</td><td>§&nbsp;20 InvStG</td><td>Sie pflegen sie</td></tr>
+          <tr><td>Sparer-Pauschbetrag</td><td>§&nbsp;20 Abs.&nbsp;9 EStG</td><td>Sie pflegen sie</td></tr>
+          <tr><td>Quellensteuersätze je Staat</td><td>jeweiliges DBA</td><td>Sie pflegen sie</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="fussnote">
+        Die Werte stehen bewusst nicht auf dieser Seite — sie stehen in der Anwendung, dort
+        mit Stand und Fundstelle. Diese Werte sind von Ihnen zu prüfen und bei Bedarf zu
+        pflegen.
+      </p>
+
+      <h3 class="zwischen">Und was tut eigentlich Ihre inländische Bank?</h3>
+      <p class="fliess">
+        Mehr, als die meisten vermuten. Sie behält nicht nur Kapitalertragsteuer ein, sie
+        rechnet dabei laufend mit:
+      </p>
+      <ul class="grenzliste">
+        <li><strong>Sparer-Pauschbetrag</strong> — sie zieht ihn ab, soweit Sie ihr einen
+        Freistellungsauftrag erteilt haben.</li>
+        <li><strong>Verlustverrechnungstöpfe</strong> — getrennt für Aktien und für sonstige
+        Kapitalerträge, dazu ein Topf für anrechenbare Quellensteuer. Was nicht verrechnet
+        werden kann, wird fortgeschrieben.</li>
+        <li><strong>Teilfreistellung bei Fonds und ETF</strong> — je nach Fondsart bleibt ein
+        Anteil der Erträge außen vor.</li>
+        <li><strong>Vorabpauschale</strong> — sie wird zu Jahresbeginn angesetzt, oft direkt
+        vom Verrechnungskonto eingezogen, und über die Haltedauer fortgeschrieben. Beim
+        späteren Verkauf mindert die Summe der bereits angesetzten Beträge den
+        steuerpflichtigen Gewinn.</li>
+      </ul>
+      <p class="fliess">
+        Zu sehen bekommen Sie davon eine Zusammenfassung — einmal im Jahr, in der
+        Jahressteuerbescheinigung. Wo die aufgelaufenen Größen geführt werden, wie sie sich
+        über die Jahre entwickelt haben und woraus sie sich zusammensetzen, steht dort nicht.
+        Beim Depotwechsel wandert der Stand zwar mit; sichtbar wird er dadurch nicht.
+      </p>
+      <p class="fliess">
+        <strong>Vermora führt dieselben Größen mit</strong> — je Papier, je Jahr, mit
+        Herleitung: angesetzte Vorabpauschalen und ihre Fortschreibung, verbrauchter
+        Pauschbetrag, Stand der Verlusttöpfe, angerechnete Quellensteuer. Das ergibt zweierlei:
+        Sie sehen den Stand jederzeit statt einmal jährlich — und Sie können die Bescheinigung
+        Ihrer Bank Zeile für Zeile dagegenhalten.
+      </p>
+
+      <h3 class="zwischen">Und was war noch mal im März?</h3>
+      <p class="fliess">
+        Jede Änderung wird mitgeschrieben — wer sie vorgenommen hat, wann, und was vorher
+        dastand. Die Einträge sind miteinander verkettet: Fällt einer weg oder wird einer
+        nachträglich verändert, fällt genau das auf. Dazu führt die Anwendung die
+        Aufbewahrungsfristen mit und meldet, was abgelaufen ist. Gelöscht wird deshalb nichts
+        von allein — die Entscheidung bleibt bei Ihnen.
+      </p>
+
+      <figure class="abbildung">
+        <div class="szene szene-aufbau" tabindex="0" role="group" aria-label="Schema, seitlich scrollbar">
+          <svg viewBox="0 0 680 190" role="img" aria-labelledby="szene5-titel szene5-text">
+            <title id="szene5-titel">Verkettete Einträge auf einer Zeitleiste</title>
+            <desc id="szene5-text">Schematische Darstellung: vier Einträge der Änderungshistorie hintereinander auf einer Zeitachse von früher nach später. Die ersten drei sind durch Linien verkettet; zwischen dem dritten und dem vierten ist die Kette unterbrochen, das fällt auf.</desc>
+
+            <!-- Zeitachse -->
+            <g class="s-schritt" style="--i:0">
+              <path class="s-achse" d="M16 150H640"/>
+              <path class="s-pfeil" d="M638 143L652 150L638 157Z"/>
+              <text class="s-text-klein" x="16" y="178">früher</text>
+              <text class="s-text-klein" x="640" y="178" text-anchor="end">später</text>
+            </g>
+
+            <!-- die verketteten Einträge -->
+            <g class="s-schritt" style="--i:1">
+              <rect class="s-karte" x="16" y="30" width="130" height="70" rx="4"/>
+              <rect class="s-kopf" x="16" y="30" width="130" height="18" rx="4"/>
+              <text class="s-text-klein" x="81" y="78" text-anchor="middle">wer · wann · was</text>
+            </g>
+
+            <g class="s-schritt" style="--i:2">
+              <path class="s-fluss" d="M146 65H176"/>
+              <rect class="s-karte" x="176" y="30" width="130" height="70" rx="4"/>
+              <rect class="s-kopf" x="176" y="30" width="130" height="18" rx="4"/>
+              <text class="s-text-klein" x="241" y="78" text-anchor="middle">wer · wann · was</text>
+            </g>
+
+            <g class="s-schritt" style="--i:3">
+              <path class="s-fluss" d="M306 65H336"/>
+              <rect class="s-karte" x="336" y="30" width="130" height="70" rx="4"/>
+              <rect class="s-kopf" x="336" y="30" width="130" height="18" rx="4"/>
+              <text class="s-text-klein" x="401" y="78" text-anchor="middle">wer · wann · was</text>
+            </g>
+
+            <!-- die Kette reißt -->
+            <g class="s-schritt" style="--i:4">
+              <path class="s-linie s-gestrichelt" d="M466 65H516"/>
+            </g>
+
+            <g class="s-schritt" style="--i:5">
+              <rect class="s-leer" x="516" y="30" width="130" height="70" rx="4"/>
+              <text class="s-text-klein" x="581" y="70" text-anchor="middle">Eintrag fehlt</text>
+              <text class="s-text-klein" x="581" y="88" text-anchor="middle">oder verändert</text>
+            </g>
+
+            <g class="s-schritt" style="--i:6">
+              <text class="s-text-klein" x="491" y="120" text-anchor="middle">fällt auf</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          Jeder Eintrag verweist auf den vorigen. Fehlt einer oder wurde einer verändert, reißt
+          die Kette sichtbar. Schematische Darstellung, keine Ansicht der Anwendung.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="grenzen" class="kap-vertrauen">
+    <div class="bahn">
+      <p class="dachzeile">Grenzen</p>
+      <h2>Was Vermora nicht tut</h2>
+      <p class="fliess">
+        Ein Programm, dem es um Nachvollziehbarkeit geht, sagt auch, wo es aufhört. Diese
+        Grenzen sind nicht vorläufig — sie sind Teil der Bauweise.
+      </p>
+      <ul class="grenzliste">
+        <li><strong>Es übermittelt nichts an die Finanzverwaltung.</strong> Die Erklärung
+        geben Sie ab, auf Ihrem Weg.</li>
+        <li><strong>Es erteilt keine Wertpapieraufträge</strong> und kennt keine Zugangsdaten
+        Ihrer Bank.</li>
+        <li><strong>Es sagt Ihnen nicht, was Sie kaufen oder verkaufen sollen.</strong> Sie
+        wählen aus, Vermora rechnet die Wirkung Ihrer Auswahl.</li>
+        <li><strong>Es bewertet keine Wertpapiere</strong> — keine Noten, keine Punkte,
+        keine Ampeln, keine Rangfolge durch das Programm.</li>
+        <li><strong>Es setzt keine Zielquoten und keine Schwellen.</strong> Die Vorgaben
+        kommen von Ihnen, sonst bleibt das Feld leer.</li>
+        <li><strong>Es erstellt kein Anlegerprofil</strong> und prüft keine Eignung.</li>
+      </ul>
+      <p class="hinweis" id="hinweis-beratung">
+        Keine Anlageberatung, keine Anlagevermittlung, keine Finanzportfolioverwaltung, keine Hilfeleistung in Steuersachen, keine Rechtsdienstleistung. Die Steuer setzt allein das Finanzamt fest.
+      </p>
+    </div>
+  </section>
+
+  <section id="wo" class="kap-vertrauen">
+    <div class="bahn">
+      <p class="dachzeile">Wo es läuft</p>
+      <h2>Sie entscheiden, wo Ihre Daten liegen</h2>
+      <p class="fliess">
+        Drei Wege, gleichrangig. Der erste braucht weder Hardwarekauf noch Serververtrag —
+        deshalb steht er vorn.
+      </p>
+      <figure class="foto">
+        <img src="assets/bilder/wo-schreibtisch-1536.webp" srcset="assets/bilder/wo-schreibtisch-768.webp 768w, assets/bilder/wo-schreibtisch-1536.webp 1536w" sizes="(min-width: 60rem) 60rem, 100vw" width="1536" height="1024" loading="lazy" alt="Aufgeräumter Holzschreibtisch am Fenster mit geschlossenem Laptop, Tasse und aufgeschlagenem Notizbuch; auf einem Regalbrett dahinter ein kleines NAS neben Büchern.">
+      </figure>
+
+      <div class="karten drei">
+        <article class="karte weg">
+          <p class="weg-nummer">Weg 1</p>
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-rechner"/></svg><h3>Auf Ihrem eigenen Rechner</h3></div>
+          <ul>
+            <li>Windows oder Linux, Starterpaket zum Herunterladen</li>
+            <li>kein Server, kein Vertrag, keine laufenden Kosten</li>
+            <li>läuft, solange der Rechner läuft</li>
+          </ul>
+        </article>
+        <article class="karte weg">
+          <p class="weg-nummer">Weg 2</p>
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-nas"/></svg><h3>Auf eigener Hardware</h3></div>
+          <ul>
+            <li>zum Beispiel auf einem NAS im eigenen Netzwerk</li>
+            <li>rund um die Uhr erreichbar, im Haushalt für alle</li>
+            <li>die Daten verlassen Ihr Zuhause nicht</li>
+          </ul>
+        </article>
+        <article class="karte weg">
+          <p class="weg-nummer">Weg 3</p>
+          <div class="symbolkopf"><svg class="s-symbol" aria-hidden="true" focusable="false"><use href="#sy-server"/></svg><h3>Auf einem gemieteten Server</h3></div>
+          <ul>
+            <li>bei einem Anbieter Ihrer Wahl, etwa mit Sitz in Deutschland</li>
+            <li>kein eigenes Gerät nötig</li>
+            <li>von unterwegs erreichbar, wenn Sie das einrichten</li>
+          </ul>
+        </article>
+      </div>
+      <p class="fussnote">
+        <strong>Ein technischer Hinweis vorab:</strong> Alle drei Wege brauchen einen
+        Prozessor mit x86-64-Architektur. Macs mit Apple-Silicon-Chip (M1 und neuer) sind
+        nicht geeignet; beim Hoster achten Sie auf eine entsprechende Produktlinie. Wer das
+        vorher weiß, bucht nicht ins Leere.
+      </p>
+      <p class="fussnote">
+        Umziehen ist jederzeit möglich: Datenbank und Konfiguration wandern eins zu eins vom
+        Rechner auf das NAS, auf den Server — oder zurück.
+      </p>
+    </div>
+  </section>
+
+  <section id="hilfe" class="kap-vertrauen">
+    <div class="bahn">
+      <p class="dachzeile">Wenn Sie Hilfe brauchen</p>
+      <h2>Zwei Wege — und keiner sieht beides</h2>
+      <figure class="abbildung">
+        <div class="szene szene-aufbau" tabindex="0" role="group" aria-label="Schema, seitlich scrollbar">
+          <svg viewBox="0 0 680 240" role="img" aria-labelledby="szene6-titel szene6-text">
+            <title id="szene6-titel">Zwei Wege der Hilfe, getrennt durch eine Wand</title>
+            <desc id="szene6-text">Schematische Darstellung: links die Hilfe beim Entwickler, rechts Ihre Datenbank und die Hilfe bei Ihnen. Eine Wand in der Mitte trennt beide Seiten; die gestrichelte Linie von links endet an der Wand. Rechts führt eine durchgehende Linie von der Hilfe bei Ihnen zur Datenbank.</desc>
+
+            <!-- Hilfe bei mir -->
+            <g class="s-schritt" style="--i:0">
+              <rect class="s-karte" x="16" y="90" width="250" height="64" rx="4"/>
+              <text class="s-text-stark" x="141" y="118" text-anchor="middle">Hilfe bei mir</text>
+              <text class="s-text-klein" x="141" y="138" text-anchor="middle">Hilfe, Kontakt, GitHub</text>
+            </g>
+
+            <!-- die Wand -->
+            <g class="s-schritt" style="--i:1">
+              <rect class="s-wand" x="322" y="16" width="36" height="190"/>
+            </g>
+
+            <g class="s-schritt" style="--i:2">
+              <path class="s-linie s-gestrichelt" d="M266 122H322"/>
+              <text class="s-text-klein" x="340" y="228" text-anchor="middle">kein Zugriff</text>
+            </g>
+
+            <!-- Ihre Seite -->
+            <g class="s-schritt" style="--i:3">
+              <rect class="s-karte" x="414" y="24" width="250" height="64" rx="4"/>
+              <text class="s-text-stark" x="539" y="52" text-anchor="middle">Ihre Datenbank</text>
+              <text class="s-text-klein" x="539" y="72" text-anchor="middle">auf Ihrer Infrastruktur</text>
+            </g>
+
+            <g class="s-schritt" style="--i:4">
+              <rect class="s-karte" x="414" y="138" width="250" height="64" rx="4"/>
+              <text class="s-text-stark" x="539" y="166" text-anchor="middle">Hilfe bei Ihnen</text>
+              <text class="s-text-klein" x="539" y="186" text-anchor="middle">Person Ihres Vertrauens, vor Ort</text>
+            </g>
+
+            <g class="s-schritt" style="--i:5">
+              <path class="s-fluss" d="M539 88V138"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          Wer am Programm hilft, sieht keine Daten. Wer an Ihren Zahlen arbeitet, tut es bei
+          Ihnen. Schematische Darstellung, keine Ansicht der Anwendung.
+        </figcaption>
+      </figure>
+
+      <div class="karten zwei">
+        <article class="karte">
+          <h3>Hilfe bei mir</h3>
+          <p class="karte-dach">Kennt das Programm, nicht Ihre Daten</p>
+          <p>Zuerst die eingebaute Hilfe der Anwendung, mit häufigen Fragen zum Nachlesen.
+          Reicht das nicht, melden Sie sich unten über GitHub oder per E-Mail. Bei Bedienung, Einrichtung und Fehlern im Programm
+          antworte ich, so gut es meine Zeit erlaubt. Eine Zusage ist das nicht, und wer etwas
+          geschenkt hat, kommt nicht früher an die Reihe. Auf Ihre Datenbank habe ich keinen
+          Zugriff; sie liegt auf Ihrer Maschine.</p>
+        </article>
+        <article class="karte">
+          <h3>Hilfe bei Ihnen</h3>
+          <p class="karte-dach">Kennt Ihre Zahlen, arbeitet vor Ort</p>
+          <p>Für alles, was Zugriff auf Ihre echten Zahlen braucht, holen Sie jemanden Ihres
+          Vertrauens dazu — direkt auf Ihrer eigenen Infrastruktur.</p>
+        </article>
+      </div>
+
+      <div class="hervorgehoben" id="kontakt">
+        <h3>Frage oder Fehler melden</h3>
+        <p>
+          Am einfachsten geht es über GitHub. Fragen und Fehlermeldungen dort sind öffentlich
+          sichtbar, und Sie brauchen ein GitHub-Konto. Bitte schreiben Sie keine eigenen Zahlen,
+          Kontodaten oder Namen Dritter hinein.
+        </p>
+        <p><a class="knopf" href="https://github.com/chgerhard/vermora-releases/issues/new/choose" target="_blank" rel="noopener noreferrer">Frage oder Fehler auf GitHub melden<span class="sr-hinweis"> (öffnet in neuem Fenster)</span></a></p>
+        <p class="fussnote">
+          Ohne GitHub-Konto: E-Mail: [PLATZHALTER-EMAIL_GETARNT: Vermora-Adresse].
+          Auch dabei bitte keine eigenen Zahlen oder Daten mitschicken.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="start" class="kap-start">
+    <div class="bahn">
+      <p class="dachzeile">So kommen Sie dazu</p>
+      <h2>Vier Schritte, in Ruhe</h2>
+      <figure class="foto">
+        <img src="assets/bilder/start-unterlagen-1536.webp" srcset="assets/bilder/start-unterlagen-768.webp 768w, assets/bilder/start-unterlagen-1536.webp 1536w" sizes="(min-width: 60rem) 60rem, 100vw" width="1536" height="1024" loading="lazy" alt="Zwei Hände blättern einen Stapel Papierunterlagen auf einem Holztisch durch, daneben eine Tasse Kaffee und ein Bleistift, im Morgenlicht.">
+      </figure>
+      <ol class="schritte">
+        <li><span class="nr">01</span><strong>Platz aussuchen</strong> Eigener Rechner, NAS
+        oder gemieteter Server — Sie entscheiden.</li>
+        <li><span class="nr">02</span><strong>Herunterladen</strong> Kostenlos, ohne Konto
+        und ohne Anmeldung.</li>
+        <li><span class="nr">03</span><strong>Einrichten</strong> Mit dem Starterpaket und
+        der Anleitung Schritt für Schritt.</li>
+        <li><span class="nr">04</span><strong>Loslegen</strong> Erste Buchung erfassen — der
+        Rest rechnet sich mit.</li>
+      </ol>
+
+      <details class="download" id="download">
+        <summary>Download anzeigen</summary>
+        <p>Die aktuelle Fassung liegt auf GitHub im Bereich „Releases“ des Projekts:
+        <a href="https://github.com/chgerhard/vermora-releases/releases/latest" target="_blank" rel="noopener noreferrer">Zur aktuellen Fassung<span class="sr-hinweis"> (öffnet in neuem Fenster)</span></a>.</p>
+        <ul>
+          <li>für Windows und Linux, Prozessor mit x86-64-Architektur</li>
+          <li>kein Konto, keine Anmeldung, keine Freischaltung</li>
+          <li>beim Öffnen des Links gelten die Datenschutzhinweise von GitHub</li>
+        </ul>
+        <p>Die Installation unter Windows, unter Linux und auf einem Netzwerkspeicher (NAS)
+        steht Schritt für Schritt in der <a href="anleitung/00-ueberblick/" target="_blank" rel="noopener noreferrer">Installationsanleitung<span class="sr-hinweis"> (öffnet in neuem Fenster)</span></a>.</p>
+        <p>Zum Ausprobieren ohne eigene Daten liegt bei jeder Fassung eine Demo-Datenbank mit
+        ausschließlich erfundenen Daten im selben
+        <a href="https://github.com/chgerhard/vermora-releases/releases/latest" target="_blank" rel="noopener noreferrer">Bereich „Releases“<span class="sr-hinweis"> (öffnet in neuem Fenster)</span></a>.
+        Sie läuft nur auf Ihrem eigenen Rechner und lässt sich in Vermora mit einem Klick wieder
+        vollständig entfernen. Das Einspielen steht in der Installationsanleitung.</p>
+      </details>
+
+      <div class="hervorgehoben">
+        <h3>Vermora ist und bleibt kostenlos</h3>
+        <p>
+          Kein Konto, keine Anmeldung, keine Freischaltung. Neue Fassungen kommen auf demselben
+          Weg wie der erste Download.
+        </p>
+      </div>
+
+      <div class="hervorgehoben">
+        <h3>Und wenn ich das Projekt einmal nicht weiterführe?</h3>
+        <p>
+          Eine eingerichtete Instanz läuft auf Ihrer Hardware weiter; sie fragt bei mir nichts
+          an. Ihre Daten bleiben, wo sie sind: bei Ihnen. Neue Fassungen gibt es dann keine mehr.
+        </p>
+      </div>
+
+      <aside class="geschenk" aria-labelledby="geschenk-titel">
+        <h3 id="geschenk-titel">Geschenk an den Entwickler</h3>
+        <p>Vermora ist und bleibt kostenlos. Wer mag, kann dem Entwickler etwas schenken. Ein
+        Geschenk ist freiwillig, begründet keine Ansprüche und schaltet nichts frei.</p>
+        <ul>
+          <li><a href="[PLATZHALTER-PAYPAL_LINK: Adresse der PayPal-Seite]" target="_blank" rel="noopener noreferrer">Per PayPal<span class="sr-hinweis"> (öffnet in neuem Fenster)</span></a></li>
+        </ul>
+        <p>Es gibt keine Gegenleistung, keine Dankesmail und keine Liste der Schenkenden. Der
+        Link öffnet PayPal; was dabei geschieht, steht in der
+        <a href="recht/datenschutz.html#geschenk" target="_blank" rel="noopener noreferrer">Datenschutzerklärung, Abschnitt Geschenk<span class="sr-hinweis"> (öffnet in neuem Fenster)</span></a>.</p>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer class="fuss">
+  <div class="bahn">
+    <p class="marke-block">
+      <span class="zeichen"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+     aria-hidden="true" focusable="false">
+  <path d="M12 3C7 3 3.6 6.6 4 11c.3 3.4 3 6 6.4 6"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M12 6.4c3.2 0 5.8 2.4 6 5.5.2 2.9-1.9 5.4-4.7 5.9"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".72"/>
+  <path d="M12 9.6c1.5 0 2.7 1.1 2.8 2.5.1 1.5-1 2.7-2.4 2.9"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".46"/>
+  <circle cx="12" cy="12" r="1.3" fill="currentColor"/>
+</svg></span>
+      <span class="marke">Vermora</span>
+    </p>
+    <p class="fuss-leitbild">Ein Vermögen. Ein Wahrheitsort. Auf Ihrer eigenen Infrastruktur.</p>
+
+    <nav class="fuss-nav" aria-label="Rechtliches">
+      <ul>
+        <li><a href="recht/impressum.html">Impressum</a></li>
+        <li><a href="recht/datenschutz.html">Datenschutz</a></li>
+        <li><a href="recht/nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
+      </ul>
+    </nav>
+
+    <p class="hinweis">
+      Keine Anlageberatung, keine Anlagevermittlung, keine Finanzportfolioverwaltung, keine Hilfeleistung in Steuersachen, keine Rechtsdienstleistung. Die Steuer setzt allein das Finanzamt fest.
+    </p>
+  </div>
+</footer>
+</body>
+</html>

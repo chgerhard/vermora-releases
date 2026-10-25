@@ -1,0 +1,1313 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Oeffentliche Installationsanleitung fuer Vermora (Issue #589). Eigene Quelle, eigener Bau, getrennt von der internen Pruef-Dokumentation (docs/pruefdoku/) -- diese Site ist bewusst frei von Betreiber-/Repo-Interna und darf veroeffentlicht werden (siehe redaktionsregeln.md und den Guard backend/tests/test_issue589_anleitung_oeffentlich.py).
+">
+      
+      
+      
+        <link rel="canonical" href="https://vermora.de/anleitung/a-vorbereitung/">
+      
+      
+        <link rel="prev" href="../00-ueberblick/">
+      
+      
+        <link rel="next" href="../b-windows/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Teil A — Bevor Sie beginnen - Vermora einrichten</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/tokens.css">
+    
+      <link rel="stylesheet" href="../../assets/fonts.css">
+    
+      <link rel="stylesheet" href="../../assets/marke.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#teil-a-bevor-sie-beginnen" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="Vermora einrichten" class="md-header__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vermora einrichten
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Teil A — Bevor Sie beginnen
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-ueberblick/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ueberblick
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bevor Sie beginnen
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../b-windows/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Windows
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../c-linux/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der Weg unter Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../d-betrieb/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Der laufende Betrieb
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../e-wenn-etwas-nicht-klappt/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Wenn etwas nicht klappt
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../f-andere-wege/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Andere Betriebswege
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../g-netzwerkspeicher/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Betrieb auf einem Netzwerkspeicher
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Vermora einrichten" class="md-nav__button md-logo" aria-label="Vermora einrichten" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vermora einrichten
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-ueberblick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ueberblick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bevor Sie beginnen
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bevor Sie beginnen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../b-windows/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Windows
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../c-linux/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der Weg unter Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der Weg unter Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../d-betrieb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Der laufende Betrieb
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Der laufende Betrieb
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../e-wenn-etwas-nicht-klappt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wenn etwas nicht klappt
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Wenn etwas nicht klappt
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../f-andere-wege/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Andere Betriebswege
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Andere Betriebswege
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../g-netzwerkspeicher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Betrieb auf einem Netzwerkspeicher
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a1-was-vermora-ist-und-wo-ihre-daten-liegen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A1 Was Vermora ist und wo Ihre Daten liegen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a2-passt-ihr-rechner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A2 Passt Ihr Rechner?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A2 Passt Ihr Rechner?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#der-prozessor-die-wichtigste-frage-zuerst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Der Prozessor — die wichtigste Frage zuerst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#die-ubrige-prufliste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Die übrige Prüfliste
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtualisierung-betrifft-allein-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtualisierung — betrifft allein Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schutz-ihres-datenordners-wenn-eine-festplatte-das-haus-verlasst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schutz Ihres Datenordners, wenn eine Festplatte das Haus verlässt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a3-was-kostet-was" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A3 Was kostet was
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a4-was-sie-am-ende-haben-werden" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A4 Was Sie am Ende haben werden
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="teil-a-bevor-sie-beginnen">Teil A — Bevor Sie beginnen<a class="headerlink" href="#teil-a-bevor-sie-beginnen" title="Permanent link">&para;</a></h1>
+<h2 id="a1-was-vermora-ist-und-wo-ihre-daten-liegen">A1 Was Vermora ist und wo Ihre Daten liegen<a class="headerlink" href="#a1-was-vermora-ist-und-wo-ihre-daten-liegen" title="Permanent link">&para;</a></h2>
+<p>Vermora ist ein Programm für Ihr Wertpapier-Depot.</p>
+<p>Es zeigt Ihnen, was Sie besitzen, was es wert ist und was steuerlich davon zu berichten wäre.</p>
+<p>Der entscheidende Unterschied zu vielen anderen Programmen: <strong>Vermora läuft auf Ihrem
+eigenen Rechner.</strong></p>
+<p>Ihre Daten liegen auf Ihrer eigenen Festplatte. Sie werden nicht an einen Anbieter
+gesendet. Niemand außer Ihnen sieht sie.</p>
+<p>Daraus folgt eine Verantwortung, die dieser Text ernst nimmt:</p>
+<ul>
+<li><strong>Sie</strong> sichern Ihre Daten. Es gibt keinen Anbieter, der das im Hintergrund für Sie tut.
+  Dafür gibt es das Kapitel „So sichern Sie Ihre Daten" im laufenden Betrieb, und dieses
+  Kapitel ist Pflicht.</li>
+<li><strong>Sie</strong> verwahren den Schlüssel, mit dem Ihre Sicherungen verschlossen werden. Ohne
+  diesen Schlüssel sind Ihre Sicherungen wertlos. Auch dazu sagt jenes Kapitel alles Nötige.</li>
+<li><strong>Sie</strong> entscheiden, wann aktualisiert wird. Das Kapitel „So aktualisieren Sie" zeigt,
+  wie das geht.</li>
+</ul>
+<p>Zwei Wörter, die im Rest des Textes vorkommen, werden hier ein für alle Mal erklärt.</p>
+<p><strong>Container.</strong> Ein Container ist ein abgeschlossenes Päckchen. Darin steckt ein Programm
+samt allem, was es zum Laufen braucht. Das Päckchen läuft auf Ihrem Rechner, ohne sich mit
+Ihren übrigen Programmen zu vermischen. Vermora wird als solches Päckchen ausgeliefert.</p>
+<p><strong>Container-Umgebung.</strong> Das ist das Hilfsprogramm, das solche Päckchen öffnet und laufen
+lässt. Sie installieren es einmal. Danach denken Sie nicht mehr daran.</p>
+<h2 id="a2-passt-ihr-rechner">A2 Passt Ihr Rechner?<a class="headerlink" href="#a2-passt-ihr-rechner" title="Permanent link">&para;</a></h2>
+<p>Gehen Sie diese Liste durch, bevor Sie etwas herunterladen. Das erspart Ihnen eine
+Enttäuschung nach einer halben Stunde Arbeit.</p>
+<h3 id="der-prozessor-die-wichtigste-frage-zuerst">Der Prozessor — die wichtigste Frage zuerst<a class="headerlink" href="#der-prozessor-die-wichtigste-frage-zuerst" title="Permanent link">&para;</a></h3>
+<p>Vermora läuft heute <strong>ausschließlich</strong> auf Rechnern mit einem Prozessor der Bauart
+<strong>x86_64</strong>. Diese Bauart wird auch <code>x64</code>, <code>AMD64</code> oder <code>Intel 64</code> genannt. Alle vier
+Wörter meinen dasselbe.</p>
+<p>Das trifft auf fast alle Windows-Rechner und fast alle Linux-Rechner zu.</p>
+<p><strong>Es trifft nicht zu auf Apple-Rechner mit M1, M2, M3 oder M4</strong> (genannt „Apple Silicon").
+Es trifft ebenfalls nicht zu auf Windows-Geräte mit einem Snapdragon-Prozessor.</p>
+<p>Das ist eine <strong>Grenze</strong>, keine Empfehlung. Auf solchen Geräten startet Vermora nicht. Es
+startet dort auch nicht langsam — es startet gar nicht.</p>
+<p><strong>Was Sie in diesem Fall tun:</strong> Nutzen Sie einen anderen Rechner der Bauart x86_64. Ein
+gebrauchter Windows- oder Linux-Rechner genügt vollständig.</p>
+<p>So finden Sie die Bauart heraus:</p>
+<ul>
+<li><strong>Windows:</strong> Drücken Sie die Windows-Taste, tippen Sie <code>Systeminformationen</code>, drücken
+  Sie Enter. In der Zeile „Systemtyp" muss <code>x64-basierter PC</code> stehen. Steht dort
+  <code>ARM64-basierter PC</code>, ist Ihr Rechner nicht geeignet.</li>
+<li><strong>Linux:</strong> Öffnen Sie ein Terminal-Fenster und tippen Sie <code>uname -m</code>, dann Enter. Die
+  Antwort muss <code>x86_64</code> lauten. Lautet sie <code>aarch64</code> oder <code>arm64</code>, ist der Rechner nicht
+  geeignet.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Wird beim Start automatisch geprüft</p>
+<p>Das Startprogramm prüft die Bauart selbst, bevor es irgendetwas herunterlädt. Auf
+einem ungeeigneten Gerät bricht es mit einer verständlichen deutschen Meldung ab,
+statt später in einem unklaren Fehler zu enden.</p>
+</div>
+<h3 id="die-ubrige-prufliste">Die übrige Prüfliste<a class="headerlink" href="#die-ubrige-prufliste" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Was</th>
+<th>Was Sie brauchen</th>
+<th>Wie Sie es prüfen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows-Fassung</td>
+<td>Windows 10 (Fassung 22H2) oder Windows 11</td>
+<td>Windows-Taste, <code>winver</code> tippen, Enter</td>
+</tr>
+<tr>
+<td>Linux-Fassung</td>
+<td>Eine der gängigen Ausgaben ab 2023 (Ubuntu, Debian, Fedora, Mint, openSUSE)</td>
+<td>Terminal, <code>cat /etc/os-release</code></td>
+</tr>
+<tr>
+<td>Arbeitsspeicher</td>
+<td>8 GB im Rechner, davon 2 GB frei</td>
+<td>Windows: Task-Manager → Leistung. Linux: Terminal, <code>free -h</code></td>
+</tr>
+<tr>
+<td>Freier Festplattenplatz</td>
+<td>10 GB</td>
+<td>Windows: Explorer → Dieser PC. Linux: Terminal, <code>df -h</code></td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>Beim ersten Start nötig, danach nicht mehr täglich</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Wird beim Start automatisch geprüft</p>
+<p>Das Startprogramm misst Arbeitsspeicher und Platz selbst. Bei Unterschreitung
+erscheint eine Warnung mit der gemessenen Zahl und der Frage, ob trotzdem
+fortgefahren werden soll.</p>
+</div>
+<h3 id="virtualisierung-betrifft-allein-windows">Virtualisierung — betrifft allein Windows<a class="headerlink" href="#virtualisierung-betrifft-allein-windows" title="Permanent link">&para;</a></h3>
+<p>Windows braucht für Container-Päckchen eine Funktion namens Virtualisierung. Sie ist bei
+fast allen Rechnern ab Werk eingeschaltet.</p>
+<ul>
+<li><strong>Was Sie sehen:</strong> Öffnen Sie den Task-Manager (Strg + Umschalt + Esc), Reiter
+  „Leistung", links „CPU".</li>
+<li><strong>Was das bedeutet:</strong> Rechts unten steht eine Zeile „Virtualisierung".</li>
+<li><strong>Was Sie tun:</strong> Steht dort <code>Aktiviert</code>, ist alles gut. Steht dort <code>Deaktiviert</code>, lesen
+  Sie im Kapitel „Wenn etwas nicht klappt" das Symptom zur Virtualisierung.</li>
+</ul>
+<h3 id="schutz-ihres-datenordners-wenn-eine-festplatte-das-haus-verlasst">Schutz Ihres Datenordners, wenn eine Festplatte das Haus verlässt<a class="headerlink" href="#schutz-ihres-datenordners-wenn-eine-festplatte-das-haus-verlasst" title="Permanent link">&para;</a></h3>
+<p>Vermora verschlüsselt die Datenbankdatei nicht selbst. Wer Ihre Festplatte in die Hand
+bekommt, könnte sie lesen. Dieser Fall tritt ein, wenn eine Platte defekt ist und
+eingeschickt wird, wenn Sie den Rechner verkaufen oder entsorgen, oder bei einem
+Diebstahl.</p>
+<p>Für den Schutz sind <strong>Sie</strong> zuständig. Sie haben zwei gleichwertige Wege:</p>
+<ul>
+<li><strong>Geräteverschlüsselung.</strong> Sie schalten die Verschlüsselung des Laufwerks in Ihrem
+  Betriebssystem ein. Danach ist der Datenordner ohne Ihr Passwort unlesbar.</li>
+<li><strong>Eine feste Regel.</strong> Sie legen für sich fest: „Kein Datenträger verlässt das Haus
+  unvernichtet." Defekte oder ausgemusterte Platten zerstören Sie, statt sie
+  zurückzuschicken, zu verkaufen oder wegzuwerfen.</li>
+</ul>
+<p>Beides schützt vor demselben Fall. Wählen Sie, was zu Ihrem Alltag passt, und halten Sie
+die Wahl fest, am besten schriftlich.</p>
+<h2 id="a3-was-kostet-was">A3 Was kostet was<a class="headerlink" href="#a3-was-kostet-was" title="Permanent link">&para;</a></h2>
+<p><strong>Vermora selbst</strong> — siehe die Preisangabe auf der Bereitstellungsseite.</p>
+<p><strong>Die Container-Umgebung</strong> — hier müssen Sie eine Entscheidung treffen, und sie hat eine
+Kostenseite. Deshalb steht sie hier und nicht versteckt im Kleingedruckten.</p>
+<p>Es gibt vier Container-Umgebungen. Alle vier funktionieren mit Vermora.</p>
+<table>
+<thead>
+<tr>
+<th>Umgebung</th>
+<th>Kosten</th>
+<th>Anmerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Docker Desktop</strong></td>
+<td>Für private Nutzung kostenfrei. <strong>Kostenpflichtig</strong> für Unternehmen ab 250 Mitarbeitern <strong>oder</strong> ab 10 Millionen US-Dollar Jahresumsatz.</td>
+<td>Die am weitesten verbreitete Umgebung.</td>
+</tr>
+<tr>
+<td><strong>Rancher Desktop</strong></td>
+<td>Kostenfrei, quelloffen</td>
+<td>Bedienung sehr ähnlich zu Docker Desktop.</td>
+</tr>
+<tr>
+<td><strong>Podman Desktop</strong></td>
+<td>Kostenfrei, quelloffen</td>
+<td>Braucht unter Windows einen zusätzlichen Startschritt.</td>
+</tr>
+<tr>
+<td><strong>Docker CE</strong></td>
+<td>Kostenfrei, quelloffen</td>
+<td>Wird über die Kommandozeile bedient, kein Fenster.</td>
+</tr>
+</tbody>
+</table>
+<p>Diese vier stehen <strong>gleichrangig</strong> nebeneinander. Diese Anleitung nennt jeweils eine
+Umgebung als durchgeführten Weg, damit Sie eine klare Spur haben. Die anderen drei sind
+deshalb nicht schlechter.</p>
+<p><strong>Was Sie tun:</strong> Nutzen Sie Vermora zu Hause für Ihr eigenes Depot, wählen Sie Docker
+Desktop; für die private Nutzung ist es kostenfrei. Die Lizenzbedingungen von Docker Desktop
+gelten unabhängig von Vermora. Setzen Sie Docker Desktop in einem Unternehmen der oben
+genannten Größe ein, prüfen Sie dort dessen Bedingungen oder wählen Sie eine der anderen drei.</p>
+<h2 id="a4-was-sie-am-ende-haben-werden">A4 Was Sie am Ende haben werden<a class="headerlink" href="#a4-was-sie-am-ende-haben-werden" title="Permanent link">&para;</a></h2>
+<p>Damit Sie wissen, wann Sie fertig sind — drei Dinge:</p>
+<ol>
+<li><strong>Eine Anmeldeseite in Ihrem Browser.</strong> Sie erreichen sie über eine Adresse, die mit
+   <code>https://localhost:</code> beginnt. Sie melden sich dort mit Ihrem eigenen Passwort an.</li>
+<li><strong>Zwei Ordner auf Ihrer Festplatte</strong>, die Sie selbst ausgesucht haben: einen für Ihre
+   <strong>Sicherungen</strong> und einen für Ihren <strong>Schlüssel</strong>. Warum es zwei getrennte Ordner sind,
+   erklären die Windows- bzw. Linux-Kapitel.</li>
+<li><strong>Ein Startsymbol</strong>, das Sie doppelt anklicken, wenn Sie Vermora benutzen möchten.</li>
+</ol>
+<p>Rechnen Sie beim ersten Mal mit <strong>30 bis 60 Minuten</strong>. Der größte Teil davon ist
+Wartezeit, in der Ihr Rechner etwas herunterlädt. Danach dauert ein Start etwa eine Minute.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../00-ueberblick/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Ueberblick">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                Ueberblick
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../b-windows/" class="md-footer__link md-footer__link--next" aria-label="Weiter: Teil B — Der Weg unter Windows">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                Teil B — Der Weg unter Windows
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes", "navigation.tabs", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  <script src="../assets/tastatur.js"></script>
+
+  </body>
+</html>
