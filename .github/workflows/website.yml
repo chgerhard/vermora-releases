@@ -46,6 +46,7 @@ jobs:
       ANGABE_AUFSICHT: ${{ secrets.ANGABE_AUFSICHT }}
       ANGABE_SECURITY_ABLAUF: ${{ secrets.ANGABE_SECURITY_ABLAUF }}
       ANGABE_STAND_DATENSCHUTZ: ${{ secrets.ANGABE_STAND_DATENSCHUTZ }}
+      ANGABE_PAYPAL_LINK: ${{ secrets.ANGABE_PAYPAL_LINK }}
     steps:
       - name: Zweig website vorhanden
         run: |
