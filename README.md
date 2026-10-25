@@ -100,4 +100,4 @@ Anleitung Schritt für Schritt liegt dem Starterpaket bei.
 
 Fragen und Fehlermeldungen gern als [Issue](../../issues) in diesem Repository. Alles hier ist
 öffentlich sichtbar: bitte keine eigenen Zahlen, Kontodaten oder Namen Dritter posten. Ich
-antworte, so gut es meine Zeit erlaubt; eine Zusage ist das nicht.
+antworte, so gut es meine Zeit erlaubt; eine Zusage ist das nicht. Wenn Sie einen Fehler bemerken, der Daten oder Steuerwerte verfälschen kann, eröffnen Sie bitte dazu ein Issue.
