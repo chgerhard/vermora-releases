@@ -50,8 +50,26 @@ auch nicht in Bildschirmfotos oder Protokollauszügen. Für die Nachstellung gen
 Nicht dazu gehören Lücken in Docker, im Betriebssystem, im NAS oder in Erweiterungen, die Sie
 selbst eingebunden haben. Bitte melden Sie diese beim jeweiligen Hersteller.
 
+## Wie ich selbst prüfe
+
+Ich verlasse mich nicht allein auf Meldungen von außen. Einmal pro Woche, montags früh,
+untersucht eine automatische Prüfung zwei Dinge auf bekannte Sicherheitslücken in
+Bibliotheken und Systempaketen: das Vermora-Abbild und das mitgelieferte Caddy-Abbild
+(der Webserver davor).
+
+- **Was gemeldet wird:** Funde, für die es bereits eine korrigierte Fassung des betroffenen
+  Pakets gibt. Funde ohne verfügbare Korrektur zähle ich nur mit, damit sie nicht jede
+  Woche dieselbe Meldung erzeugen.
+- **Was ich ernst nehme:** Kritische Funde und alle Funde der Stufe „hoch“ lege ich als
+  eigenen Befund an und gehe sie vorrangig an.
+- **Was daraus wird:** Ein behobener Fund erscheint mit der nächsten veröffentlichten
+  Fassung. Das Änderungsprotokoll nennt, was betroffen war.
+
+Das ist meine eigene Arbeitsweise, keine Zusage. Eine Frist für Korrekturen verspreche ich
+damit nicht, und auch eine Prüfung ohne Fund ist keine Garantie, dass keine Lücke besteht.
+
 ## Gut zu wissen
 
-Vermora sendet keine Nutzungs- oder Fehlerdaten an mich. Von einer Lücke erfahre ich nur,
-wenn sie mir jemand meldet. Ihre Instanz läuft bei Ihnen; ich habe keinen Zugriff darauf und
+Vermora sendet keine Nutzungs- oder Fehlerdaten an mich. Aus Ihrer Instanz erfahre ich nichts. Hinweise auf Lücken
+bekomme ich nur durch meine Prüfung des Abbilds oder wenn Sie mir etwas melden. Ihre Instanz läuft bei Ihnen; ich habe keinen Zugriff darauf und
 kann eine Korrektur nicht selbst einspielen – das Update führen Sie aus.
