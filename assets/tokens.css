@@ -1,0 +1,50 @@
+/* Erzeugt von styleguide_sync.ps1 (Produkt-Repo, Issue #613) -- NICHT VON HAND BEARBEITEN.
+   Aenderung gehoert ins Produkt-Repo: docs/STYLEGUIDE.md Paragraph 2.2 (Farbe), Paragraph 3 (Schrift), Paragraph 4 (Form).
+   Quelle: chgerhard/portfolio docs/STYLEGUIDE.md
+   Digest der Vorlage (SHA-256, zeilenenden-normalisiert): 123bf74ea96906d1c89a7651147a1c3192284cc69af2e8713b98516df33232fb
+
+   WARNUNG (Paragraph 2.2): --vm-ink-light ist NIE Fliesstext -- nur Zierlinie, Trenner,
+   deaktiviertes Symbol. Fliesstext/Beschriftungen laufen auf --vm-ink-soft. */
+
+:root {
+  --vm-anker: #1D3A57;
+  --vm-interaktiv: #2C4E70;
+  --vm-paper: #FAF7F1;
+  --vm-card: #FFFFFF;
+  --vm-line: #E8E1D5;
+  --vm-ink: #1C2530;
+  --vm-ink-soft: #5B6874;
+  --vm-ink-light: #69727C;
+  --vm-accent: #A97C3D;
+  --vm-pos: #3F7A5E;
+  --vm-neg: #A8442E;
+  --vm-tint-kuehl: #EEF2F6;
+  --vm-tint-warm: #F4EDE1;
+  --vm-fond: #1D3A57;
+  --vm-fond-ink: #F4F0E8;
+  --vm-fond-soft: #C3CFDB;
+  --vm-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --vm-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --vm-radius: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --vm-anker: #B4CFE7;
+    --vm-interaktiv: #8FB6D8;
+    --vm-paper: #10141A;
+    --vm-card: #171C24;
+    --vm-line: #273240;
+    --vm-ink: #E9EDF3;
+    --vm-ink-soft: #9BA8B6;
+    --vm-ink-light: #77869A;
+    --vm-accent: #D6A25E;
+    --vm-pos: #6FBF97;
+    --vm-neg: #DB8168;
+    --vm-tint-kuehl: #131B26;
+    --vm-tint-warm: #1B1914;
+    --vm-fond: #0B1E33;
+    --vm-fond-ink: #EDE9E1;
+    --vm-fond-soft: #9FB2C6;
+  }
+}

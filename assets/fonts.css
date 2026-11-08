@@ -1,0 +1,59 @@
+/* Erzeugt von styleguide_sync.ps1 (Produkt-Repo, Issue #613) -- NICHT VON HAND BEARBEITEN.
+   Aenderung gehoert ins Produkt-Repo: frontend/src/assets/fonts.css.
+   Quelle: chgerhard/portfolio frontend/src/assets/fonts.css */
+/* Issue #610: selbst gehostete Schriften (Inter, Fraunces).
+   Bewusst KEIN <link>/@import auf fonts.googleapis.com in irgendeiner
+   ausgelieferten Datei — kein Fremdladen von Google Fonts (Referrer-/
+   IP-Preisgabe an Google bei jedem Seitenaufruf, Datenschutz-Grundsatz
+   dieses Projekts, s. CLAUDE.md §21). Die WOFF2-Dateien liegen deshalb
+   lokal unter ./fonts/ und werden ueber Vite als Asset gebuendelt.
+
+   Bewusst KEIN @fontsource-npm-Paket: das Prüfdoku-/Starterpaket
+   (docs/pruefdoku/, Auslieferung an externe Pruefstellen bzw. Neuaufsetzer)
+   sieht node_modules nie — ein npm-Font-Paket waere dort unsichtbar und
+   der Font faellt beim Nachbauen des Pakets auf den System-Fallback
+   zurueck. Die WOFF2-Dateien selbst sind Repo-Bestandteil (analog
+   Alembic-Migrationen: generiert, aber versioniert) und ziehen so mit.
+
+   unicode-range-Werte sind woertlich aus der Google Fonts CSS2-API
+   uebernommen (nicht selbst erfunden) — nur die latin/latin-ext-Subsets,
+   die Projekt-UI ist ausschliesslich deutschsprachig (§2 frontend.md).
+
+   Lizenz: beide Familien SIL Open Font License 1.1, Volltexte liegen
+   daneben unter ./fonts/OFL-Inter.txt und ./fonts/OFL-Fraunces.txt. */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/inter-latin-wght.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/inter-latin-ext-wght.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/fraunces-600-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/fraunces-600-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}

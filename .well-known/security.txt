@@ -1,0 +1,5 @@
+# Sicherheitsmeldungen zu Vermora (Website und Anwendung). Bitte keine eigenen Finanzdaten senden.
+Contact: mailto:[PLATZHALTER-EMAIL: Vermora-Adresse]
+Expires: [PLATZHALTER-SECURITY_ABLAUF: JJJJ-MM-TT]T00:00:00Z
+Preferred-Languages: de, en
+Canonical: https://vermora.de/.well-known/security.txt
